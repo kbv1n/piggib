@@ -1,0 +1,446 @@
+{
+  "__guid": "a814fa5b-3b21-43fd-a17d-363aee7c0559",
+  "GameObjects": [
+    {
+      "__guid": "31fdeb84-d344-46e4-ba4c-c781138aee37",
+      "Name": "Ball",
+      "Position": "1216,-250.1237,151.7768",
+      "Scale": "0.1306534,0.1306534,0.1229448",
+      "Tags": "enemy",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "ManualHitbox",
+          "__guid": "d7385c06-2323-43f8-9cb6-d6c9f934d787",
+          "__enabled": false,
+          "CenterA": "0,0,0",
+          "CenterB": "0,0,0",
+          "Radius": 34.90003,
+          "Shape": "Sphere",
+          "Target": {
+            "_type": "gameobject",
+            "go": "31fdeb84-d344-46e4-ba4c-c781138aee37"
+          }
+        },
+        {
+          "__type": "ModelRenderer",
+          "__guid": "a098ea1c-c616-4965-8000-2962bfb5ae87",
+          "BodyGroups": 18446744073709551615,
+          "Model": "models/dev/sphere.vmdl",
+          "RenderType": "Off",
+          "Tint": "0.57209,0.01863,0.01863,1"
+        },
+        {
+          "__type": "CapsuleCollider",
+          "__guid": "9fdbea39-2f8d-45b3-8fd3-131ab4c7cb7e",
+          "End": "0,0,10",
+          "IsTrigger": false,
+          "Radius": 44.39994,
+          "Start": "0,0,0",
+          "Static": false
+        }
+      ]
+    },
+    {
+      "__guid": "e472877f-0609-4b97-b55c-a91e4f18e18d",
+      "Name": "Sun",
+      "Position": "30.01669,9.291581,132.0782",
+      "Rotation": "-0.0729315,0.4822396,0.1305433,0.8631827",
+      "Tags": "light_directional,light",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "DirectionalLight",
+          "__guid": "3abfc522-aa35-48e3-9d23-45bb24dcf4d4",
+          "FogMode": "Enabled",
+          "FogStrength": 1,
+          "LightColor": "0.77674,0.3956,0.01445,1",
+          "Shadows": true,
+          "SkyColor": "0.33206,0.32813,0.36744,1"
+        }
+      ]
+    },
+    {
+      "__guid": "d80abc94-b0ba-46fc-b66a-cd3736095e83",
+      "Name": "2D Skybox",
+      "Tags": "skybox",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "SkyBox2D",
+          "__guid": "c6658b57-34c4-4247-be26-abadecbb8535",
+          "SkyMaterial": "materials/sky/sky_005.vmat",
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "EnvmapProbe",
+          "__guid": "5dcc2027-320f-47e2-a831-d55071eaaad3",
+          "Bounds": {
+            "Mins": "-512,-512,-512",
+            "Maxs": "512,512,512"
+          },
+          "Feathering": 0.91999996,
+          "Projection": "Sphere",
+          "Texture": "materials/skybox/skybox_workshop.vtex",
+          "TintColor": "1,1,1,1"
+        }
+      ]
+    },
+    {
+      "__guid": "69e756e6-2263-4ac2-9b4b-9eca8fbe7271",
+      "Name": "Player (1)",
+      "Position": "-96,256,4.368832",
+      "Tags": "player",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "CitizenAnimationHelper",
+          "__guid": "218d7d62-19c7-4365-9eb9-59fc8601fb0b",
+          "BodyWeight": 1,
+          "EyeSource": {
+            "_type": "gameobject",
+            "go": "f1aadb57-b8de-417e-bf93-6321fa6d9813"
+          },
+          "EyesWeight": 1,
+          "HeadWeight": 1,
+          "Height": 1,
+          "LookAtEnabled": false,
+          "Target": {
+            "_type": "component",
+            "component_id": "1744b26d-407c-4c74-913e-e117bccc969b",
+            "go": "b04cb228-820f-4926-ae8f-ba6f8a097a65",
+            "component_type": "SkinnedModelRenderer"
+          }
+        },
+        {
+          "__type": "CharacterController",
+          "__guid": "e3250df5-ef09-457f-90c6-7dc6879a83f0",
+          "Acceleration": 15,
+          "Bounciness": 0.3,
+          "GroundAngle": 45,
+          "Height": 69,
+          "IgnoreLayers": "player,trigger",
+          "Radius": 10.96,
+          "StepHeight": 18
+        },
+        {
+          "__type": "PlayerMovement",
+          "__guid": "4ec8fb9d-9389-43c3-a47f-e1c10acd3e2c",
+          "AirControl": 0.2,
+          "Body": {
+            "_type": "gameobject",
+            "go": "b04cb228-820f-4926-ae8f-ba6f8a097a65"
+          },
+          "DuckLevel": 1,
+          "GroundControl": 4,
+          "Head": {
+            "_type": "gameobject",
+            "go": "f1aadb57-b8de-417e-bf93-6321fa6d9813"
+          },
+          "JumpForce": 400,
+          "MaxForce": 150,
+          "RunSpeed": 290,
+          "Speed": 300,
+          "WalkSpeed": 90
+        },
+        {
+          "__type": "PigInfo",
+          "__guid": "63527932-62b7-4074-99ea-56f58eb6870a",
+          "Team": "Player"
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "f1aadb57-b8de-417e-bf93-6321fa6d9813",
+          "Name": "Head",
+          "Position": "0,0,62.38105",
+          "Enabled": true,
+          "NetworkMode": 2
+        },
+        {
+          "__guid": "b04cb228-820f-4926-ae8f-ba6f8a097a65",
+          "Name": "Body",
+          "Position": "0,0,0",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "Components": [
+            {
+              "__type": "SkinnedModelRenderer",
+              "__guid": "1744b26d-407c-4c74-913e-e117bccc969b",
+              "BodyGroups": 341,
+              "CreateBoneObjects": false,
+              "Model": "models/citizen/citizen.vmdl",
+              "RenderType": "On",
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
+        {
+          "__guid": "0b31a89a-a2d7-46d6-a1d1-bb4c521de840",
+          "Name": "Camera",
+          "Position": "0,0,63.77041",
+          "Tags": "maincamera",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "Components": [
+            {
+              "__type": "CameraComponent",
+              "__guid": "cd934b27-9b68-47ec-b9b1-925b8e3fbad9",
+              "BackgroundColor": "0.33333,0.46275,0.52157,1",
+              "ClearFlags": "All",
+              "FieldOfView": 90.39,
+              "IsMainCamera": true,
+              "Orthographic": false,
+              "OrthographicHeight": 1204,
+              "Priority": 1,
+              "RenderExcludeTags": "player",
+              "RenderTags": "",
+              "TargetEye": "None",
+              "Viewport": "0,0,1,1",
+              "ZFar": 10000,
+              "ZNear": 10
+            },
+            {
+              "__type": "CameraMovement",
+              "__guid": "1549af36-f280-464b-ac23-3f443834da0c",
+              "Ball": {
+                "_type": "gameobject",
+                "go": "31fdeb84-d344-46e4-ba4c-c781138aee37"
+              },
+              "Body": {
+                "_type": "gameobject",
+                "go": "b04cb228-820f-4926-ae8f-ba6f8a097a65"
+              },
+              "Distance": 0,
+              "Head": {
+                "_type": "gameobject",
+                "go": "f1aadb57-b8de-417e-bf93-6321fa6d9813"
+              },
+              "Player": {
+                "_type": "component",
+                "component_id": "4ec8fb9d-9389-43c3-a47f-e1c10acd3e2c",
+                "go": "69e756e6-2263-4ac2-9b4b-9eca8fbe7271",
+                "component_type": "PlayerMovement"
+              },
+              "rlEnd": {
+                "_type": "gameobject",
+                "go": "ef389f81-1ad3-4c16-beb1-ab954be43568"
+              },
+              "rlStart": {
+                "_type": "gameobject",
+                "go": "d039156f-5146-4958-8882-5e46a225fdb9"
+              }
+            },
+            {
+              "__type": "Tonemapping",
+              "__guid": "6266efea-26f1-4255-8c7e-5eaf0d614a43",
+              "ExposureCompensation": 0,
+              "MaximumExposure": 3,
+              "MinimumExposure": 0,
+              "Rate": 1.64
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "__guid": "65bbf301-a7e4-4046-a387-43904cfda027",
+      "Name": "rayCast",
+      "Position": "-124.0379,1.157333,256",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "LineRenderer",
+          "__guid": "2b451e0c-8e41-41eb-b484-58a23119cfe1",
+          "Color": {
+            "color": [
+              {
+                "c": "1,1,1,1"
+              },
+              {
+                "t": 0.21794872,
+                "c": "0.44716,0.90698,0.61576,1"
+              },
+              {
+                "t": 0.40811965,
+                "c": "1,1,1,1"
+              },
+              {
+                "t": 0.53205127,
+                "c": "0.14352,0.99535,0.78239,1"
+              },
+              {
+                "t": 0.6880342,
+                "c": "0.9451,0.9997,0.98605,1"
+              },
+              {
+                "t": 0.69871795,
+                "c": "1,1,1,1"
+              },
+              {
+                "t": 0.8226496,
+                "c": "0.34057,0.80465,0.39472,1"
+              },
+              {
+                "t": 0.982906,
+                "c": "0.87921,0.99934,0.96931,1"
+              }
+            ],
+            "alpha": []
+          },
+          "EndCap": "Arrow",
+          "Opaque": false,
+          "Points": [
+            {
+              "_type": "gameobject",
+              "go": "d039156f-5146-4958-8882-5e46a225fdb9"
+            },
+            {
+              "_type": "gameobject",
+              "go": "ef389f81-1ad3-4c16-beb1-ab954be43568"
+            }
+          ],
+          "SplineBias": 0,
+          "SplineContinuity": 0,
+          "SplineInterpolation": 0,
+          "SplineTension": 0,
+          "StartCap": "Rounded",
+          "Width": [
+            {
+              "x": 0.4702381,
+              "y": 0.47606382,
+              "in": -1.3913051,
+              "out": 1.3913051
+            },
+            {
+              "x": 0.78125,
+              "y": 0.48138297
+            }
+          ],
+          "Wireframe": false
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "d039156f-5146-4958-8882-5e46a225fdb9",
+          "Name": "Start",
+          "Position": "28.0379,-1.157333,-193.5776",
+          "Enabled": true,
+          "NetworkMode": 2
+        },
+        {
+          "__guid": "ef389f81-1ad3-4c16-beb1-ab954be43568",
+          "Name": "End",
+          "Position": "1340.038,-251.2811,-104.2232",
+          "Enabled": true,
+          "NetworkMode": 2
+        }
+      ]
+    },
+    {
+      "__guid": "ce42240a-352a-4dd5-8228-859f640176a2",
+      "Name": "Box",
+      "Position": "-1024,-512,192.0001",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "MeshComponent",
+          "__guid": "752ee70c-a3e3-40b4-81ca-f35bfa1dfa99",
+          "Collision": "Mesh",
+          "Color": "1,1,1,1",
+          "IsTrigger": false,
+          "Mesh": {
+            "Topology": "H4sIAAAAAAAACk3QCQ7CMBBD0bAUylp2uP9J8ZMmUkb6ysTjOGnn1tov7MI9rMI3TOEZDuEdLqHXunzTcEZta7YJr\u002BqVbJq5bP1YfI\u002BayzpWtr036OnnIetTPf0a9uXzVj19Ht50K11vVfy\u002BSx59KT/6nWanuqtrVno/x\u002B8/KXfKMaPx/wEMd\u002BZ5ZAEAAA==",
+            "TextureOrigin": "-1024,-512,192.0001",
+            "Positions": [
+              "-511.9999,-512,191.9999",
+              "511.9999,-512,191.9999",
+              "511.9999,512,191.9999",
+              "-511.9999,512,191.9999",
+              "-511.9999,512,-191.9999",
+              "511.9999,512,-191.9999",
+              "511.9999,-512,-191.9999",
+              "-511.9999,-512,-191.9999"
+            ],
+            "TextureUAxis": [
+              "1,0,0",
+              "1,0,0",
+              "0,-1,0",
+              "0,1,0",
+              "-1,0,0",
+              "1,0,0"
+            ],
+            "TextureVAxis": [
+              "0,-1,0",
+              "0,-1,0",
+              "0,0,-1",
+              "0,0,-1",
+              "0,0,-1",
+              "0,0,-1"
+            ],
+            "TextureScale": [
+              "0.25,0.25",
+              "0.25,0.25",
+              "0.25,0.25",
+              "0.25,0.25",
+              "0.25,0.25",
+              "0.25,0.25"
+            ],
+            "TextureAngle": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "MaterialIndex": [
+              -1,
+              -1,
+              -1,
+              -1,
+              -1,
+              -1
+            ]
+          },
+          "Static": true
+        }
+      ]
+    }
+  ],
+  "SceneProperties": {
+    "FixedUpdateFrequency": 50,
+    "Lerping": true,
+    "MaxFixedUpdates": 5,
+    "NetworkFrequency": 30,
+    "ThreadedAnimation": true,
+    "TimeScale": 1,
+    "UseFixedUpdate": true,
+    "NavMesh": {
+      "Enabled": false,
+      "IncludeStaticBodies": true,
+      "IncludeKeyframedBodies": true,
+      "EditorAutoUpdate": true,
+      "AgentHeight": 64,
+      "AgentRadius": 16,
+      "AgentStepSize": 18,
+      "AgentMaxSlope": 40,
+      "ExcludedBodies": "",
+      "IncludedBodies": ""
+    }
+  },
+  "Title": "level_1",
+  "Description": "",
+  "LastSaved": "2024-03-14T21:39:03.8987521-04:00",
+  "ResourceVersion": 1,
+  "__version": 1,
+  "__references": [
+    "caro.sky_001"
+  ]
+}

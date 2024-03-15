@@ -1,0 +1,305 @@
+{
+  "Id": "2ec6e694-e12b-44be-aa10-32b6ad18d130",
+  "GameObjects": [
+    {
+      "Id": "bfc59c12-1ed2-4f91-8956-a95a315eac3c",
+      "Name": "Sun",
+      "Rotation": "-0.0729315,0.4822396,0.1305433,0.8631827",
+      "Tags": "light_directional,light",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "DirectionalLight",
+          "FogMode": "Enabled",
+          "FogStrength": 1,
+          "LightColor": "0.94419,0.97767,1,1",
+          "Shadows": true,
+          "SkyColor": "0.2532,0.32006,0.35349,1"
+        }
+      ]
+    },
+    {
+      "Id": "00344a8c-fa5e-45ae-b12a-10bb781a1dc3",
+      "Name": "2D Skybox",
+      "Tags": "skybox",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "SkyBox2D",
+          "SkyMaterial": "materials/sky/sky_005.vmat",
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "EnvmapProbe",
+          "Bounds": {
+            "Mins": "-512,-512,-512",
+            "Maxs": "512,512,512"
+          },
+          "Feathering": 0.91999996,
+          "Projection": "Sphere",
+          "Texture": "materials/skybox/skybox_workshop.vtex",
+          "TintColor": "1,1,1,1"
+        }
+      ]
+    },
+    {
+      "Id": "6ad70641-3c6c-4402-9c85-9a4969af4764",
+      "Name": "Plane",
+      "Scale": "25,25,5",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "ModelRenderer",
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": "materials/mansion/mansion_marble_floor_01a/mansion_marble_floor_01a.vmat",
+          "Model": "models/dev/plane.vmdl",
+          "RenderType": "On",
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "BoxCollider",
+          "Center": "0,0,-5",
+          "IsTrigger": false,
+          "Scale": "100,100,10",
+          "Static": false
+        }
+      ]
+    },
+    {
+      "Id": "cc9c8dd3-d336-4d27-9f97-dc4bf19266e7",
+      "Name": "Player",
+      "Position": "-414.5026,-754.2479,0.03125",
+      "Tags": "player",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "SkinnedModelRenderer",
+          "__enabled": false,
+          "BodyGroups": 1,
+          "CreateBoneObjects": false,
+          "Model": "models/player/hazmatsuit/hazmatsuit.vmdl",
+          "RenderType": "On",
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "CitizenAnimationHelper",
+          "BodyWeight": 1,
+          "EyeSource": {
+            "_type": "gameobject",
+            "go": "c061d4f1-aed3-4bdc-bcc3-a526803a2fef"
+          },
+          "EyesWeight": 1,
+          "HeadWeight": 1,
+          "Height": 1,
+          "LookAtEnabled": false,
+          "Target": {
+            "_type": "component",
+            "go": "d0986630-cd48-4419-814d-8bffa44a5ae1",
+            "component_type": "SkinnedModelRenderer"
+          }
+        },
+        {
+          "__type": "CharacterController",
+          "Acceleration": 15,
+          "Bounciness": 0.3,
+          "GroundAngle": 45,
+          "Height": 71.49,
+          "IgnoreLayers": "player,trigger",
+          "Radius": 9.21,
+          "StepHeight": 18
+        },
+        {
+          "__type": "PlayerMovement",
+          "AirControl": 0.2,
+          "Ball": {
+            "_type": "gameobject",
+            "go": "88caa322-206e-4011-8545-463456f7bda6"
+          },
+          "Body": {
+            "_type": "gameobject",
+            "go": "d0986630-cd48-4419-814d-8bffa44a5ae1"
+          },
+          "DuckLevel": 1,
+          "GroundControl": 4,
+          "Head": {
+            "_type": "gameobject",
+            "go": "c061d4f1-aed3-4bdc-bcc3-a526803a2fef"
+          },
+          "JumpForce": 400,
+          "MaxForce": 150,
+          "RunSpeed": 290,
+          "Speed": 300,
+          "Sprite": {
+            "_type": "gameobject",
+            "go": "be6d7a92-7d34-4733-8e69-addee6ed4d1e"
+          },
+          "WalkSpeed": 90
+        }
+      ],
+      "Children": [
+        {
+          "Id": "c061d4f1-aed3-4bdc-bcc3-a526803a2fef",
+          "Name": "Head",
+          "Position": "0,0,62.38084",
+          "Rotation": "-0.03674962,0.1061508,0.3250805,0.938991",
+          "Enabled": true,
+          "NetworkMode": 2
+        },
+        {
+          "Id": "d0986630-cd48-4419-814d-8bffa44a5ae1",
+          "Name": "Body",
+          "Position": "0,0,0",
+          "Rotation": "0,0,-0.3275121,-0.9448469",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "Components": [
+            {
+              "__type": "SkinnedModelRenderer",
+              "BodyGroups": 341,
+              "CreateBoneObjects": false,
+              "Model": "models/citizen/citizen.vmdl",
+              "RenderType": "On",
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
+        {
+          "Id": "b5172ede-fc4e-4114-8d6a-fccb1722dd11",
+          "Name": "Camera",
+          "Position": "0,0,62.38084",
+          "Rotation": "-0.03674962,0.1061508,0.3250805,0.938991",
+          "Tags": "maincamera",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "Components": [
+            {
+              "__type": "CameraComponent",
+              "BackgroundColor": "0.33333,0.46275,0.52157,1",
+              "ClearFlags": "All",
+              "FieldOfView": 90.39,
+              "IsMainCamera": true,
+              "Orthographic": false,
+              "OrthographicHeight": 1204,
+              "Priority": 1,
+              "RenderExcludeTags": "player",
+              "RenderTags": "",
+              "TargetEye": "None",
+              "Viewport": "0,0,1,1",
+              "ZFar": 8940.411,
+              "ZNear": 11.90001
+            },
+            {
+              "__type": "CameraMovement",
+              "Body": {
+                "_type": "gameobject",
+                "go": "d0986630-cd48-4419-814d-8bffa44a5ae1"
+              },
+              "Distance": 0,
+              "Head": {
+                "_type": "gameobject",
+                "go": "c061d4f1-aed3-4bdc-bcc3-a526803a2fef"
+              },
+              "Player": {
+                "_type": "component",
+                "go": "cc9c8dd3-d336-4d27-9f97-dc4bf19266e7",
+                "component_type": "PlayerMovement"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": "88caa322-206e-4011-8545-463456f7bda6",
+      "Name": "Ball",
+      "Position": "-337.8917,-693.9785,40.08784",
+      "Tags": "enemy",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "ManualHitbox",
+          "__enabled": false,
+          "CenterA": "0,0,0",
+          "CenterB": "0,0,0",
+          "Radius": 34.90003,
+          "Shape": "Sphere"
+        },
+        {
+          "__type": "ModelRenderer",
+          "BodyGroups": 18446744073709551615,
+          "Model": "models/dev/sphere.vmdl",
+          "RenderType": "On",
+          "Tint": "0.57209,0.01863,0.01863,1"
+        },
+        {
+          "__type": "CapsuleCollider",
+          "__enabled": false,
+          "End": "0,0,-1.197964",
+          "IsTrigger": false,
+          "Radius": 33.699978,
+          "Start": "0,0,-1.0893",
+          "Static": false
+        }
+      ]
+    },
+    {
+      "Id": "be6d7a92-7d34-4733-8e69-addee6ed4d1e",
+      "Name": "Sprite",
+      "Position": "-413.7365,-753.6451,62.18885",
+      "Rotation": "-0.0009306661,0.008673398,0.1066847,0.9942546",
+      "Scale": "0.02,0.02,20",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "ModelRenderer",
+          "BodyGroups": 18446744073709551615,
+          "Model": "models/dev/box.vmdl",
+          "RenderType": "On",
+          "Tint": "0.25,1,0,1"
+        }
+      ]
+    },
+    {
+      "Id": "7bf088b3-6402-4de7-b331-e661739c9077",
+      "Name": "Object",
+      "Position": "-758.0336,949.0955,27.08057",
+      "Enabled": true,
+      "NetworkMode": 2
+    }
+  ],
+  "SceneProperties": {
+    "FixedUpdateFrequency": 50,
+    "Lerping": true,
+    "MaxFixedUpdates": 5,
+    "NetworkFrequency": 60,
+    "ThreadedAnimation": true,
+    "TimeScale": 1,
+    "UseFixedUpdate": true,
+    "NavMesh": {
+      "Enabled": false,
+      "IncludeStaticBodies": true,
+      "IncludeKeyframedBodies": true,
+      "EditorAutoUpdate": true,
+      "AgentHeight": 64,
+      "AgentRadius": 16,
+      "AgentStepSize": 18,
+      "AgentMaxSlope": 40,
+      "ExcludedBodies": "",
+      "IncludedBodies": ""
+    }
+  },
+  "Title": "minimal",
+  "Description": "",
+  "LastSaved": "2024-03-12T02:55:39.4318012-04:00",
+  "__references": [
+    "caro.sky_001",
+    "fkeep.mansion_marble_floor_01a",
+    "sboxmp.hazmatsuit"
+  ]
+}
