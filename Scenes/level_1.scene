@@ -91,8 +91,8 @@
     },
     {
       "__guid": "69e756e6-2263-4ac2-9b4b-9eca8fbe7271",
-      "Name": "Player (1)",
-      "Position": "-96,256,4.368832",
+      "Name": "Player",
+      "Position": "-96,-64,4.368832",
       "Tags": "player",
       "Enabled": true,
       "NetworkMode": 2,
@@ -150,7 +150,13 @@
         {
           "__type": "PigInfo",
           "__guid": "63527932-62b7-4074-99ea-56f58eb6870a",
+          "MaxHealth": 100,
           "Team": "Player"
+        },
+        {
+          "__type": "PigPlayer",
+          "__guid": "de87a8b2-d341-4606-9f5d-cda9e9efd5db",
+          "Damage": 1
         }
       ],
       "Children": [
@@ -412,6 +418,29 @@
           "Static": true
         }
       ]
+    },
+    {
+      "__guid": "689438f2-cb75-44f8-8df0-5eb3d0757ce6",
+      "Name": "Level",
+      "Position": "-85.04156,32,2.787376",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "MapInstance",
+          "__guid": "d97a09ae-cfd6-4659-9a98-6128f0b94781",
+          "MapName": "maps/nexdemo.vmap",
+          "UseMapFromLaunch": false
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "3b844915-5622-4db7-a1a6-9289770517a6",
+      "Name": "Object",
+      "Position": "-175.5039,-13.67903,127.2255",
+      "Enabled": true,
+      "NetworkMode": 2
     }
   ],
   "SceneProperties": {
@@ -437,7 +466,7 @@
   },
   "Title": "level_1",
   "Description": "",
-  "LastSaved": "2024-03-14T21:39:03.8987521-04:00",
+  "LastSaved": "2024-03-14T23:26:55.6443639-04:00",
   "ResourceVersion": 1,
   "__version": 1,
   "__references": [

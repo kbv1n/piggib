@@ -1,9 +1,7 @@
 using System.Drawing;
 using Sandbox;
-
 public sealed class CameraMovement : Component
 {
-
 	// Movement Properties
 	[Property] public PlayerMovement Player { get; set; }
 	[Property] public GameObject Head { get; set; }
@@ -13,13 +11,11 @@ public sealed class CameraMovement : Component
 	[Property] public GameObject rlStart { get; set; }
 	[Property] public GameObject rlEnd { get; set; }
 
-
-
 	// Member Variables
 	public bool IsFirstPerson => Distance == 0;
 	private CameraComponent Camera;
 	private ModelRenderer BodyRenderer;
-
+	public PigInfo PigType;
 	public Angles EyeAngles { get; set; }
 	public Vector3 EyePosition {get; set;}
 	public Vector3 EyeWorldPosition => Transform.Local.PointToWorld( EyePosition );
@@ -72,19 +68,18 @@ public sealed class CameraMovement : Component
 		Angles eyeAngles = Head.Transform.Rotation.Angles(); // Declare the eyeAngles variable
 		if (Input.Pressed("Attack1"))
 		{
-			SceneTraceResult rayFire = Scene.Trace.Ray(Head.Transform.Position, EyeWorldPosition + eyeAngles.ToRotation().Forward * 5000f)
-				.WithoutTags("player", "trigger")
-				.Run();
-			rlStart.Transform.Position = rayFire.StartPosition;
-			rlEnd.Transform.Position = rayFire.HitPosition;
-				
-			if (rayFire.Hit)
+			var ray = Scene.Camera.ScreenNormalToRay(0.5f); var tr = Scene.Trace.Ray(ray, 5000)
+			.WithoutTags("player", "trigger")
+			.Run();
+			// something to check if it hits a player
+			if (tr.Hit && tr.Hitbox != null)
 			{
-				Log.Info(rayFire.GameObject.Name);
-				DamageInfo damageInfo = new();
-				Ball.Transform.Position = rayFire.HitPosition;
-				return;
+				Log.Info("Hit a pig" + tr.Hitbox.GameObject.Name);
 			}
+			Ball.Transform.Position = tr.HitPosition;
+			//rlStart.Transform.Position = ray.StartPosition;
+			//rlEnd.Transform.Position = ray.HitPosition;
 		}
+		
 	}
 }
