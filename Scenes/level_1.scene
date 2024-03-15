@@ -2,47 +2,6 @@
   "__guid": "a814fa5b-3b21-43fd-a17d-363aee7c0559",
   "GameObjects": [
     {
-      "__guid": "31fdeb84-d344-46e4-ba4c-c781138aee37",
-      "Name": "Ball",
-      "Position": "1216,-250.1237,151.7768",
-      "Scale": "0.1306534,0.1306534,0.1229448",
-      "Tags": "enemy",
-      "Enabled": true,
-      "NetworkMode": 2,
-      "Components": [
-        {
-          "__type": "ManualHitbox",
-          "__guid": "d7385c06-2323-43f8-9cb6-d6c9f934d787",
-          "__enabled": false,
-          "CenterA": "0,0,0",
-          "CenterB": "0,0,0",
-          "Radius": 34.90003,
-          "Shape": "Sphere",
-          "Target": {
-            "_type": "gameobject",
-            "go": "31fdeb84-d344-46e4-ba4c-c781138aee37"
-          }
-        },
-        {
-          "__type": "ModelRenderer",
-          "__guid": "a098ea1c-c616-4965-8000-2962bfb5ae87",
-          "BodyGroups": 18446744073709551615,
-          "Model": "models/dev/sphere.vmdl",
-          "RenderType": "Off",
-          "Tint": "0.57209,0.01863,0.01863,1"
-        },
-        {
-          "__type": "CapsuleCollider",
-          "__guid": "9fdbea39-2f8d-45b3-8fd3-131ab4c7cb7e",
-          "End": "0,0,10",
-          "IsTrigger": false,
-          "Radius": 44.39994,
-          "Start": "0,0,0",
-          "Static": false
-        }
-      ]
-    },
-    {
       "__guid": "e472877f-0609-4b97-b55c-a91e4f18e18d",
       "Name": "Sun",
       "Position": "30.01669,9.291581,132.0782",
@@ -92,261 +51,11 @@
     {
       "__guid": "69e756e6-2263-4ac2-9b4b-9eca8fbe7271",
       "Name": "Player",
-      "Position": "-96,-64,4.368832",
+      "Position": "-224,-64,4.368832",
       "Tags": "player",
       "Enabled": true,
       "NetworkMode": 2,
-      "Components": [
-        {
-          "__type": "CitizenAnimationHelper",
-          "__guid": "218d7d62-19c7-4365-9eb9-59fc8601fb0b",
-          "BodyWeight": 1,
-          "EyeSource": {
-            "_type": "gameobject",
-            "go": "f1aadb57-b8de-417e-bf93-6321fa6d9813"
-          },
-          "EyesWeight": 1,
-          "HeadWeight": 1,
-          "Height": 1,
-          "LookAtEnabled": false,
-          "Target": {
-            "_type": "component",
-            "component_id": "1744b26d-407c-4c74-913e-e117bccc969b",
-            "go": "b04cb228-820f-4926-ae8f-ba6f8a097a65",
-            "component_type": "SkinnedModelRenderer"
-          }
-        },
-        {
-          "__type": "CharacterController",
-          "__guid": "e3250df5-ef09-457f-90c6-7dc6879a83f0",
-          "Acceleration": 15,
-          "Bounciness": 0.3,
-          "GroundAngle": 45,
-          "Height": 69,
-          "IgnoreLayers": "player,trigger",
-          "Radius": 10.96,
-          "StepHeight": 18
-        },
-        {
-          "__type": "PlayerMovement",
-          "__guid": "4ec8fb9d-9389-43c3-a47f-e1c10acd3e2c",
-          "AirControl": 0.2,
-          "Body": {
-            "_type": "gameobject",
-            "go": "b04cb228-820f-4926-ae8f-ba6f8a097a65"
-          },
-          "DuckLevel": 1,
-          "GroundControl": 4,
-          "Head": {
-            "_type": "gameobject",
-            "go": "f1aadb57-b8de-417e-bf93-6321fa6d9813"
-          },
-          "JumpForce": 400,
-          "MaxForce": 150,
-          "RunSpeed": 290,
-          "Speed": 300,
-          "WalkSpeed": 90
-        },
-        {
-          "__type": "PigInfo",
-          "__guid": "63527932-62b7-4074-99ea-56f58eb6870a",
-          "MaxHealth": 100,
-          "Team": "Player"
-        },
-        {
-          "__type": "PigPlayer",
-          "__guid": "de87a8b2-d341-4606-9f5d-cda9e9efd5db",
-          "Damage": 1
-        }
-      ],
-      "Children": [
-        {
-          "__guid": "f1aadb57-b8de-417e-bf93-6321fa6d9813",
-          "Name": "Head",
-          "Position": "0,0,62.38105",
-          "Enabled": true,
-          "NetworkMode": 2
-        },
-        {
-          "__guid": "b04cb228-820f-4926-ae8f-ba6f8a097a65",
-          "Name": "Body",
-          "Position": "0,0,0",
-          "Enabled": true,
-          "NetworkMode": 2,
-          "Components": [
-            {
-              "__type": "SkinnedModelRenderer",
-              "__guid": "1744b26d-407c-4c74-913e-e117bccc969b",
-              "BodyGroups": 341,
-              "CreateBoneObjects": false,
-              "Model": "models/citizen/citizen.vmdl",
-              "RenderType": "On",
-              "Tint": "1,1,1,1"
-            }
-          ]
-        },
-        {
-          "__guid": "0b31a89a-a2d7-46d6-a1d1-bb4c521de840",
-          "Name": "Camera",
-          "Position": "0,0,63.77041",
-          "Tags": "maincamera",
-          "Enabled": true,
-          "NetworkMode": 2,
-          "Components": [
-            {
-              "__type": "CameraComponent",
-              "__guid": "cd934b27-9b68-47ec-b9b1-925b8e3fbad9",
-              "BackgroundColor": "0.33333,0.46275,0.52157,1",
-              "ClearFlags": "All",
-              "FieldOfView": 90.39,
-              "IsMainCamera": true,
-              "Orthographic": false,
-              "OrthographicHeight": 1204,
-              "Priority": 1,
-              "RenderExcludeTags": "player",
-              "RenderTags": "",
-              "TargetEye": "None",
-              "Viewport": "0,0,1,1",
-              "ZFar": 10000,
-              "ZNear": 10
-            },
-            {
-              "__type": "CameraMovement",
-              "__guid": "1549af36-f280-464b-ac23-3f443834da0c",
-              "Ball": {
-                "_type": "gameobject",
-                "go": "31fdeb84-d344-46e4-ba4c-c781138aee37"
-              },
-              "Body": {
-                "_type": "gameobject",
-                "go": "b04cb228-820f-4926-ae8f-ba6f8a097a65"
-              },
-              "Distance": 0,
-              "Head": {
-                "_type": "gameobject",
-                "go": "f1aadb57-b8de-417e-bf93-6321fa6d9813"
-              },
-              "Player": {
-                "_type": "component",
-                "component_id": "4ec8fb9d-9389-43c3-a47f-e1c10acd3e2c",
-                "go": "69e756e6-2263-4ac2-9b4b-9eca8fbe7271",
-                "component_type": "PlayerMovement"
-              },
-              "rlEnd": {
-                "_type": "gameobject",
-                "go": "ef389f81-1ad3-4c16-beb1-ab954be43568"
-              },
-              "rlStart": {
-                "_type": "gameobject",
-                "go": "d039156f-5146-4958-8882-5e46a225fdb9"
-              }
-            },
-            {
-              "__type": "Tonemapping",
-              "__guid": "6266efea-26f1-4255-8c7e-5eaf0d614a43",
-              "ExposureCompensation": 0,
-              "MaximumExposure": 3,
-              "MinimumExposure": 0,
-              "Rate": 1.64
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "__guid": "65bbf301-a7e4-4046-a387-43904cfda027",
-      "Name": "rayCast",
-      "Position": "-124.0379,1.157333,256",
-      "Enabled": true,
-      "NetworkMode": 2,
-      "Components": [
-        {
-          "__type": "LineRenderer",
-          "__guid": "2b451e0c-8e41-41eb-b484-58a23119cfe1",
-          "Color": {
-            "color": [
-              {
-                "c": "1,1,1,1"
-              },
-              {
-                "t": 0.21794872,
-                "c": "0.44716,0.90698,0.61576,1"
-              },
-              {
-                "t": 0.40811965,
-                "c": "1,1,1,1"
-              },
-              {
-                "t": 0.53205127,
-                "c": "0.14352,0.99535,0.78239,1"
-              },
-              {
-                "t": 0.6880342,
-                "c": "0.9451,0.9997,0.98605,1"
-              },
-              {
-                "t": 0.69871795,
-                "c": "1,1,1,1"
-              },
-              {
-                "t": 0.8226496,
-                "c": "0.34057,0.80465,0.39472,1"
-              },
-              {
-                "t": 0.982906,
-                "c": "0.87921,0.99934,0.96931,1"
-              }
-            ],
-            "alpha": []
-          },
-          "EndCap": "Arrow",
-          "Opaque": false,
-          "Points": [
-            {
-              "_type": "gameobject",
-              "go": "d039156f-5146-4958-8882-5e46a225fdb9"
-            },
-            {
-              "_type": "gameobject",
-              "go": "ef389f81-1ad3-4c16-beb1-ab954be43568"
-            }
-          ],
-          "SplineBias": 0,
-          "SplineContinuity": 0,
-          "SplineInterpolation": 0,
-          "SplineTension": 0,
-          "StartCap": "Rounded",
-          "Width": [
-            {
-              "x": 0.4702381,
-              "y": 0.47606382,
-              "in": -1.3913051,
-              "out": 1.3913051
-            },
-            {
-              "x": 0.78125,
-              "y": 0.48138297
-            }
-          ],
-          "Wireframe": false
-        }
-      ],
-      "Children": [
-        {
-          "__guid": "d039156f-5146-4958-8882-5e46a225fdb9",
-          "Name": "Start",
-          "Position": "28.0379,-1.157333,-193.5776",
-          "Enabled": true,
-          "NetworkMode": 2
-        },
-        {
-          "__guid": "ef389f81-1ad3-4c16-beb1-ab954be43568",
-          "Name": "End",
-          "Position": "1340.038,-251.2811,-104.2232",
-          "Enabled": true,
-          "NetworkMode": 2
-        }
-      ]
+      "__Prefab": "code/player/pig.prefab"
     },
     {
       "__guid": "ce42240a-352a-4dd5-8228-859f640176a2",
@@ -436,11 +145,56 @@
       "Children": []
     },
     {
-      "__guid": "3b844915-5622-4db7-a1a6-9289770517a6",
-      "Name": "Object",
-      "Position": "-175.5039,-13.67903,127.2255",
+      "__guid": "d9b7ddd0-3f56-4a77-a164-85fe452e960a",
+      "Name": "network",
+      "Position": "-224,-64,0",
       "Enabled": true,
-      "NetworkMode": 2
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "NetworkHelper",
+          "__guid": "b2a266ef-a06c-495e-bce1-f414cf38980c",
+          "PlayerPrefab": {
+            "_type": "gameobject",
+            "go": "69e756e6-2263-4ac2-9b4b-9eca8fbe7271"
+          },
+          "SpawnPoints": [
+            {
+              "_type": "gameobject",
+              "go": "97253530-7f32-4e73-8496-ef194f38cc05"
+            }
+          ],
+          "StartServer": true
+        }
+      ]
+    },
+    {
+      "__guid": "97253530-7f32-4e73-8496-ef194f38cc05",
+      "Name": "spawn",
+      "Position": "-63.99999,-32.00001,95.99999",
+      "Rotation": "0,0,-0.7071067,0.7071068",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "SpriteRenderer",
+          "__guid": "be1e49d8-1892-449a-a19b-65865d3f75a8",
+          "Additive": false,
+          "CastShadows": false,
+          "Color": "1,1,1,1",
+          "DepthFeather": 0,
+          "FlipHorizontal": false,
+          "FlipVertical": false,
+          "FogStrength": 1,
+          "Opaque": false,
+          "Size": "10,10",
+          "Texture": null
+        },
+        {
+          "__type": "PlayerDresser",
+          "__guid": "04c9ef1e-ba74-4dc7-9642-caae92571da9"
+        }
+      ]
     }
   ],
   "SceneProperties": {
@@ -466,7 +220,7 @@
   },
   "Title": "level_1",
   "Description": "",
-  "LastSaved": "2024-03-14T23:26:55.6443639-04:00",
+  "LastSaved": "2024-03-15T02:12:47.4147433-04:00",
   "ResourceVersion": 1,
   "__version": 1,
   "__references": [

@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Net;
@@ -33,6 +34,8 @@ public sealed class PlayerMovement : Component
     public bool IsSprinting = false;
     private CharacterController characterController;
     private CitizenAnimationHelper animationHelper;
+	private ClothingContainer clothingContainer;
+	private Connection connection;
 
     // Component Methods
 
@@ -40,14 +43,19 @@ public sealed class PlayerMovement : Component
     {
         characterController = Components.Get<CharacterController>();
         animationHelper = Components.Get<CitizenAnimationHelper>();
+
     }
 
 
+	protected override void OnStart()
+	{
+		if ( Components.TryGet<SkinnedModelRenderer>( out var model ))
+		{
 
+		}
+	}
     protected override void OnUpdate()
     {
-
-        
         //set spritning and crouching
         IsCrouching = Input.Down("Duck");
         IsSprinting = Input.Down("Sprint");
@@ -57,12 +65,11 @@ public sealed class PlayerMovement : Component
     }
     protected override void OnFixedUpdate()
     {
-		
         BuildWishVelocity();
         Move();
     }
-
-    // Movement Methods
+    
+	// Movement Methods
     Vector3 WishVelocity = Vector3.Zero;
     void BuildWishVelocity()
     {

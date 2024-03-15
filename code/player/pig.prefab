@@ -1,0 +1,182 @@
+{
+  "RootObject": {
+    "__guid": "69e756e6-2263-4ac2-9b4b-9eca8fbe7271",
+    "Name": "pig",
+    "Tags": "player",
+    "Enabled": true,
+    "NetworkMode": 2,
+    "Components": [
+      {
+        "__type": "CitizenAnimationHelper",
+        "__guid": "218d7d62-19c7-4365-9eb9-59fc8601fb0b",
+        "BodyWeight": 1,
+        "EyeSource": {
+          "_type": "gameobject",
+          "go": "f1aadb57-b8de-417e-bf93-6321fa6d9813"
+        },
+        "EyesWeight": 1,
+        "HeadWeight": 1,
+        "Height": 1,
+        "LookAtEnabled": false,
+        "Target": {
+          "_type": "component",
+          "component_id": "1744b26d-407c-4c74-913e-e117bccc969b",
+          "go": "b04cb228-820f-4926-ae8f-ba6f8a097a65",
+          "component_type": "SkinnedModelRenderer"
+        }
+      },
+      {
+        "__type": "CharacterController",
+        "__guid": "e3250df5-ef09-457f-90c6-7dc6879a83f0",
+        "Acceleration": 15,
+        "Bounciness": 0.3,
+        "GroundAngle": 45,
+        "Height": 69,
+        "IgnoreLayers": "player,trigger",
+        "Radius": 10.96,
+        "StepHeight": 18
+      },
+      {
+        "__type": "PlayerMovement",
+        "__guid": "4ec8fb9d-9389-43c3-a47f-e1c10acd3e2c",
+        "AirControl": 0.2,
+        "Body": {
+          "_type": "gameobject",
+          "go": "b04cb228-820f-4926-ae8f-ba6f8a097a65"
+        },
+        "DuckLevel": 1,
+        "GroundControl": 4,
+        "Head": {
+          "_type": "gameobject",
+          "go": "f1aadb57-b8de-417e-bf93-6321fa6d9813"
+        },
+        "JumpForce": 400,
+        "MaxForce": 150,
+        "RunSpeed": 290,
+        "Speed": 300,
+        "WalkSpeed": 90
+      },
+      {
+        "__type": "PigInfo",
+        "__guid": "63527932-62b7-4074-99ea-56f58eb6870a",
+        "MaxHealth": 1.31,
+        "Team": "Player"
+      },
+      {
+        "__type": "PigPlayer",
+        "__guid": "de87a8b2-d341-4606-9f5d-cda9e9efd5db",
+        "Damage": 1
+      },
+      {
+        "__type": "PlayerDresser",
+        "__guid": "5d48a7ba-7a45-4d4b-9437-604654dd4c6d",
+        "BodyRenderer": {
+          "_type": "component",
+          "component_id": "1744b26d-407c-4c74-913e-e117bccc969b",
+          "go": "b04cb228-820f-4926-ae8f-ba6f8a097a65",
+          "component_type": "SkinnedModelRenderer"
+        }
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "f1aadb57-b8de-417e-bf93-6321fa6d9813",
+        "Name": "Head",
+        "Position": "0,0,63",
+        "Enabled": true,
+        "NetworkMode": 2
+      },
+      {
+        "__guid": "b04cb228-820f-4926-ae8f-ba6f8a097a65",
+        "Name": "Body",
+        "Enabled": true,
+        "NetworkMode": 2,
+        "Components": [
+          {
+            "__type": "SkinnedModelRenderer",
+            "__guid": "1744b26d-407c-4c74-913e-e117bccc969b",
+            "BodyGroups": 341,
+            "CreateBoneObjects": false,
+            "Model": "models/citizen/citizen.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          }
+        ]
+      },
+      {
+        "__guid": "0b31a89a-a2d7-46d6-a1d1-bb4c521de840",
+        "Name": "Camera",
+        "Position": "0,0,63",
+        "Tags": "maincamera",
+        "Enabled": true,
+        "NetworkMode": 2,
+        "Components": [
+          {
+            "__type": "CameraComponent",
+            "__guid": "cd934b27-9b68-47ec-b9b1-925b8e3fbad9",
+            "BackgroundColor": "0.33333,0.46275,0.52157,1",
+            "ClearFlags": "All",
+            "FieldOfView": 90.39,
+            "IsMainCamera": true,
+            "Orthographic": false,
+            "OrthographicHeight": 1204,
+            "Priority": 1,
+            "RenderExcludeTags": "",
+            "RenderTags": "",
+            "TargetEye": "None",
+            "Viewport": "0,0,1,1",
+            "ZFar": 10000,
+            "ZNear": 10
+          },
+          {
+            "__type": "CameraMovement",
+            "__guid": "1549af36-f280-464b-ac23-3f443834da0c",
+            "Body": {
+              "_type": "gameobject",
+              "go": "b04cb228-820f-4926-ae8f-ba6f8a097a65"
+            },
+            "Distance": 0,
+            "Head": {
+              "_type": "gameobject",
+              "go": "f1aadb57-b8de-417e-bf93-6321fa6d9813"
+            },
+            "Player": {
+              "_type": "component",
+              "component_id": "4ec8fb9d-9389-43c3-a47f-e1c10acd3e2c",
+              "go": "69e756e6-2263-4ac2-9b4b-9eca8fbe7271",
+              "component_type": "PlayerMovement"
+            }
+          },
+          {
+            "__type": "Tonemapping",
+            "__guid": "6266efea-26f1-4255-8c7e-5eaf0d614a43",
+            "ExposureCompensation": 0,
+            "MaximumExposure": 3,
+            "MinimumExposure": 0,
+            "Rate": 1.64
+          }
+        ]
+      },
+      {
+        "__guid": "b600df79-108e-45ad-ba0b-fda7406ad79a",
+        "Name": "Gun",
+        "Position": "-192,-57.31126,-4.368832",
+        "Enabled": true,
+        "NetworkMode": 2,
+        "Components": [
+          {
+            "__type": "Gun",
+            "__guid": "d9531222-d991-44d0-8f93-68ec28bb71c3",
+            "__enabled": false
+          }
+        ]
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__version": 1,
+  "__references": []
+}

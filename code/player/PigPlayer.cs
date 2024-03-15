@@ -12,13 +12,6 @@ public sealed class PigPlayer : Component
 	[Description("The amount of damage the player does with their weapon")]
 	[Range(0.1f, 10f, 0.1f)]
 	public float Damage { get; set; } = 1f;
-
-	public void Shoot()
-	{
-
-	}
-
-
 	protected override void OnUpdate()
 	{
 

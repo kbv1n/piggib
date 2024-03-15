@@ -6,7 +6,7 @@ public enum pigType
 	Friend,
 	Enemy,
 }
-public sealed class PigInfo : Component
+public class PigInfo : Component
 {
 	[Property] public pigType Team { get; set; } = pigType.None;
 	/// <summary>
