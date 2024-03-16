@@ -3,5 +3,4 @@ public enum LifeState
 {
 	Alive,
 	Dead,
-	Respawning
 }

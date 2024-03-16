@@ -37,21 +37,6 @@ public sealed class CameraMovement : Component
 		if(Camera is not null)
 		{
 			var camPos = Head.Transform.Position;
-			if(!IsFirstPerson)
-			{
-				var camForward = eyeAngles.ToRotation().Forward;
-				var camTrace = Scene.Trace.Ray(camPos, camPos - (camForward * Distance))
-					.WithoutTags("player", "trigger")
-					.Run();
-				if (camTrace.Hit)
-				{
-					camPos = camTrace.HitPosition + camTrace.Normal;
-				}
-				else
-				{
-					camPos = camTrace.EndPosition;
-				}
-			}
 			Camera.Transform.Position = camPos;
 			Camera.Transform.Rotation = eyeAngles.ToRotation();	
 		}
