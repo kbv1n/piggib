@@ -14,10 +14,10 @@
           "__type": "DirectionalLight",
           "__guid": "3abfc522-aa35-48e3-9d23-45bb24dcf4d4",
           "FogMode": "Enabled",
-          "FogStrength": 1,
-          "LightColor": "0.77674,0.3956,0.01445,1",
+          "FogStrength": 0.66,
+          "LightColor": "0.74884,0.74884,0.74884,1",
           "Shadows": true,
-          "SkyColor": "0.33206,0.32813,0.36744,1"
+          "SkyColor": "0.09346,0.10574,0.13953,1"
         }
       ]
     },
@@ -56,77 +56,6 @@
       "Enabled": true,
       "NetworkMode": 2,
       "__Prefab": "code/player/pig.prefab"
-    },
-    {
-      "__guid": "ce42240a-352a-4dd5-8228-859f640176a2",
-      "Name": "Box",
-      "Position": "-1024,-512,192.0001",
-      "Enabled": true,
-      "NetworkMode": 2,
-      "Components": [
-        {
-          "__type": "MeshComponent",
-          "__guid": "752ee70c-a3e3-40b4-81ca-f35bfa1dfa99",
-          "Collision": "Mesh",
-          "Color": "1,1,1,1",
-          "IsTrigger": false,
-          "Mesh": {
-            "Topology": "H4sIAAAAAAAACk3QCQ7CMBBD0bAUylp2uP9J8ZMmUkb6ysTjOGnn1tov7MI9rMI3TOEZDuEdLqHXunzTcEZta7YJr\u002BqVbJq5bP1YfI\u002BayzpWtr036OnnIetTPf0a9uXzVj19Ht50K11vVfy\u002BSx59KT/6nWanuqtrVno/x\u002B8/KXfKMaPx/wEMd\u002BZ5ZAEAAA==",
-            "TextureOrigin": "-1024,-512,192.0001",
-            "Positions": [
-              "-511.9999,-512,191.9999",
-              "511.9999,-512,191.9999",
-              "511.9999,512,191.9999",
-              "-511.9999,512,191.9999",
-              "-511.9999,512,-191.9999",
-              "511.9999,512,-191.9999",
-              "511.9999,-512,-191.9999",
-              "-511.9999,-512,-191.9999"
-            ],
-            "TextureUAxis": [
-              "1,0,0",
-              "1,0,0",
-              "0,-1,0",
-              "0,1,0",
-              "-1,0,0",
-              "1,0,0"
-            ],
-            "TextureVAxis": [
-              "0,-1,0",
-              "0,-1,0",
-              "0,0,-1",
-              "0,0,-1",
-              "0,0,-1",
-              "0,0,-1"
-            ],
-            "TextureScale": [
-              "0.25,0.25",
-              "0.25,0.25",
-              "0.25,0.25",
-              "0.25,0.25",
-              "0.25,0.25",
-              "0.25,0.25"
-            ],
-            "TextureAngle": [
-              0,
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            "MaterialIndex": [
-              -1,
-              -1,
-              -1,
-              -1,
-              -1,
-              -1
-            ]
-          },
-          "Static": true
-        }
-      ]
     },
     {
       "__guid": "689438f2-cb75-44f8-8df0-5eb3d0757ce6",
@@ -195,6 +124,48 @@
           "__guid": "04c9ef1e-ba74-4dc7-9642-caae92571da9"
         }
       ]
+    },
+    {
+      "__guid": "1072c67c-d7c8-46eb-bb77-049953586ddf",
+      "Name": "Box",
+      "Position": "0,-512,-32",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "MeshComponent",
+          "__guid": "d8b19a1f-65e9-4765-bcb1-5982ff33cbaa",
+          "Collision": "Mesh",
+          "Color": "0.0186,0.0161,0.0161,1",
+          "IsTrigger": false,
+          "Mesh": {
+            "Topology": "H4sIAAAAAAAACk2MiwoAIAjErOzx/z9cNzihwVBWmBFxZJPbc8gpi\u002B5\u002BRf2B9Budxg7LN\u002BhM/KHX/QdwDFPNgAAAAA==",
+            "TextureOrigin": "0,-512,0.00006045904",
+            "Positions": [
+              "-512,-1024,0",
+              "512,-1024,0",
+              "512,1024,0",
+              "-512,1024,0"
+            ],
+            "TextureUAxis": [
+              "1,0,0"
+            ],
+            "TextureVAxis": [
+              "0,-1,0"
+            ],
+            "TextureScale": [
+              "0.25,0.25"
+            ],
+            "TextureAngle": [
+              0
+            ],
+            "MaterialIndex": [
+              -1
+            ]
+          },
+          "Static": true
+        }
+      ]
     }
   ],
   "SceneProperties": {
@@ -220,7 +191,7 @@
   },
   "Title": "level_1",
   "Description": "",
-  "LastSaved": "2024-03-15T02:12:47.4147433-04:00",
+  "LastSaved": "2024-03-15T21:45:30.3288845-04:00",
   "ResourceVersion": 1,
   "__version": 1,
   "__references": [

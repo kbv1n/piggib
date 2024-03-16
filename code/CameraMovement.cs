@@ -27,25 +27,22 @@ public sealed class CameraMovement : Component
 	protected override void OnUpdate()
 	{
 		// Set the camera position
-		
 		var eyeAngles = Head.Transform.Rotation.Angles();
-        eyeAngles.pitch += Input.MouseDelta.y * 0.1f;
-        eyeAngles.yaw -= Input.MouseDelta.x * 0.1f;
-        eyeAngles.roll = 0f;
-        eyeAngles.pitch = eyeAngles.pitch.Clamp( -89.9f, 89.9f );
-        Head.Transform.Rotation = eyeAngles.ToRotation();
-		
-		
+		eyeAngles.pitch += Input.MouseDelta.y * 0.1f;
+		eyeAngles.yaw -= Input.MouseDelta.x * 0.1f;
+		eyeAngles.roll = 0f;
+		eyeAngles.pitch = eyeAngles.pitch.Clamp( -89.9f, 89.9f );
+		Head.Transform.Rotation = eyeAngles.ToRotation();
+
 		if(Camera is not null)
 		{
 			var camPos = Head.Transform.Position;
 			if(!IsFirstPerson)
 			{
-							// Set the camera position
 				var camForward = eyeAngles.ToRotation().Forward;
-                var camTrace = Scene.Trace.Ray(camPos, camPos - (camForward * Distance))
-                    .WithoutTags("player", "trigger")
-                    .Run();
+				var camTrace = Scene.Trace.Ray(camPos, camPos - (camForward * Distance))
+					.WithoutTags("player", "trigger")
+					.Run();
 				if (camTrace.Hit)
 				{
 					camPos = camTrace.HitPosition + camTrace.Normal;
@@ -54,10 +51,9 @@ public sealed class CameraMovement : Component
 				{
 					camPos = camTrace.EndPosition;
 				}
-				Camera.Transform.Position = camPos;
-				Camera.Transform.Rotation = eyeAngles.ToRotation();	
 			}
-
+			Camera.Transform.Position = camPos;
+			Camera.Transform.Rotation = eyeAngles.ToRotation();	
 		}
 	}
 }
