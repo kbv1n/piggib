@@ -24,6 +24,7 @@
     {
       "__guid": "d80abc94-b0ba-46fc-b66a-cd3736095e83",
       "Name": "2D Skybox",
+      "Position": "-64,-192,-0.0000001446541",
       "Tags": "skybox",
       "Enabled": true,
       "NetworkMode": 2,
@@ -47,15 +48,6 @@
           "TintColor": "1,1,1,1"
         }
       ]
-    },
-    {
-      "__guid": "69e756e6-2263-4ac2-9b4b-9eca8fbe7271",
-      "Name": "Player",
-      "Position": "-224,-64,4.368832",
-      "Tags": "player",
-      "Enabled": true,
-      "NetworkMode": 2,
-      "__Prefab": "code/player/pig.prefab"
     },
     {
       "__guid": "689438f2-cb75-44f8-8df0-5eb3d0757ce6",
@@ -83,9 +75,10 @@
         {
           "__type": "NetworkHelper",
           "__guid": "b2a266ef-a06c-495e-bce1-f414cf38980c",
+          "__enabled": false,
           "PlayerPrefab": {
             "_type": "gameobject",
-            "go": "69e756e6-2263-4ac2-9b4b-9eca8fbe7271"
+            "prefab": "prefabs/player.prefab"
           },
           "SpawnPoints": [
             {
@@ -94,34 +87,59 @@
             }
           ],
           "StartServer": true
+        },
+        {
+          "__type": "NetworkManager",
+          "__guid": "651cfe3e-eef3-479a-b146-ec4d4953e224",
+          "PlayerPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/player.prefab"
+          }
         }
       ]
     },
     {
       "__guid": "97253530-7f32-4e73-8496-ef194f38cc05",
       "Name": "spawn",
-      "Position": "-63.99999,-32.00001,95.99999",
+      "Position": "-95.99995,-32.00002,0",
       "Rotation": "0,0,-0.7071067,0.7071068",
       "Enabled": true,
       "NetworkMode": 2,
       "Components": [
         {
-          "__type": "SpriteRenderer",
-          "__guid": "be1e49d8-1892-449a-a19b-65865d3f75a8",
-          "Additive": false,
-          "CastShadows": false,
-          "Color": "1,1,1,1",
-          "DepthFeather": 0,
-          "FlipHorizontal": false,
-          "FlipVertical": false,
-          "FogStrength": 1,
-          "Opaque": false,
-          "Size": "10,10",
-          "Texture": null
-        },
+          "__type": "SpawnPoint",
+          "__guid": "d52210c1-07d6-4cba-b845-058c07e1c4fc",
+          "Color": "0.8902,0.31765,0.05098,1"
+        }
+      ]
+    },
+    {
+      "__guid": "f9203ac1-e2c3-46c2-9e1c-74b72d2030e3",
+      "Name": "spawn (1)",
+      "Position": "-160,-32.00002,0",
+      "Rotation": "0,0,-0.7071067,0.7071068",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
         {
-          "__type": "PlayerDresser",
-          "__guid": "04c9ef1e-ba74-4dc7-9642-caae92571da9"
+          "__type": "SpawnPoint",
+          "__guid": "feed8cb6-1c3a-45a1-815d-ce32a5e3367c",
+          "Color": "0.8902,0.31765,0.05098,1"
+        }
+      ]
+    },
+    {
+      "__guid": "6fd3d3a4-72a5-46ab-9795-5539bf5912fa",
+      "Name": "spawn (2)",
+      "Position": "-224,-32.00002,0",
+      "Rotation": "0,0,-0.7071067,0.7071068",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "SpawnPoint",
+          "__guid": "af7751cc-dd3a-4592-ac39-f629ac599a98",
+          "Color": "0.8902,0.31765,0.05098,1"
         }
       ]
     },
@@ -166,6 +184,156 @@
           "Static": true
         }
       ]
+    },
+    {
+      "__guid": "5cd03d53-39f2-4214-ae85-991f34e9b691",
+      "Name": "Camera ",
+      "Position": "-20.34279,807.7991,55.51758",
+      "Rotation": "0.02498195,0.003467371,-0.9901899,0.1374334",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "CameraComponent",
+          "__guid": "81c2b104-6ed5-458a-81cc-23e7d0c0b125",
+          "BackgroundColor": "0.33333,0.46275,0.52157,1",
+          "ClearFlags": "All",
+          "FieldOfView": 120,
+          "IsMainCamera": false,
+          "Orthographic": false,
+          "OrthographicHeight": 1204,
+          "Priority": 1,
+          "RenderExcludeTags": "viewmodel",
+          "RenderTags": "",
+          "TargetEye": "None",
+          "Viewport": "0,0,1,1",
+          "ZFar": 10000,
+          "ZNear": 0.5
+        },
+        {
+          "__type": "Highlight",
+          "__guid": "01c8ed06-2946-4f73-8bd5-acaf5406c0ee"
+        },
+        {
+          "__type": "ScreenPanel",
+          "__guid": "90147476-0cc9-49cf-80a2-17aed2abb34a",
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ZIndex": 100
+        },
+        {
+          "__type": "Chat",
+          "__guid": "7f0bd3b7-ae1b-4908-9d31-24a3be597024"
+        },
+        {
+          "__type": "ChromaticAberration",
+          "__guid": "ef3d2352-ded7-4861-a706-1a98347ccdd5",
+          "Offset": "2,4,0",
+          "Scale": 0.2
+        },
+        {
+          "__type": "Bloom",
+          "__guid": "75c7f166-c416-4660-8481-04beabc1b8fb",
+          "BloomColor": {
+            "color": [
+              {
+                "c": "1,1,1,1"
+              },
+              {
+                "t": 1,
+                "c": "1,1,1,1"
+              }
+            ],
+            "alpha": []
+          },
+          "BloomCurve": [
+            {
+              "y": 0.5
+            },
+            {
+              "x": 1,
+              "y": 1
+            }
+          ],
+          "Mode": "Additive",
+          "Strength": 0.3,
+          "Threshold": 0.5,
+          "ThresholdWidth": 0
+        },
+        {
+          "__type": "Sharpen",
+          "__guid": "47f03986-befb-4ad6-8c4a-6f37b8785bb8",
+          "Scale": 0.2
+        },
+        {
+          "__type": "CubemapFog",
+          "__guid": "b2763298-37cb-40ed-831c-f32ca2a9d5a1",
+          "Blur": 0.5,
+          "EndDistance": 4096,
+          "FalloffExponent": 2,
+          "HeightExponent": 2,
+          "HeightStart": 2000,
+          "HeightWidth": 0,
+          "Sky": "materials/skybox/light_test_sky_sunny02.vmat",
+          "StartDistance": 10
+        },
+        {
+          "__type": "ColorAdjustments",
+          "__guid": "ffefba85-7875-4ad3-84b7-280ddf5936aa",
+          "Brightness": 1,
+          "Contrast": 1,
+          "HueRotate": 0,
+          "Saturation": 1
+        },
+        {
+          "__type": "Vignette",
+          "__guid": "a5774e83-2f9c-425b-9721-be5de0dd237b",
+          "Center": "0.5,0.5",
+          "Color": "0,0,0,1",
+          "Intensity": 0.47,
+          "Roundness": 0.9,
+          "Smoothness": 0.9
+        },
+        {
+          "__type": "Vignette",
+          "__guid": "503ad02b-9333-41f2-a1a4-75dd5a4a5979",
+          "Center": "0.5,0.5",
+          "Color": "0.64186,0.08956,0.08956,1",
+          "Intensity": 0,
+          "Roundness": 0.75,
+          "Smoothness": 0.95
+        },
+        {
+          "__type": "Scoreboard",
+          "__guid": "f87c9eef-8c29-4f54-886b-ed65390396fa"
+        },
+        {
+          "__type": "NameTag",
+          "__guid": "8f5cd810-b9a5-4e8d-a921-a2ac216503b5"
+        },
+        {
+          "__type": "Hud",
+          "__guid": "8203f33e-21c1-4bc5-996a-53381c5a30e8"
+        }
+      ]
+    },
+    {
+      "__guid": "152eb6de-a0ed-444b-abd0-b05b1856338c",
+      "Name": "Guns",
+      "Position": "-15.23016,-58.37073,-8.326653",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "WeaponManage",
+          "__guid": "c3896042-87a8-4bb7-8804-5c4077bfaa67",
+          "Prefabs": {
+            "_type": "gameobject",
+            "prefab": "prefabs/vm_mp5.prefab"
+          }
+        }
+      ]
     }
   ],
   "SceneProperties": {
@@ -191,7 +359,7 @@
   },
   "Title": "level_1",
   "Description": "",
-  "LastSaved": "2024-03-15T23:25:25.5417855-04:00",
+  "LastSaved": "2024-03-17T18:09:31.2174116-04:00",
   "ResourceVersion": 1,
   "__version": 1,
   "__references": [

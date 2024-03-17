@@ -1,6 +1,7 @@
 using System.Drawing;
 using Sandbox;
-public sealed class CameraMovement : Component
+
+public class CameraMovement : Component
 {
 	// Movement Properties
 	[Property] public PlayerMovement Player { get; set; }
@@ -9,7 +10,6 @@ public sealed class CameraMovement : Component
 	[Property] public float Distance { get; set; } = 0f;
 
 	// Member Variables
-	public bool IsFirstPerson => Distance == 0;
 	private CameraComponent Camera;
 	private ModelRenderer BodyRenderer;
 	public Angles EyeAngles { get; set; }

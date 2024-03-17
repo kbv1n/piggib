@@ -1,0 +1,71 @@
+{
+  "__guid": "48a04856-06f0-48ec-95c0-6671b81a6b0f",
+  "GameObjects": [
+    {
+      "__guid": "087cc65d-9421-48d6-b051-6adb3cad2e58",
+      "Name": "Camera",
+      "Position": "126.5706,165.5491,-215.7948",
+      "Tags": "maincamera",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "CameraComponent",
+          "__guid": "2cdd342a-1e91-4b97-bc4f-ca1ba5ad4169",
+          "BackgroundColor": "0.33333,0.46275,0.52157,1",
+          "ClearFlags": "All",
+          "FieldOfView": 60,
+          "IsMainCamera": true,
+          "Orthographic": false,
+          "OrthographicHeight": 1204,
+          "Priority": 1,
+          "RenderExcludeTags": "",
+          "RenderTags": "",
+          "TargetEye": "None",
+          "Viewport": "0,0,1,1",
+          "ZFar": 10000,
+          "ZNear": 10
+        },
+        {
+          "__type": "ScreenPanel",
+          "__guid": "83a5fcf0-1b77-4927-a3cd-52899c3caa45",
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ZIndex": 100
+        },
+        {
+          "__type": "Lobby",
+          "__guid": "cc5d50b3-348e-40ce-b44c-3d1cce540c95"
+        }
+      ]
+    }
+  ],
+  "SceneProperties": {
+    "FixedUpdateFrequency": 50,
+    "Lerping": true,
+    "MaxFixedUpdates": 5,
+    "NetworkFrequency": 30,
+    "ThreadedAnimation": true,
+    "TimeScale": 1,
+    "UseFixedUpdate": true,
+    "NavMesh": {
+      "Enabled": false,
+      "IncludeStaticBodies": true,
+      "IncludeKeyframedBodies": true,
+      "EditorAutoUpdate": true,
+      "AgentHeight": 64,
+      "AgentRadius": 16,
+      "AgentStepSize": 18,
+      "AgentMaxSlope": 40,
+      "ExcludedBodies": "",
+      "IncludedBodies": ""
+    }
+  },
+  "Title": "lobby",
+  "Description": "",
+  "LastSaved": "2024-03-17T17:17:04.4989971-04:00",
+  "ResourceVersion": 1,
+  "__version": 1,
+  "__references": []
+}

@@ -1,0 +1,69 @@
+{
+  "RootObject": {
+    "__guid": "ee1a9c6b-ac31-4e8e-9883-d545dd1d2e1b",
+    "Name": "vm_gun",
+    "Tags": "viewmodel",
+    "Enabled": true,
+    "NetworkMode": 2,
+    "Components": [
+      {
+        "__type": "ViewModel",
+        "__guid": "34bf446b-3a4f-4a53-a9ac-d1284d34f864",
+        "ModelRenderer": {
+          "_type": "component",
+          "component_id": "6a4a4035-a3b1-47b3-b164-63ad8238bf78",
+          "go": "ee1a9c6b-ac31-4e8e-9883-d545dd1d2e1b",
+          "component_type": "SkinnedModelRenderer"
+        }
+      },
+      {
+        "__type": "SkinnedModelRenderer",
+        "__guid": "6a4a4035-a3b1-47b3-b164-63ad8238bf78",
+        "BodyGroups": 5,
+        "BoneMergeTarget": {
+          "_type": "component",
+          "component_id": "6a4a4035-a3b1-47b3-b164-63ad8238bf78",
+          "go": "ee1a9c6b-ac31-4e8e-9883-d545dd1d2e1b",
+          "component_type": "SkinnedModelRenderer"
+        },
+        "CreateBoneObjects": false,
+        "Model": "models/gravitygun/v_gravitygun.vmdl",
+        "RenderType": "On",
+        "Tint": "1,1,1,1"
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "ac12468a-d4fe-4f95-82bf-ddec1b230f15",
+        "Name": "Arms",
+        "Enabled": true,
+        "NetworkMode": 2,
+        "Components": [
+          {
+            "__type": "SkinnedModelRenderer",
+            "__guid": "e1a0e309-210e-4127-839b-8662fd8383e0",
+            "BodyGroups": 21,
+            "BoneMergeTarget": {
+              "_type": "component",
+              "component_id": "6a4a4035-a3b1-47b3-b164-63ad8238bf78",
+              "go": "ee1a9c6b-ac31-4e8e-9883-d545dd1d2e1b",
+              "component_type": "SkinnedModelRenderer"
+            },
+            "CreateBoneObjects": false,
+            "Model": "models/first_person/first_person_arms.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          }
+        ]
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__version": 1,
+  "__references": [
+    "katka.gravitygun"
+  ]
+}

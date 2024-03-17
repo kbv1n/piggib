@@ -1,0 +1,53 @@
+{
+  "RootObject": {
+    "__guid": "f7e72bc2-df24-470d-878d-452ce37c3908",
+    "Name": "weapon_mp5",
+    "Enabled": true,
+    "NetworkMode": 2,
+    "Components": [
+      {
+        "__type": "pGun",
+        "__guid": "1bcea63d-8e91-4393-bde1-22620102c039",
+        "Damage": 100,
+        "DamageForce": 5,
+        "DeployTime": 0.5,
+        "FireRate": 2,
+        "HoldTypes": "Rifle",
+        "IsDeployed": false,
+        "ViewModelPrefab": {
+          "_type": "gameobject",
+          "prefab": "prefabs/vm_mp5.prefab"
+        }
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "a9d93982-d3c5-4fe6-9133-9405fe16a568",
+        "Name": "Offset",
+        "Position": "1.646654,0,-4.321783",
+        "Scale": "1.5,1.5,1.5",
+        "Enabled": true,
+        "NetworkMode": 2,
+        "Components": [
+          {
+            "__type": "SkinnedModelRenderer",
+            "__guid": "910c1880-7b74-4300-8f94-970f430b82c1",
+            "BodyGroups": 3,
+            "CreateBoneObjects": false,
+            "Model": "models/weapons/sbox_smg_mp5/w_mp5.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          }
+        ]
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__version": 1,
+  "__references": [
+    "facepunch.w_mp5"
+  ]
+}

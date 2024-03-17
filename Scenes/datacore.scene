@@ -1,0 +1,532 @@
+{
+  "__guid": "90beacda-210d-4bf3-a7df-9e5c83e1e571",
+  "GameObjects": [
+    {
+      "__guid": "bfc59c12-1ed2-4f91-8956-a95a315eac3c",
+      "Name": "Sun",
+      "Rotation": "-0.0000000377291,0.6329893,0.0000000000000005185386,0.774161",
+      "Tags": "light_directional,light",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "DirectionalLight",
+          "__guid": "f34ce018-cd4c-477a-89eb-456880ef75a2",
+          "FogMode": "Enabled",
+          "FogStrength": 1,
+          "LightColor": "0.91373,0.98039,1,1",
+          "Shadows": true,
+          "SkyColor": "0.05882,0.07451,0.08235,1"
+        }
+      ]
+    },
+    {
+      "__guid": "00344a8c-fa5e-45ae-b12a-10bb781a1dc3",
+      "Name": "2D Skybox",
+      "Tags": "skybox",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "SkyBox2D",
+          "__guid": "1b408f2c-5404-4e0d-a961-b743f5d4993e",
+          "SkyMaterial": "materials/skybox/light_test_sky_sunny02.vmat",
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "EnvmapProbe",
+          "__guid": "40455d64-5392-4c92-b4ef-90c740d8e7ac",
+          "Bounds": {
+            "Mins": "-512,-512,-512",
+            "Maxs": "512,512,512"
+          },
+          "Feathering": 0.02,
+          "Projection": "Sphere",
+          "Texture": "textures/cubemaps/default2.vtex",
+          "TintColor": "1,1,1,1"
+        }
+      ]
+    },
+    {
+      "__guid": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
+      "Name": "Camera",
+      "Position": "-20.34279,807.7991,55.51758",
+      "Rotation": "0.02498195,0.003467371,-0.9901899,0.1374334",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "CameraComponent",
+          "__guid": "c4b4361c-fb92-4333-abcd-afdbb4e1fa0c",
+          "BackgroundColor": "0.33333,0.46275,0.52157,1",
+          "ClearFlags": "All",
+          "FieldOfView": 120,
+          "IsMainCamera": true,
+          "Orthographic": false,
+          "OrthographicHeight": 1204,
+          "Priority": 1,
+          "RenderExcludeTags": "viewmodel",
+          "RenderTags": "",
+          "TargetEye": "None",
+          "Viewport": "0,0,1,1",
+          "ZFar": 10000,
+          "ZNear": 0.5
+        },
+        {
+          "__type": "Highlight",
+          "__guid": "3468b394-df42-4cc5-81c6-016e72412399"
+        },
+        {
+          "__type": "ScreenPanel",
+          "__guid": "8deec662-a689-4bb6-8a3c-3c282f2aa331",
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ZIndex": 100
+        },
+        {
+          "__type": "Scoreboard"
+        },
+        {
+          "__type": "Chat",
+          "__guid": "4f1691c8-335a-4c7c-ae67-0e52ddb5c4ad"
+        },
+        {
+          "__type": "Hud"
+        },
+        {
+          "__type": "ChromaticAberration",
+          "__guid": "4f5cf46f-367f-4bbd-aa20-f76a9fa08423",
+          "Offset": "2,4,0",
+          "Scale": 0.2
+        },
+        {
+          "__type": "Bloom",
+          "__guid": "273961ee-5171-404c-af6a-c05e0b9adae5",
+          "BloomColor": {
+            "color": [
+              {
+                "c": "1,1,1,1"
+              },
+              {
+                "t": 1,
+                "c": "1,1,1,1"
+              }
+            ],
+            "alpha": []
+          },
+          "BloomCurve": [
+            {
+              "y": 0.5
+            },
+            {
+              "x": 1,
+              "y": 1
+            }
+          ],
+          "Mode": "Additive",
+          "Strength": 0.3,
+          "Threshold": 0.5,
+          "ThresholdWidth": 0
+        },
+        {
+          "__type": "Sharpen",
+          "__guid": "8aaee619-c14a-4e0f-b1b1-f8e912930619",
+          "Scale": 0.2
+        },
+        {
+          "__type": "CubemapFog",
+          "__guid": "78f26a02-e410-491c-b5c3-29a41d623227",
+          "Blur": 0.5,
+          "EndDistance": 4096,
+          "FalloffExponent": 2,
+          "HeightExponent": 2,
+          "HeightStart": 2000,
+          "HeightWidth": 0,
+          "Sky": "materials/skybox/light_test_sky_sunny02.vmat",
+          "StartDistance": 10
+        },
+        {
+          "__type": "ColorAdjustments",
+          "__guid": "7c57e821-32e2-4e2a-aa9f-7bf175861f2a",
+          "Brightness": 1,
+          "Contrast": 1,
+          "HueRotate": 0,
+          "Saturation": 1
+        },
+        {
+          "__type": "Vignette",
+          "__guid": "a9c5da9b-eb21-426c-8f02-2447f6340e8e",
+          "Center": "0.5,0.5",
+          "Color": "0,0,0,1",
+          "Intensity": 0.47,
+          "Roundness": 0.9,
+          "Smoothness": 0.9
+        },
+        {
+          "__type": "Vignette",
+          "__guid": "ef059696-1b8b-44fb-ae26-2006cb412f12",
+          "Center": "0.5,0.5",
+          "Color": "0.64186,0.08956,0.08956,1",
+          "Intensity": 0,
+          "Roundness": 0.75,
+          "Smoothness": 0.95
+        },
+        {
+          "__type": "HealthEffects",
+          "Adjustments": {
+            "_type": "component",
+            "go": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
+            "component_type": "ColorAdjustments"
+          }
+        }
+      ]
+    },
+    {
+      "__guid": "57723daf-6b12-4e32-add9-81a777fe1625",
+      "Name": "Network",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "NetworkManager",
+          "__guid": "388f6b68-6803-402c-929d-a86790b3284f",
+          "PlayerPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/player.prefab"
+          }
+        }
+      ]
+    },
+    {
+      "__guid": "3931e92a-532a-43ae-a38f-131e8f352a90",
+      "Name": "WeaponManager",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "WeaponManager",
+          "Prefabs": [
+            "prefabs/weapon_usp.prefab",
+            "prefabs/weapon_mp5.prefab"
+          ]
+        }
+      ]
+    },
+    {
+      "__guid": "8f0e607d-3d88-4843-92a7-6af9fbd72840",
+      "Name": "Spawns",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Children": [
+        {
+          "__guid": "cb694a20-12f9-4d3b-b71f-cfa35e3c8637",
+          "Name": "Spawnpoint",
+          "Position": "-186.1646,689.8775,-0.00003880796",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "Components": [
+            {
+              "__type": "SpawnPoint",
+              "__guid": "0a98af12-4a9e-4f49-82fa-1dc4d2b47418",
+              "Color": "0.8902,0.31765,0.05098,1"
+            }
+          ]
+        },
+        {
+          "__guid": "5f692c44-cac1-4ef0-8e65-d99e594f87ba",
+          "Name": "Spawnpoint",
+          "Position": "340.8411,-42.46852,0.0000004643298",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "Components": [
+            {
+              "__type": "SpawnPoint",
+              "__guid": "0abe4d33-d3d1-491b-9ce0-b932099267ca",
+              "Color": "0.8902,0.31765,0.05098,1"
+            }
+          ]
+        },
+        {
+          "__guid": "593d0430-16b9-4f1a-a1f5-02f78997529f",
+          "Name": "Spawnpoint",
+          "Position": "-113.6458,-876.4552,-0.0001453845",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "Components": [
+            {
+              "__type": "SpawnPoint",
+              "__guid": "2dd007b6-9460-4e82-8b1a-ffbe15bacac9",
+              "Color": "0.8902,0.31765,0.05098,1"
+            }
+          ]
+        },
+        {
+          "__guid": "c0a61356-a334-4c09-b301-5d2f4d1e5e2a",
+          "Name": "Spawnpoint",
+          "Position": "-377.7809,-1447.219,-0.0002014254",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "Components": [
+            {
+              "__type": "SpawnPoint",
+              "__guid": "df6c3f2a-b6e4-4518-a030-0914964986bb",
+              "Color": "0.8902,0.31765,0.05098,1"
+            }
+          ]
+        },
+        {
+          "__guid": "89be7385-20b7-4348-a0b6-77b4383e47d6",
+          "Name": "Spawnpoint",
+          "Position": "-648.9064,-1092.607,-0.0001170701",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "Components": [
+            {
+              "__type": "SpawnPoint",
+              "__guid": "6f6067e4-da6b-484e-ab44-9341c1dd08be",
+              "Color": "0.8902,0.31765,0.05098,1"
+            }
+          ]
+        },
+        {
+          "__guid": "51f28cc5-f51e-42d4-874f-319dc92da8da",
+          "Name": "Spawnpoint",
+          "Position": "302.3709,-1198.172,-0.00006238234",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "Components": [
+            {
+              "__type": "SpawnPoint",
+              "__guid": "41b02316-9786-49f3-b61a-e57c3bcec4e1",
+              "Color": "0.8902,0.31765,0.05098,1"
+            }
+          ]
+        },
+        {
+          "__guid": "b59cd1cc-8628-44a5-b09e-78bd9f744aac",
+          "Name": "Spawnpoint",
+          "Position": "-363.3175,259.691,-0.0001314257",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "Components": [
+            {
+              "__type": "SpawnPoint",
+              "__guid": "fd57ac15-8b02-4639-a30c-659be6f1468e",
+              "Color": "0.8902,0.31765,0.05098,1"
+            }
+          ]
+        },
+        {
+          "__guid": "31ee32dc-cdc6-474b-86b0-499d7bdc3eca",
+          "Name": "Spawnpoint",
+          "Position": "-192.5561,837.8281,-0.0002572035",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "Components": [
+            {
+              "__type": "SpawnPoint",
+              "__guid": "a9d7c5d9-17f2-47f4-9fd6-4acecbcbd2f1",
+              "Color": "0.8902,0.31765,0.05098,1"
+            }
+          ]
+        },
+        {
+          "__guid": "ab7c872a-34d9-4ed3-abd9-3c35b98268bf",
+          "Name": "Spawnpoint",
+          "Position": "-356.3878,1370.798,-0.000418375",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "Components": [
+            {
+              "__type": "SpawnPoint",
+              "__guid": "05fda709-0259-4f26-b8a3-e6cfd03cd07a",
+              "Color": "0.8902,0.31765,0.05098,1"
+            }
+          ]
+        },
+        {
+          "__guid": "4a516a9d-0bd7-49a1-b1bc-fafa8b2ecbd0",
+          "Name": "Spawnpoint",
+          "Position": "596.3435,1156.468,-0.0006310834",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "Components": [
+            {
+              "__type": "SpawnPoint",
+              "__guid": "bd99ab31-9d1e-44c3-b3df-f3f22c6a5759",
+              "Color": "0.8902,0.31765,0.05098,1"
+            }
+          ]
+        },
+        {
+          "__guid": "e96e8442-a216-41ae-b30c-bc170b1ed82d",
+          "Name": "Spawnpoint",
+          "Position": "150.4754,1367.996,-0.0005484235",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "Components": [
+            {
+              "__type": "SpawnPoint",
+              "__guid": "0f599bb0-21ef-4a70-a2ec-04e35f529b76",
+              "Color": "0.8902,0.31765,0.05098,1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "__guid": "4073be7d-1f0e-40ba-9aa6-81335ea09c70",
+      "Name": "Pickups",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Children": [
+        {
+          "__guid": "ea7f46de-e6e8-4562-a845-27f77cf5caf4",
+          "Name": "pickup_mp5",
+          "Position": "457.9744,1018.006,13.43359",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "Components": [
+            {
+              "__type": "PickupSpawner",
+              "PickupPrefab": "prefabs/pickups/pickup_mp5.prefab",
+              "RespawnTime": 30
+            }
+          ]
+        },
+        {
+          "__guid": "ae08fb4d-4e65-4857-ac7e-70620de664ff",
+          "Name": "pickup_mp5",
+          "Position": "-662.1463,255.3201,13.43349",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "Components": [
+            {
+              "__type": "PickupSpawner",
+              "PickupPrefab": "prefabs/pickups/pickup_mp5.prefab",
+              "RespawnTime": 30
+            }
+          ]
+        },
+        {
+          "__guid": "e42b31d1-c9d2-452a-826c-96d39fda6fb8",
+          "Name": "pickup_mp5",
+          "Position": "-46.12767,-1107.675,119.6582",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "Components": [
+            {
+              "__type": "PickupSpawner",
+              "PickupPrefab": "prefabs/pickups/pickup_mp5.prefab",
+              "RespawnTime": 30
+            }
+          ]
+        },
+        {
+          "__guid": "5a10be26-7177-4d78-ab86-ce72b95ac3f4",
+          "Name": "pickup_mp5",
+          "Position": "-137.0698,1.605691,480.6712",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "Components": [
+            {
+              "__type": "PickupSpawner",
+              "PickupPrefab": "prefabs/pickups/pickup_mp5.prefab",
+              "RespawnTime": 30
+            }
+          ]
+        },
+        {
+          "__guid": "793b5434-a8f4-4160-a3a9-30b610c2ff33",
+          "Name": "pickup_usp",
+          "Position": "151.9507,-256.2728,13.43349",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "Components": [
+            {
+              "__type": "PickupSpawner",
+              "PickupPrefab": "prefabs/pickups/pickup_usp.prefab",
+              "RespawnTime": 30
+            }
+          ]
+        },
+        {
+          "__guid": "e3db8ec4-ed38-4d77-adea-71d98e8424d5",
+          "Name": "pickup_usp",
+          "Position": "-504.3683,1086.62,13.43345",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "Components": [
+            {
+              "__type": "PickupSpawner",
+              "PickupPrefab": "prefabs/pickups/pickup_usp.prefab",
+              "RespawnTime": 30
+            }
+          ]
+        },
+        {
+          "__guid": "62074bfa-0500-4b07-901e-465dfd576adc",
+          "Name": "pickup_usp",
+          "Position": "-26.94098,1137.205,116.7191",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "Components": [
+            {
+              "__type": "PickupSpawner",
+              "PickupPrefab": "prefabs/pickups/pickup_usp.prefab",
+              "RespawnTime": 30
+            }
+          ]
+        },
+        {
+          "__guid": "2854f726-85d9-4aab-8931-0bec6d1551d0",
+          "Name": "pickup_usp",
+          "Position": "919.1946,282.2023,17.69174",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "Components": [
+            {
+              "__type": "PickupSpawner",
+              "PickupPrefab": "prefabs/pickups/pickup_usp.prefab",
+              "RespawnTime": 30
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "__guid": "4de94921-923c-430b-b976-ebeae24b1a69",
+      "Name": "HealthEffects",
+      "Enabled": true,
+      "NetworkMode": 2
+    }
+  ],
+  "SceneProperties": {
+    "FixedUpdateFrequency": 50,
+    "Lerping": true,
+    "MaxFixedUpdates": 5,
+    "NetworkFrequency": 60,
+    "ThreadedAnimation": true,
+    "TimeScale": 1,
+    "UseFixedUpdate": true,
+    "NavMesh": {
+      "Enabled": false,
+      "IncludeStaticBodies": true,
+      "IncludeKeyframedBodies": true,
+      "EditorAutoUpdate": true,
+      "AgentHeight": 64,
+      "AgentRadius": 16,
+      "AgentStepSize": 18,
+      "AgentMaxSlope": 40,
+      "ExcludedBodies": "",
+      "IncludedBodies": ""
+    }
+  },
+  "Title": "minimal",
+  "Description": "",
+  "LastSaved": "2024-03-17T16:26:55.2050879-04:00",
+  "ResourceVersion": 1,
+  "__version": 1,
+  "__references": []
+}

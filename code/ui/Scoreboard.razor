@@ -2,7 +2,7 @@
 @using System.Linq
 @using Sandbox;
 @inherits PanelComponent
-@namespace Facepunch.Arena
+
 
 <root>
 	<div class="table">
@@ -16,7 +16,7 @@
 		@foreach ( var entry in Networking.Connections )
 		{
 			var rowClass = string.Empty;
-			var player = Scene.GetAllComponents<PlayerController>().FirstOrDefault( p => p.Network.OwnerConnection == entry );
+			var player = Scene.GetAllComponents<PlayerMovement>().FirstOrDefault( p => p.Network.OwnerConnection == entry );
 			
 			if ( entry == Connection.Local )
 				rowClass = "me";

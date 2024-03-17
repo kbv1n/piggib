@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sandbox;
-namespace pig;
 
 [Title( "Weapon Container" )]
 public sealed class WeaponContainer : Component

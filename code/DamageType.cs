@@ -1,4 +1,3 @@
-namespace Sandbox;
 
 public enum DamageType
 {

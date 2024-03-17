@@ -1,23 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using pig;
 using Sandbox;
 using Sandbox.Citizen;
 using Sandbox;
-using Facepunch.Arena;
-
-namespace pig;
-
 // this should be called playerController or something because its not just movement but im retarded
 
-public class PlayerMovement : Component, Component.ITriggerListener
+public class PlayerMovement : Component, Component.ITriggerListener, IHealthComponent
 {
 
 
 	[Property] public Vector3 Gravity { get; set; } = new ( 0f, 0f, 800f );
-
-	public CharacterController CharacterController { get; set; }
+	public CharacterController CharacterController { get; private set; }
 	public SkinnedModelRenderer ModelRenderer { get; set; }
 	public RealTimeSince LastHitmarkerTime { get; private set; }
 	public Vector3 WishVelocity { get; private set; }
@@ -35,10 +29,10 @@ public class PlayerMovement : Component, Component.ITriggerListener
 	[Sync] public int Kills { get; private set; }
 	[Sync] public int Deaths { get; private set; }
 	[Sync] public Angles EyeAngles { get; private set; }
-	private RealTimeSince TimeSinceDamaged { get; set; }
 	private RealTimeSince LastGroundedTime { get; set; }
 	private RealTimeSince LastUngroundedTime { get; set; }
 	private bool WantsToCrouch { get; set; }
+	[Property] public CitizenAnimationHelper AnimationHelper { get; set; }
 
     // Movement Properties
     [Property] public float GroundControl { get; set; } = 4.0f;
@@ -52,18 +46,14 @@ public class PlayerMovement : Component, Component.ITriggerListener
 
     // Object references
     
-    [Property] public GameObject Body { get; set; }
 	[Property] public GameObject Head { get; set; }
-	public GameObject Camera { get; set; }
+
 
 
 
 
     // Member Variables
     public bool IsCrouching = false;
-    public bool IsSprinting = false;
-    private CharacterController characterController;
-    private CitizenAnimationHelper animationHelper;
     // Component Methods
 
 
@@ -92,13 +82,11 @@ public class PlayerMovement : Component, Component.ITriggerListener
 		if ( !IsProxy )
 		    return;
 
-			RespawnAsync( 3f );
+			RespawnAsync( 1f );
 			Deaths++;
 	
 	}
 
-
-	[Broadcast]
 	public async void RespawnAsync( float seconds )
 	{
 		if ( IsProxy ) return;
@@ -137,9 +125,6 @@ public class PlayerMovement : Component, Component.ITriggerListener
 		ModelRenderer = Components.GetInDescendantsOrSelf<SkinnedModelRenderer>( true );
 		CharacterController = Components.GetInDescendantsOrSelf<CharacterController>( true );
 		CharacterController.IgnoreLayers.Add( "player" );
-	 
-	    characterController = Components.Get<CharacterController>();
-        animationHelper = Components.Get<CitizenAnimationHelper>();
 
 		if ( IsProxy )
 		    return;
@@ -186,8 +171,7 @@ public class PlayerMovement : Component, Component.ITriggerListener
 		
 		if ( IsProxy )
 			return;
-
-		TimeSinceDamaged = 0f;
+			
 		Health = MathF.Max( Health - damage, 0f );
 		
 		if ( Health <= 0f )
@@ -204,6 +188,9 @@ public class PlayerMovement : Component, Component.ITriggerListener
 	}	
 	protected override void OnStart()
 	{
+
+		Animators.Add( ShadowAnimator );
+		Animators.Add( AnimationHelper );
 		if ( !IsProxy )
 		{
 			Respawn();
@@ -229,8 +216,13 @@ public class PlayerMovement : Component, Component.ITriggerListener
 		
 		ModelRenderer.SetBodyGroup( "head", IsProxy ? 0 : 1 );	
 		ModelRenderer.Enabled = true;
+		
+		if ( HasViewModel )
+		{
+			shadowRenderer.Enabled = false;
+			ModelRenderer.RenderType = Sandbox.ModelRenderer.ShadowRenderType.On;
+		}
 	}
-
 
 	protected override void OnPreRender()
 	{
@@ -269,6 +261,8 @@ public class PlayerMovement : Component, Component.ITriggerListener
 		   Scene.Camera.Transform.Position = Head.Transform.Position;
 		else
 		   Scene.Camera.Transform.Position = trace.Hit ? trace.EndPosition : idealEyePos;
+
+		   Scene.Camera.Transform.Rotation = EyeAngles.ToRotation(); 
 	}
 
 
@@ -277,17 +271,46 @@ public class PlayerMovement : Component, Component.ITriggerListener
 	protected override void OnUpdate()
     {
         //set spritning and crouching
+		if ( !IsProxy )
+		{
         IsCrouching = Input.Down("Duck");
-        IsSprinting = Input.Down("Sprint");
         if(Input.Pressed("Jump")) Jump();
-        RotateBody();
+		}
+		var weapon = Weapons.Deployed;
+
+
+			if ( !IsProxy )
+		{
+			var angles = EyeAngles.Normal;
+			angles += Input.AnalogLook * 0.5f;
+			angles.pitch = angles.pitch.Clamp( -60f, 80f );
+			
+			EyeAngles = angles.WithRoll( 0f );
+
+		}
+
+
+
+			foreach ( var animator in Animators )
+		{
+			animator.HoldType = weapon.IsValid() ? weapon.HoldTypes : CitizenAnimationHelper.HoldTypes.None;
+			animator.WithVelocity( CharacterController.Velocity );
+			animator.WithWishVelocity( WishVelocity );
+			animator.IsGrounded = CharacterController.IsOnGround;
+			animator.FootShuffle = 0f;
+			animator.DuckLevel = IsCrouching ? 1f : 0f;
+			animator.WithLook( EyeAngles.Forward );
+			animator.MoveStyle =  (!IsCrouching ) ? CitizenAnimationHelper.MoveStyles.Run : CitizenAnimationHelper.MoveStyles.Walk;
+		}
+
     }
     protected override void OnFixedUpdate()
     {
 		if ( IsProxy ) return;
 		if ( LifeState == LifeState.Dead ) return;
-        BuildWishVelocity();
-        Move();
+		
+		BuildWishVelocity();
+		DoMovementInput();
 
 		var weapon = Weapons.Deployed;
 		if ( !weapon.IsValid() ) return;
@@ -302,70 +325,67 @@ public class PlayerMovement : Component, Component.ITriggerListener
 	}
 
 
-
-    void BuildWishVelocity()
-    {
-        WishVelocity = 0;
-        var rot = Head.Transform.Rotation;
-        if (Input.Down("Forward")) WishVelocity += rot.Forward;
-        if (Input.Down("Backward")) WishVelocity += rot.Backward;
-        if (Input.Down("Left")) WishVelocity -= rot.Right;
-        if (Input.Down("Right")) WishVelocity += rot.Right;
-
-        WishVelocity = WishVelocity.WithZ(0);
-        if (!WishVelocity.IsNearZeroLength) WishVelocity = WishVelocity.Normal;
-
-        if (IsCrouching) WishVelocity *= WalkSpeed;
-        else if (IsSprinting) WishVelocity *= RunSpeed;
-        else WishVelocity *= Speed;
-    }
-    void Move()
-    {
-        //Gravity From Scene
-        var gravity = Scene.PhysicsWorld.Gravity;
-
-        if (characterController.IsOnGround)
-        {
-            characterController.Velocity = characterController.Velocity.WithZ(0);
-            characterController.Accelerate(WishVelocity);
-            characterController.ApplyFriction(GroundControl);
-        }
-        else
-        {
-            characterController.Velocity += gravity * Time.Delta * 0.5f;
-            characterController.Accelerate(WishVelocity.ClampLength(MaxForce));
-            characterController.ApplyFriction(AirControl);
-        }
-
-        characterController.Move();
-
-        if(!characterController.IsOnGround)
-        {
-            characterController.Velocity += gravity * Time.Delta * 0.5f;
-        }
-        else
-        {
-            characterController.Velocity = characterController.Velocity.WithZ(0);
-        }
-    }
-	void RotateBody()
+	private void BuildWishVelocity()
 	{
-	if(Body is null) return;
+		var rotation = EyeAngles.ToRotation();
 
-	var targetAngle = new Angles(0, Head.Transform.Rotation.Yaw(), 0).ToRotation();
-	float rotateDifference = Body.Transform.Rotation.Distance(targetAngle);
+		WishVelocity = rotation * Input.AnalogMove;
+		WishVelocity = WishVelocity.WithZ( 0f );
 
-	// Lerp body rotation if we're moving or rotating far enough
-	if(rotateDifference > 0f || characterController.Velocity.Length > 0f)
-		{
-		Body.Transform.Rotation = Rotation.Lerp(Body.Transform.Rotation, targetAngle, Time.Delta * 100f);
-		}
+		if ( !WishVelocity.IsNearZeroLength )
+			WishVelocity = WishVelocity.Normal;
+
+		if ( IsCrouching )
+			WishVelocity *= 64f;
+		else
+			WishVelocity *= 110f;
 	}
-    void Jump()
-    {
-        if(!characterController.IsOnGround) return;
 
-        characterController.Punch(Vector3.Up * JumpForce);
-        animationHelper?.TriggerJump();
+	protected virtual void DoMovementInput()
+	{
+		BuildWishVelocity();
+
+		if ( CharacterController.IsOnGround && Input.Down( "Jump" ) )
+		{
+			CharacterController.Punch( Vector3.Up * 300f );
+		}
+
+		if ( CharacterController.IsOnGround )
+		{
+			CharacterController.Velocity = CharacterController.Velocity.WithZ( 0f );
+			CharacterController.Accelerate( WishVelocity );
+			CharacterController.ApplyFriction( 4.0f );
+		}
+		else
+		{
+			CharacterController.Velocity -= Gravity * Time.Delta * 0.5f;
+			CharacterController.Accelerate( WishVelocity.ClampLength( 50f ) );
+			CharacterController.ApplyFriction( 0.1f );
+		}
+		
+		CharacterController.Move();
+
+		if ( !CharacterController.IsOnGround )
+		{
+			CharacterController.Velocity -= Gravity * Time.Delta * 0.5f;
+			LastUngroundedTime = 0f;
+		}
+		else
+		{
+			CharacterController.Velocity = CharacterController.Velocity.WithZ( 0 );
+			LastGroundedTime = 0f;
+		}
+
+		Transform.Rotation = Rotation.FromYaw( EyeAngles.ToRotation().Yaw() );
+	}
+
+
+     protected void Jump()
+    {
+        if(!CharacterController.IsOnGround) return;
+
+        CharacterController.Punch(Vector3.Up * JumpForce);
+		if ( !IsProxy ) 
+        AnimationHelper?.TriggerJump();
 	}
 }

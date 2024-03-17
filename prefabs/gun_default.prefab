@@ -1,0 +1,37 @@
+{
+  "RootObject": {
+    "__guid": "2f3119bd-3e3a-4605-8e6e-1bf1883d20ff",
+    "Name": "gun_default",
+    "Enabled": true,
+    "NetworkMode": 2,
+    "Children": [
+      {
+        "__guid": "619dcdb0-afa3-4028-b786-2e336d1bc05b",
+        "Name": "Offset",
+        "Position": "1.646654,0,-4.321783",
+        "Scale": "1.5,1.5,1.5",
+        "Enabled": true,
+        "NetworkMode": 2,
+        "Components": [
+          {
+            "__type": "SkinnedModelRenderer",
+            "__guid": "e845e07e-1540-4d54-abf1-6f6ab99155d6",
+            "BodyGroups": 5,
+            "CreateBoneObjects": false,
+            "Model": "models/gravitygun/v_gravitygun.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          }
+        ]
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__version": 1,
+  "__references": [
+    "katka.gravitygun"
+  ]
+}

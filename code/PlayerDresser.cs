@@ -1,5 +1,7 @@
 using Sandbox;
 using Sandbox.Citizen;
+
+
 public sealed class PlayerDresser : Component, Component.INetworkSpawn
 {
 	[Property] public SkinnedModelRenderer BodyRenderer { get; set; }

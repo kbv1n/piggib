@@ -45,27 +45,31 @@
           "go": "b04cb228-820f-4926-ae8f-ba6f8a097a65"
         },
         "DuckLevel": 1,
+        "Gravity": "0,0,800",
         "GroundControl": 4,
         "Head": {
           "_type": "gameobject",
           "go": "f1aadb57-b8de-417e-bf93-6321fa6d9813"
         },
+        "HurtSound": "sounds/error.sound",
         "JumpForce": 400,
         "MaxForce": 150,
+        "MaxHealth": 100,
         "RunSpeed": 290,
+        "ShadowAnimator": {
+          "_type": "component",
+          "component_id": "218d7d62-19c7-4365-9eb9-59fc8601fb0b",
+          "go": "69e756e6-2263-4ac2-9b4b-9eca8fbe7271",
+          "component_type": "CitizenAnimationHelper"
+        },
         "Speed": 300,
+        "ViewModelCamera": {
+          "_type": "component",
+          "component_id": "cd934b27-9b68-47ec-b9b1-925b8e3fbad9",
+          "go": "0b31a89a-a2d7-46d6-a1d1-bb4c521de840",
+          "component_type": "CameraComponent"
+        },
         "WalkSpeed": 90
-      },
-      {
-        "__type": "PigInfo",
-        "__guid": "63527932-62b7-4074-99ea-56f58eb6870a",
-        "MaxHealth": 1.31,
-        "Team": "Player"
-      },
-      {
-        "__type": "PigPlayer",
-        "__guid": "de87a8b2-d341-4606-9f5d-cda9e9efd5db",
-        "Damage": 1
       },
       {
         "__type": "PlayerDresser",
@@ -154,20 +158,6 @@
             "MaximumExposure": 3,
             "MinimumExposure": 0,
             "Rate": 1.64
-          }
-        ]
-      },
-      {
-        "__guid": "b600df79-108e-45ad-ba0b-fda7406ad79a",
-        "Name": "Gun",
-        "Position": "-192,-57.31126,-4.368832",
-        "Enabled": true,
-        "NetworkMode": 2,
-        "Components": [
-          {
-            "__type": "Gun",
-            "__guid": "d9531222-d991-44d0-8f93-68ec28bb71c3",
-            "__enabled": false
           }
         ]
       }

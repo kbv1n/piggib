@@ -1,8 +1,7 @@
-using pig;
+
 using Sandbox;
 using Sandbox.Citizen;
 
-namespace pig;
 public abstract class WeaponComponent : Component
 {
 	[Property] public float DeployTime { get; set; } = 0.5f;
@@ -14,7 +13,6 @@ public abstract class WeaponComponent : Component
 	[Property] public SoundEvent FireSound { get; set; }
 	[Property] public ParticleSystem MuzzleFlash { get; set; }
 	[Property] public ParticleSystem ImpactEffect { get; set; }
-	
 	[Property] public SoundEvent DeploySound { get; set; }
 	[Property] public bool IsDeployed { get; set; }
 	private ViewModel ViewModel { get; set; }
@@ -22,6 +20,8 @@ public abstract class WeaponComponent : Component
 	private SkinnedModelRenderer ModelRenderer { get; set; }
 	private TimeUntil NextFire { get; set; }
 	private TimeUntil NextFireTime { get; set; }
+
+
 	
 	// ADD REFERENCE TO VIEWMODEL
 	private SkinnedModelRenderer EffectRenderer => ViewModel.IsValid() ? ViewModel.ModelRenderer : ModelRenderer;
@@ -46,13 +46,17 @@ public abstract class WeaponComponent : Component
 			OnHolstered();
 		}
 	}
-
+	public enum DamageType
+	{
+		Beam,
+		Explosion,
+	}
 	[Broadcast]
 	private void SendAttackMessage( Vector3 startPos, Vector3 endPos, float distance )
 	{
 		// Missing weapons reaction to firing
-		var tracerStartPosition = startPos;
-		var muzzle = EffectRenderer.SceneModel.GetAttachment( "muzzle" );
+		// var tracerStartPosition = startPos;
+		// var muzzle = EffectRenderer.SceneModel.GetAttachment( "muzzle" );
 
 		if ( FireSound is not null )
 		{
@@ -94,7 +98,7 @@ public abstract class WeaponComponent : Component
 				player.DoHitMarker( false );
 			}
 		
-			damageable.TakeDamage( DamageType.Beam, damage, trace.EndPosition, trace.Direction * DamageForce, GameObject.Id );
+			damageable.TakeDamage( global::DamageType.Beam, damage, trace.EndPosition, trace.Direction * DamageForce, GameObject.Id );
 		}
 		else if ( trace.Hit )
 		{
@@ -178,8 +182,8 @@ private void DestroyViewModel()
 
 	private void CreateViewModel()
 	{
-		if ( !ViewModelPrefab.IsValid() )
-			return;
+		// if ( !ViewModelPrefab.IsValid() )
+		// 	return;
 
 			var player = Components.GetInAncestors<PlayerMovement>();
 			var viewModelGameObject = ViewModelPrefab.Clone();
