@@ -32,7 +32,7 @@
 
 		<div class="lobby-list">
 			<div class="header">
-				<div class="title">Servers</div>
+				<div class="title">Current Games</div>
 			</div>
 
 			@if ( IsRefreshing )
@@ -117,7 +117,7 @@
 
 	private void CreateServer()
 	{
-		GameManager.ActiveScene.LoadFromFile( "scenes/level_1.scene" );
+		Game.ActiveScene.LoadFromFile( "scenes/level_1.scene" );
 	}
 
 	private void Quit()

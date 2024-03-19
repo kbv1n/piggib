@@ -82,7 +82,7 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 		if ( !IsProxy )
 		    return;
 
-			RespawnAsync( 1f );
+			RespawnAsync( 3f );
 			Deaths++;
 	
 	}
@@ -95,7 +95,6 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 		Respawn();
 	}
 
-	[Broadcast]
 	public void Respawn()
 	{
 		if ( IsProxy ) return;
@@ -208,25 +207,48 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 	{
 		if ( !ModelRenderer.IsValid() )
 			return;
-
+		
 		var deployedWeapon = Weapons.Deployed;
-		var shadowRenderer = ShadowAnimator.Components.Get<SkinnedModelRenderer>(true);
-		var HasViewModel = deployedWeapon.IsValid() && deployedWeapon.HasViewModel;
-		var clothing = ModelRenderer.Components.GetAll<ClothingContainer>( FindMode.EnabledInSelfAndDescendants );
+		var shadowRenderer = ShadowAnimator.Components.Get<SkinnedModelRenderer>( true );
+		var hasViewModel = deployedWeapon.IsValid() && deployedWeapon.HasViewModel;
+		var clothing = ModelRenderer.Components.GetAll<ClothingComponent>( FindMode.EverythingInSelfAndDescendants );
 		
-		ModelRenderer.SetBodyGroup( "head", IsProxy ? 0 : 1 );	
-		ModelRenderer.Enabled = true;
-		
-		if ( HasViewModel )
+		if ( hasViewModel )
 		{
 			shadowRenderer.Enabled = false;
 			ModelRenderer.RenderType = Sandbox.ModelRenderer.ShadowRenderType.On;
+			
+			foreach ( var c in clothing )
+			{
+				c.ModelRenderer.RenderType = Sandbox.ModelRenderer.ShadowRenderType.On;
+			}
+
+			return;
+		}
+			
+		ModelRenderer.SetBodyGroup( "head", IsProxy ? 0 : 1 );
+		ModelRenderer.Enabled = true;
+
+		ModelRenderer.RenderType = IsProxy
+			? Sandbox.ModelRenderer.ShadowRenderType.On
+			: Sandbox.ModelRenderer.ShadowRenderType.Off;
+
+		shadowRenderer.Enabled = true;
+
+		foreach ( var c in clothing )
+		{
+			c.ModelRenderer.Enabled = true;
+
+			if ( c.Category is Clothing.ClothingCategory.Hair or Clothing.ClothingCategory.Facial or Clothing.ClothingCategory.Hat )
+			{
+				c.ModelRenderer.RenderType = IsProxy ? Sandbox.ModelRenderer.ShadowRenderType.On : Sandbox.ModelRenderer.ShadowRenderType.ShadowsOnly;
+			}
 		}
 	}
 
 	protected override void OnPreRender()
 	{
-		base.OnPreRender();
+		
 		if ( !Scene.IsValid() || !Scene.Camera.IsValid() )
 			return;
 
@@ -262,7 +284,7 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 		else
 		   Scene.Camera.Transform.Position = trace.Hit ? trace.EndPosition : idealEyePos;
 
-		   Scene.Camera.Transform.Rotation = EyeAngles.ToRotation(); 
+		   Scene.Camera.Transform.Rotation = EyeAngles.ToRotation() * Rotation.FromPitch( -10f );
 	}
 
 
@@ -271,25 +293,20 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 	protected override void OnUpdate()
     {
         //set spritning and crouching
+
+		if (LifeState == LifeState.Dead) return;
 		if ( !IsProxy )
 		{
-        IsCrouching = Input.Down("Duck");
-        if(Input.Pressed("Jump")) Jump();
-		}
-		var weapon = Weapons.Deployed;
-
-
-			if ( !IsProxy )
-		{
+        	IsCrouching = Input.Down("Duck");
+        	if(Input.Pressed("Jump")) Jump();
 			var angles = EyeAngles.Normal;
 			angles += Input.AnalogLook * 0.5f;
 			angles.pitch = angles.pitch.Clamp( -60f, 80f );
-			
 			EyeAngles = angles.WithRoll( 0f );
 
 		}
 
-
+		var weapon = Weapons.Deployed;
 
 			foreach ( var animator in Animators )
 		{
@@ -309,13 +326,12 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 		if ( IsProxy ) return;
 		if ( LifeState == LifeState.Dead ) return;
 		
-		BuildWishVelocity();
 		DoMovementInput();
 
 		var weapon = Weapons.Deployed;
 		if ( !weapon.IsValid() ) return;
 
-		if ( Input.Down( "Attack1" ) )
+		if ( Input.Down( "Attack1" ))
 		{
 			if ( weapon.DoFire1() )
 			{

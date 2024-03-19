@@ -11,7 +11,7 @@ public class WeaponManage : Component
 		
 		if (Prefabs.IsValid())
 		{
-			Log.Error("Prefab is valid");
+			Prefabs.Clone();
 		}
 
 

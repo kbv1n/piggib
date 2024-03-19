@@ -1,0 +1,28 @@
+{
+  "publish": {
+    "Allowed": true,
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "dance",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "dance",
+      "Tags": null,
+      "Schema": 0,
+      "HasAssets": false,
+      "AssetsPath": null,
+      "Resources": null,
+      "HasCode": false,
+      "CodePath": null,
+      "PackageReferences": [],
+      "EditorReferences": [
+        "pouragegaming.woodsiding007_2k#28543",
+        "fpopium.concrete_a#48364",
+        "creation.streetlightledtexture#35931"
+      ],
+      "Metadata": {
+        "SingleAssetSource": "maps/dance.vmap"
+      }
+    }
+  }
+}

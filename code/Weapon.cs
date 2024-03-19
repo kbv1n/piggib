@@ -4,8 +4,9 @@ using Sandbox.Citizen;
 
 public abstract class WeaponComponent : Component
 {
-	[Property] public float DeployTime { get; set; } = 0.5f;
-	[Property] public float FireRate { get; set; } = 2f;
+	[Property] public string DisplayName { get; set; }
+	[Property] public float DeployTime { get; set; } = 1f;
+	[Property] public float FireRate { get; set; } = 0.1f;
 	[Property] public float Damage { get; set; } = 100f;
 	[Property] public float DamageForce { get; set; } = 5f;
 	[Property] public GameObject ViewModelPrefab { get; set; }
@@ -66,7 +67,7 @@ public abstract class WeaponComponent : Component
 	}	
 	public virtual bool DoFire1()
 	{
-		if ( !NextFire ) return false;
+		if ( !NextFireTime ) return false;
 
 		var player = Components.GetInAncestors<PlayerMovement>();
 		var attachment = EffectRenderer.GetAttachment( "muzzle" );
@@ -129,21 +130,23 @@ public abstract class WeaponComponent : Component
 		{
 			foreach ( var animator in player.Animators )
 			{
-				animator.TriggerDeploy( );
+				animator.TriggerDeploy();
 			}
 		}
-
+		
 		ModelRenderer.Enabled = !HasViewModel;
-
+		
 		if ( DeploySound is not null )
 		{
 			Sound.Play( DeploySound, Transform.Position );
 		}
+
 		if ( !IsProxy )
 		{
 			CreateViewModel();
 		}
-		NextFire = DeployTime;
+
+		NextFireTime = DeployTime;
 	}
 
 	protected virtual void OnHolstered()
@@ -174,7 +177,7 @@ public abstract class WeaponComponent : Component
 		base.OnUpdate();
 	}
 
-private void DestroyViewModel()
+	private void DestroyViewModel()
 	{
 		ViewModel?.GameObject.Destroy();
 		ViewModel = null;
@@ -182,16 +185,18 @@ private void DestroyViewModel()
 
 	private void CreateViewModel()
 	{
-		// if ( !ViewModelPrefab.IsValid() )
-		// 	return;
+		 if ( !ViewModelPrefab.IsValid() )
+		 	return;
 
 			var player = Components.GetInAncestors<PlayerMovement>();
 			var viewModelGameObject = ViewModelPrefab.Clone();
 			viewModelGameObject.Flags |= GameObjectFlags.NotNetworked;
 			viewModelGameObject.SetParent( player.ViewModelRoot, false );
+
 			ViewModel = viewModelGameObject.Components.Get<ViewModel>();
 			ViewModel.SetWeaponComponent( this );
 			ViewModel.SetCamera( player.ViewModelCamera );
+
 			ModelRenderer.Enabled = false;
 	}
 	[Broadcast]

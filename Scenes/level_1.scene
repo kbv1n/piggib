@@ -32,7 +32,7 @@
         {
           "__type": "SkyBox2D",
           "__guid": "c6658b57-34c4-4247-be26-abadecbb8535",
-          "SkyMaterial": "materials/sky/sky_005.vmat",
+          "SkyMaterial": "raw/ridingacrossthestars.vmat",
           "Tint": "1,1,1,1"
         },
         {
@@ -59,7 +59,7 @@
         {
           "__type": "MapInstance",
           "__guid": "d97a09ae-cfd6-4659-9a98-6128f0b94781",
-          "MapName": "maps/nexdemo.vmap",
+          "MapName": "maps/dance.vmap",
           "UseMapFromLaunch": false
         }
       ],
@@ -101,7 +101,7 @@
     {
       "__guid": "97253530-7f32-4e73-8496-ef194f38cc05",
       "Name": "spawn",
-      "Position": "-95.99995,-32.00002,0",
+      "Position": "-1184,-224.0002,576.0001",
       "Rotation": "0,0,-0.7071067,0.7071068",
       "Enabled": true,
       "NetworkMode": 2,
@@ -116,7 +116,7 @@
     {
       "__guid": "f9203ac1-e2c3-46c2-9e1c-74b72d2030e3",
       "Name": "spawn (1)",
-      "Position": "-160,-32.00002,0",
+      "Position": "-1248,-224.0002,576.0001",
       "Rotation": "0,0,-0.7071067,0.7071068",
       "Enabled": true,
       "NetworkMode": 2,
@@ -131,7 +131,7 @@
     {
       "__guid": "6fd3d3a4-72a5-46ab-9795-5539bf5912fa",
       "Name": "spawn (2)",
-      "Position": "-224,-32.00002,0",
+      "Position": "-1312,-224.0002,576.0001",
       "Rotation": "0,0,-0.7071067,0.7071068",
       "Enabled": true,
       "NetworkMode": 2,
@@ -140,48 +140,6 @@
           "__type": "SpawnPoint",
           "__guid": "af7751cc-dd3a-4592-ac39-f629ac599a98",
           "Color": "0.8902,0.31765,0.05098,1"
-        }
-      ]
-    },
-    {
-      "__guid": "1072c67c-d7c8-46eb-bb77-049953586ddf",
-      "Name": "Box",
-      "Position": "0,-512,-32",
-      "Enabled": true,
-      "NetworkMode": 2,
-      "Components": [
-        {
-          "__type": "MeshComponent",
-          "__guid": "d8b19a1f-65e9-4765-bcb1-5982ff33cbaa",
-          "Collision": "Mesh",
-          "Color": "0.0186,0.0161,0.0161,1",
-          "IsTrigger": false,
-          "Mesh": {
-            "Topology": "H4sIAAAAAAAACk2MiwoAIAjErOzx/z9cNzihwVBWmBFxZJPbc8gpi\u002B5\u002BRf2B9Budxg7LN\u002BhM/KHX/QdwDFPNgAAAAA==",
-            "TextureOrigin": "0,-512,0.00006045904",
-            "Positions": [
-              "-512,-1024,0",
-              "512,-1024,0",
-              "512,1024,0",
-              "-512,1024,0"
-            ],
-            "TextureUAxis": [
-              "1,0,0"
-            ],
-            "TextureVAxis": [
-              "0,-1,0"
-            ],
-            "TextureScale": [
-              "0.25,0.25"
-            ],
-            "TextureAngle": [
-              0
-            ],
-            "MaterialIndex": [
-              -1
-            ]
-          },
-          "Static": true
         }
       ]
     },
@@ -199,7 +157,7 @@
           "BackgroundColor": "0.33333,0.46275,0.52157,1",
           "ClearFlags": "All",
           "FieldOfView": 120,
-          "IsMainCamera": false,
+          "IsMainCamera": true,
           "Orthographic": false,
           "OrthographicHeight": 1204,
           "Priority": 1,
@@ -208,7 +166,7 @@
           "TargetEye": "None",
           "Viewport": "0,0,1,1",
           "ZFar": 10000,
-          "ZNear": 0.5
+          "ZNear": 6.999997
         },
         {
           "__type": "Highlight",
@@ -328,9 +286,10 @@
         {
           "__type": "WeaponManage",
           "__guid": "c3896042-87a8-4bb7-8804-5c4077bfaa67",
+          "__enabled": false,
           "Prefabs": {
             "_type": "gameobject",
-            "prefab": "prefabs/vm_mp5.prefab"
+            "prefab": "prefabs/gun_default.prefab"
           }
         }
       ]
@@ -359,10 +318,10 @@
   },
   "Title": "level_1",
   "Description": "",
-  "LastSaved": "2024-03-17T18:09:31.2174116-04:00",
+  "LastSaved": "2024-03-18T23:20:21.455036-04:00",
   "ResourceVersion": 1,
   "__version": 1,
   "__references": [
-    "caro.sky_001"
+    "dopamine.ridingacrossthestars"
   ]
 }

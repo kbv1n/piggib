@@ -52,6 +52,7 @@ public sealed class WeaponContainer : Component
 
 		if ( shouldDeploy )
 		{
+			Log.Info("Should Deploy");
 			foreach ( var w in All )
 			{
 				w.Holster();

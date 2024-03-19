@@ -13,7 +13,7 @@
 			<div class="row-item">⏲️</div>
 		</div>
 
-		@foreach ( var entry in Networking.Connections )
+		@foreach ( var entry in Connection.All )
 		{
 			var rowClass = string.Empty;
 			var player = Scene.GetAllComponents<PlayerMovement>().FirstOrDefault( p => p.Network.OwnerConnection == entry );
