@@ -237,10 +237,17 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 		if ( LifeState == LifeState.Dead )
 			return;
 		
-		 if ( type == DamageType.Beam && HurtSound is not null)
+		 if ( type == DamageType.Beam && HurtSound is not null) // Create a prefab for a gib effect and call it here this is an insta kill
 		{	
 			Sound.Play( HurtSound, Transform.Position );
 		}
+  	// if ( type == DamageType.Blast )
+   	//	{
+	//		calculate damage based on distance from explosion vector 
+ 	// 		clamped range between 5 - 25 damage 
+  	// 		play hurtsound 
+    // 		vector3.punch player in direction opposite of blast area
+	//	}
 		
 		if ( IsProxy )
 			return;
@@ -256,7 +263,7 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 	}
 	public void DoHitMarker( bool isHeadshot )
 	{
-		Sound.Play( isHeadshot ? "hitmarker.headshot" : "hitmarker.hit" );
+		Sound.Play( isHeadshot ? "hitmarker.headshot" : "hitmarker.hit" ); //get this working
 		LastHitmarkerTime = 0f;
 	}	
 
@@ -288,7 +295,7 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 		if ( !IsProxy )
 			{
 				ModelRenderer.RenderType = Sandbox.ModelRenderer.ShadowRenderType.On;
-				ModelRenderer.Enabled = false;
+				ModelRenderer.Enabled = false; //try shadowRenderer.Enabled = false;
 			}
 		ModelRenderer.RenderType = IsProxy
 			? Sandbox.ModelRenderer.ShadowRenderType.On
