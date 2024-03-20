@@ -4,7 +4,15 @@ using System.Linq;
 using Sandbox;
 using Sandbox.Citizen;
 using Sandbox;
-// this should be called playerController or something because its not just movement but im retarded
+
+// Main problems;
+// This should be called playerController its not just movement
+// Fix playermodel showing on local player 
+// Fix Respawning
+// Fix view model jerking
+// add Flag capturing mechanics
+// Texture the map or get a new one
+
 public class PlayerMovement : Component, Component.ITriggerListener, IHealthComponent
 {
 	// Component Properties
@@ -29,7 +37,8 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 	[Sync] public LifeState LifeState { get; private set; } = LifeState.Alive;
 	[Sync] public float Health { get; private set; } = 100f;
 	public RealTimeSince LastHitmarkerTime { get; private set; }
-
+ // [Sync] public RealTimeSince MatchStart { get; set; } // add a method for ending the match at 15 minutes or max captures
+ 
 	// Sound Properties
 	[Property] public SoundEvent HurtSound { get; set; }
 	[Property] public SoundEvent DeathSound { get; set; }
@@ -192,7 +201,7 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 			RespawnAsync( 3f );
 			Deaths++;
 	}
-	public async void RespawnAsync( float seconds )
+	public async void RespawnAsync( float seconds ) // respawning doesnt work
 	{
 		if ( IsProxy ) return;
 		await Task.DelaySeconds( seconds );
@@ -248,6 +257,7 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
   	// 		play hurtsound 
     // 		vector3.punch player in direction opposite of blast area
 	//	}
+ 	// 		I guess add a melee too for shits and giggles
 		
 		if ( IsProxy )
 			return;
