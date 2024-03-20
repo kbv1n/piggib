@@ -1,5 +1,5 @@
 {
-  "__guid": "a814fa5b-3b21-43fd-a17d-363aee7c0559",
+  "__guid": "0cf88d0e-6f58-4cda-9798-835af1e1cfaa",
   "GameObjects": [
     {
       "__guid": "e472877f-0609-4b97-b55c-a91e4f18e18d",
@@ -293,6 +293,54 @@
           }
         }
       ]
+    },
+    {
+      "__guid": "aea53818-7eff-49c9-951a-fa332cd33245",
+      "Name": "GameObject",
+      "Enabled": true,
+      "NetworkMode": 2
+    },
+    {
+      "__guid": "84b1f45a-115f-4538-8cef-2ca320ac8026",
+      "Name": "Box",
+      "Position": "-1392,-400,493.8477",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "MeshComponent",
+          "__guid": "abe1174c-0f9e-4013-aae6-60a26c463458",
+          "Collision": "Mesh",
+          "Color": "1,1,1,1",
+          "IsTrigger": false,
+          "Mesh": {
+            "Topology": "H4sIAAAAAAAACk2MiwoAIAjErOzx/z9cNzihwVBWmBFxZJPbc8gpi\u002B5\u002BRf2B9Budxg7LN\u002BhM/KHX/QdwDFPNgAAAAA==",
+            "TextureOrigin": "-1392,-400,493.8477",
+            "Positions": [
+              "-432,-720,0",
+              "432,-720,0",
+              "432,720,0",
+              "-432,720,0"
+            ],
+            "TextureUAxis": [
+              "1,0,0"
+            ],
+            "TextureVAxis": [
+              "0,-1,0"
+            ],
+            "TextureScale": [
+              "0.25,0.25"
+            ],
+            "TextureAngle": [
+              0
+            ],
+            "MaterialIndex": [
+              -1
+            ]
+          },
+          "Static": false
+        }
+      ]
     }
   ],
   "SceneProperties": {
@@ -318,7 +366,7 @@
   },
   "Title": "level_1",
   "Description": "",
-  "LastSaved": "2024-03-18T23:20:21.455036-04:00",
+  "LastSaved": "2024-03-19T23:39:17.7804691-04:00",
   "ResourceVersion": 1,
   "__version": 1,
   "__references": [

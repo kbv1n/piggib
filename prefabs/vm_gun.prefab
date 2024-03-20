@@ -1,71 +1,44 @@
 {
   "RootObject": {
-    "__guid": "ee1a9c6b-ac31-4e8e-9883-d545dd1d2e1b",
+    "__guid": "5ea93805-1630-4468-a909-bb5bcdf6795c",
     "Name": "vm_gun",
-    "Position": "0,0,16.16801",
+    "Tags": "viewmodel",
     "Enabled": true,
     "NetworkMode": 2,
     "Components": [
       {
         "__type": "ViewModel",
-        "__guid": "34bf446b-3a4f-4a53-a9ac-d1284d34f864",
+        "__guid": "defd04fb-1fd1-4033-b858-ed3d4a54b529",
         "ModelRenderer": {
           "_type": "component",
-          "component_id": "420c2fa5-5528-40a0-a6b6-7759abb02ba5",
-          "go": "68b0dd44-0355-46e8-b25b-e0b09abe1857",
+          "component_id": "29c485ac-d19b-4c0f-af61-b5fef0b514fc",
+          "go": "9ef65fa4-b824-4d2b-b068-6d58535c4e9f",
           "component_type": "SkinnedModelRenderer"
         }
-      },
-      {
-        "__type": "SkinnedModelRenderer",
-        "__guid": "6a4a4035-a3b1-47b3-b164-63ad8238bf78",
-        "__enabled": false,
-        "BodyGroups": 7,
-        "CreateBoneObjects": false,
-        "Model": "models/gravitygun/v_gravitygun.vmdl",
-        "RenderType": "On",
-        "Tint": "1,1,1,1"
       }
     ],
     "Children": [
       {
-        "__guid": "1b488e5e-4407-4a06-8b16-4d0633ff6914",
+        "__guid": "bedcf050-d8dc-493c-ac2a-8a0f87c3cbee",
         "Name": "Arms",
         "Enabled": true,
-        "NetworkMode": 2,
-        "Components": [
-          {
-            "__type": "SkinnedModelRenderer",
-            "__guid": "00d9fb92-7f2f-4f90-86c7-c341e88b9b7d",
-            "BodyGroups": 84,
-            "BoneMergeTarget": {
-              "_type": "component",
-              "component_id": "6a4a4035-a3b1-47b3-b164-63ad8238bf78",
-              "go": "ee1a9c6b-ac31-4e8e-9883-d545dd1d2e1b",
-              "component_type": "SkinnedModelRenderer"
-            },
-            "CreateBoneObjects": false,
-            "Model": "models/first_person/first_person_arms.vmdl",
-            "RenderType": "On",
-            "Tint": "1,1,1,1"
-          }
-        ]
+        "NetworkMode": 2
       },
       {
-        "__guid": "68b0dd44-0355-46e8-b25b-e0b09abe1857",
+        "__guid": "9ef65fa4-b824-4d2b-b068-6d58535c4e9f",
         "Name": "Object",
-        "Position": "11.23755,-6.59135,-12.16408",
+        "Position": "22.64278,-3.092301,-15.21083",
         "Enabled": true,
         "NetworkMode": 2,
         "Components": [
           {
             "__type": "SkinnedModelRenderer",
-            "__guid": "420c2fa5-5528-40a0-a6b6-7759abb02ba5",
-            "BodyGroups": 5,
+            "__guid": "29c485ac-d19b-4c0f-af61-b5fef0b514fc",
+            "BodyGroups": 7,
             "CreateBoneObjects": false,
             "Model": "models/gravitygun/v_gravitygun.vmdl",
             "RenderType": "On",
-            "Tint": "1,1,1,1"
+            "Tint": "0,0.09302,0.00775,1"
           }
         ]
       }

@@ -4,7 +4,8 @@
     {
       "__guid": "087cc65d-9421-48d6-b051-6adb3cad2e58",
       "Name": "Camera",
-      "Position": "126.5706,165.5491,-215.7948",
+      "Position": "-4000.7,700,2500",
+      "Rotation": "-0.00000000006640072,0.1702096,0.0000000003844189,0.9854079",
       "Tags": "maincamera",
       "Enabled": true,
       "NetworkMode": 2,
@@ -14,7 +15,7 @@
           "__guid": "2cdd342a-1e91-4b97-bc4f-ca1ba5ad4169",
           "BackgroundColor": "0.33333,0.46275,0.52157,1",
           "ClearFlags": "All",
-          "FieldOfView": 60,
+          "FieldOfView": 93.89,
           "IsMainCamera": true,
           "Orthographic": false,
           "OrthographicHeight": 1204,
@@ -36,9 +37,93 @@
         },
         {
           "__type": "Lobby",
-          "__guid": "cc5d50b3-348e-40ce-b44c-3d1cce540c95"
+          "__guid": "cc5d50b3-348e-40ce-b44c-3d1cce540c95",
+          "__enabled": false
+        },
+        {
+          "__type": "CameraRotation",
+          "__guid": "3cecce9a-e081-4c03-a65c-4918e454ac4e",
+          "camera": {
+            "_type": "gameobject",
+            "go": "087cc65d-9421-48d6-b051-6adb3cad2e58"
+          },
+          "rotatePoint": {
+            "_type": "gameobject",
+            "go": "381def0e-f241-4360-a343-8fa3c473d869"
+          }
         }
       ]
+    },
+    {
+      "__guid": "9dcf001b-4b74-47d9-b494-1a901734de88",
+      "Name": "Object",
+      "Position": "-2078.005,-910.5229,750.7355",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "MapInstance",
+          "__guid": "35b93581-dab4-4510-870c-a37132d371a5",
+          "MapName": "maps/dance.vmap",
+          "UseMapFromLaunch": false
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "64a632d0-69e2-48bf-b929-b9d44302aa33",
+      "Name": "2D Skybox",
+      "Position": "-64,-192,-0.0000001446541",
+      "Tags": "skybox",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "SkyBox2D",
+          "__guid": "bff05ebc-981e-4cc8-b050-f7942a055008",
+          "SkyMaterial": "raw/ridingacrossthestars.vmat",
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "EnvmapProbe",
+          "__guid": "e532d8b9-a299-42d3-bbcc-6e0663fad4be",
+          "Bounds": {
+            "Mins": "-512,-512,-512",
+            "Maxs": "512,512,512"
+          },
+          "Feathering": 0.91999996,
+          "Projection": "Sphere",
+          "Texture": "materials/skybox/skybox_workshop.vtex",
+          "TintColor": "1,1,1,1"
+        }
+      ]
+    },
+    {
+      "__guid": "c1881a2e-3503-464d-a808-ace3c1720804",
+      "Name": "Sun",
+      "Position": "30.01669,9.291581,132.0782",
+      "Rotation": "-0.0729315,0.4822396,0.1305433,0.8631827",
+      "Tags": "light_directional,light",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "DirectionalLight",
+          "__guid": "98c9a346-027c-4636-80df-d2bb2aa1cb9a",
+          "FogMode": "Enabled",
+          "FogStrength": 0.66,
+          "LightColor": "0.74884,0.74884,0.74884,1",
+          "Shadows": true,
+          "SkyColor": "0.09346,0.10574,0.13953,1"
+        }
+      ]
+    },
+    {
+      "__guid": "381def0e-f241-4360-a343-8fa3c473d869",
+      "Name": "RotationPoint",
+      "Position": "832,1024,672",
+      "Enabled": true,
+      "NetworkMode": 2
     }
   ],
   "SceneProperties": {
@@ -64,8 +149,10 @@
   },
   "Title": "lobby",
   "Description": "",
-  "LastSaved": "2024-03-17T21:37:11.8302751-04:00",
+  "LastSaved": "2024-03-19T23:38:58.2578304-04:00",
   "ResourceVersion": 1,
   "__version": 1,
-  "__references": []
+  "__references": [
+    "dopamine.ridingacrossthestars"
+  ]
 }

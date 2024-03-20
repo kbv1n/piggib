@@ -5,189 +5,56 @@ using Sandbox;
 using Sandbox.Citizen;
 using Sandbox;
 // this should be called playerController or something because its not just movement but im retarded
-
 public class PlayerMovement : Component, Component.ITriggerListener, IHealthComponent
 {
-
-
+	// Component Properties
 	[Property] public Vector3 Gravity { get; set; } = new ( 0f, 0f, 800f );
+	[Property] public WeaponContainer Weapons { get; set; }
 	public CharacterController CharacterController { get; private set; }
 	public SkinnedModelRenderer ModelRenderer { get; set; }
-	public RealTimeSince LastHitmarkerTime { get; private set; }
-	public Vector3 WishVelocity { get; private set; }
-	public List<CitizenAnimationHelper> Animators { get; private set; } = new();
-	[Property] private CitizenAnimationHelper ShadowAnimator { get; set; }
-	[Property] public WeaponContainer Weapons { get; set; }
 
+    // Object references
+	[Property] public GameObject Head { get; set; }
+	[Property] public GameObject Eye { get; set; }
+
+	// Camera properties
 	[Property] public CameraComponent ViewModelCamera { get; set; }
 	[Property] public GameObject ViewModelRoot { get; set; }
-	[Property] public GameObject Eye { get; set; }
-	[Property] public SoundEvent HurtSound { get; set; }
+	[Sync] public Angles EyeAngles { get; private set; }
+
+	// Stat tracking
+	[Sync] public int Kills { get; private set; }
+	[Sync] public int Deaths { get; private set; }
 	[Sync, Property] public float MaxHealth { get; private set; } = 100f;
 	[Sync] public LifeState LifeState { get; private set; } = LifeState.Alive;
 	[Sync] public float Health { get; private set; } = 100f;
-	[Sync] public int Kills { get; private set; }
-	[Sync] public int Deaths { get; private set; }
-	[Sync] public Angles EyeAngles { get; private set; }
-	private RealTimeSince LastGroundedTime { get; set; }
-	private RealTimeSince LastUngroundedTime { get; set; }
-	private bool WantsToCrouch { get; set; }
+	public RealTimeSince LastHitmarkerTime { get; private set; }
+
+	// Sound Properties
+	[Property] public SoundEvent HurtSound { get; set; }
+	[Property] public SoundEvent DeathSound { get; set; }
+	[Property] public SoundEvent Headshot { get; set; }
+
+	// Animation Properties
 	[Property] public CitizenAnimationHelper AnimationHelper { get; set; }
+	[Property] private CitizenAnimationHelper ShadowAnimator { get; set; }
+	public List<CitizenAnimationHelper> Animators { get; private set; } = new();
 
     // Movement Properties
-    [Property] public float GroundControl { get; set; } = 4.0f;
+    [Property] public float Friction { get; set; } = 4.0f;
     [Property] public float AirControl { get; set; } = 0.1f;
     [Property] public float MaxForce { get; set; } = 50f;
     [Property] public float Speed { get; set; } = 160f;
-    [Property] public float RunSpeed { get; set; } = 290f;
-    [Property] public float WalkSpeed { get; set; } = 90f;
     [Property] public float JumpForce { get; set; } = 400f;
-	[Property] public float DuckLevel { get; set; } = 1f;
-
-    // Object references
-    
-	[Property] public GameObject Head { get; set; }
-
-
-
-
-
-    // Member Variables
+	public Vector3 WishVelocity { get; private set; }
+	public bool dJumpUsed { get; set; }
     public bool IsCrouching = false;
-    // Component Methods
+	private bool WantsToCrouch { get; set; }
+	private RealTimeSince LastGroundedTime { get; set; }
+	private RealTimeSince LastUngroundedTime { get; set; }
 
-
-
-	protected virtual void OnKilled( GameObject attacker )
-	{
-		if ( attacker.IsValid() )
-		{
-			var player = attacker.Components.GetInAncestorsOrSelf<PlayerMovement>();
-
-			if (player.IsValid())
-			{
-				var chat = Scene.GetAllComponents<Chat>().FirstOrDefault();
-				if ( chat.IsValid())
-					chat.AddTextLocal($"{player.Network.OwnerConnection.DisplayName}", $" killed {Network.OwnerConnection.DisplayName}");
-
-				if (!player.IsProxy)
-				{
-					// SceneUser killed network user
-					player.Kills++;
-				}
-			}
-	
-		}
-
-		if ( !IsProxy )
-		    return;
-
-			RespawnAsync( 3f );
-			Deaths++;
-	
-	}
-
-	public async void RespawnAsync( float seconds )
-	{
-		if ( IsProxy ) return;
-
-		await Task.DelaySeconds( seconds );
-		Respawn();
-	}
-
-	public void Respawn()
-	{
-		if ( IsProxy ) return;
-
-		Weapons.Clear();
-		Weapons.GiveDefault();
-
-		MoveToSpawnPoint();
-		LifeState = LifeState.Alive;
-		Health = MaxHealth;
-	
-	}
-
-	private void MoveToSpawnPoint()
-	{
-		if ( IsProxy ) return;
-		var spawnpoints = Scene.GetAllComponents<SpawnPoint>();
-		var randomSpawnpoint = Game.Random.FromList( spawnpoints.ToList() );
-		Transform.Position = randomSpawnpoint.Transform.Position;
-		Transform.Rotation = Rotation.FromYaw( randomSpawnpoint.Transform.Rotation.Yaw() );
-		EyeAngles = Transform.Rotation;
-	}
-
-    protected override void OnAwake()
-    {
-		base.OnAwake();
-		ModelRenderer = Components.GetInDescendantsOrSelf<SkinnedModelRenderer>( true );
-		CharacterController = Components.GetInDescendantsOrSelf<CharacterController>( true );
-		CharacterController.IgnoreLayers.Add( "player" );
-
-		if ( IsProxy )
-		    return;
-
-		ResetViewAngles();
-
-    }
-	public void ResetViewAngles()
-	{
-		var rotation = Rotation.Identity;
-		EyeAngles = rotation.Angles().WithRoll( 0f );
-	}
-
-	[Broadcast]
-	private void SendKilledMessage( Guid attackerId )
-	{
-		var attacker = Scene.Directory.FindByGuid( attackerId );
-		OnKilled( attacker );
-	}
-
-
-	[Broadcast]
-	private void SendAttackMessage()
-	{
-		foreach ( var animator in Animators )
-		{
-		
-		var renderer = animator.Components.Get<SkinnedModelRenderer>( FindMode.EnabledInSelfAndDescendants );
-		renderer?.Set( "b_attack", true );
-		}
-	}
-
-	[Broadcast]
-	public void TakeDamage( DamageType type, float damage, Vector3 position, Vector3 force, Guid attackerId )
-	{
-		if ( LifeState == LifeState.Dead )
-			return;
-		
-		 if ( type == DamageType.Beam && HurtSound is not null)
-		{	
-			Sound.Play( HurtSound, Transform.Position );
-			
-		}
-		
-		if ( IsProxy )
-			return;
-			
-		Health = MathF.Max( Health - damage, 0f );
-		
-		if ( Health <= 0f )
-		{
-			LifeState = LifeState.Dead;
-			SendKilledMessage( attackerId );
-		}
-	}
-
-	public void DoHitMarker( bool isHeadshot )
-	{
-		Sound.Play( isHeadshot ? "hitmarker.headshot" : "hitmarker.hit" );
-		LastHitmarkerTime = 0f;
-	}	
 	protected override void OnStart()
 	{
-
 		Animators.Add( ShadowAnimator );
 		Animators.Add( AnimationHelper );
 		if ( !IsProxy )
@@ -202,50 +69,6 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 
 		base.OnStart();
 	}
-
-	private void UpdateModelVis()
-	{
-		if ( !ModelRenderer.IsValid() )
-			return;
-		
-		var deployedWeapon = Weapons.Deployed;
-		var shadowRenderer = ShadowAnimator.Components.Get<SkinnedModelRenderer>( true );
-		var hasViewModel = deployedWeapon.IsValid() && deployedWeapon.HasViewModel;
-		var clothing = ModelRenderer.Components.GetAll<ClothingComponent>( FindMode.EverythingInSelfAndDescendants );
-		
-		if ( hasViewModel )
-		{
-			shadowRenderer.Enabled = false;
-			ModelRenderer.RenderType = Sandbox.ModelRenderer.ShadowRenderType.On;
-			
-			foreach ( var c in clothing )
-			{
-				c.ModelRenderer.RenderType = Sandbox.ModelRenderer.ShadowRenderType.On;
-			}
-
-			return;
-		}
-			
-		ModelRenderer.SetBodyGroup( "head", IsProxy ? 0 : 1 );
-		ModelRenderer.Enabled = true;
-
-		ModelRenderer.RenderType = IsProxy
-			? Sandbox.ModelRenderer.ShadowRenderType.On
-			: Sandbox.ModelRenderer.ShadowRenderType.Off;
-
-		shadowRenderer.Enabled = true;
-
-		foreach ( var c in clothing )
-		{
-			c.ModelRenderer.Enabled = true;
-
-			if ( c.Category is Clothing.ClothingCategory.Hair or Clothing.ClothingCategory.Facial or Clothing.ClothingCategory.Hat )
-			{
-				c.ModelRenderer.RenderType = IsProxy ? Sandbox.ModelRenderer.ShadowRenderType.On : Sandbox.ModelRenderer.ShadowRenderType.ShadowsOnly;
-			}
-		}
-	}
-
 	protected override void OnPreRender()
 	{
 		
@@ -286,14 +109,9 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 
 		   Scene.Camera.Transform.Rotation = EyeAngles.ToRotation() * Rotation.FromPitch( -10f );
 	}
-
-
-
-
 	protected override void OnUpdate()
     {
         //set spritning and crouching
-
 		if (LifeState == LifeState.Dead) return;
 		if ( !IsProxy )
 		{
@@ -339,8 +157,162 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 			}	
 		}
 	}
+    protected override void OnAwake()
+    {
+		base.OnAwake();
+		ModelRenderer = Components.GetInDescendantsOrSelf<SkinnedModelRenderer>( true );
+		CharacterController = Components.GetInDescendantsOrSelf<CharacterController>( true );
+		CharacterController.IgnoreLayers.Add( "player" );
 
+		if ( IsProxy ) return;
+		ResetViewAngles();
+    }
 
+// LifeState Health and Related Methods
+	protected virtual void OnKilled( GameObject attacker )
+	{
+		if ( attacker.IsValid() )
+		{
+			var player = attacker.Components.GetInAncestorsOrSelf<PlayerMovement>();
+
+			if (player.IsValid())
+			{
+				var chat = Scene.GetAllComponents<Chat>().FirstOrDefault();
+				if ( chat.IsValid())
+					chat.AddTextLocal($"{player.Network.OwnerConnection.DisplayName}", $" killed {Network.OwnerConnection.DisplayName}");
+
+				if (!player.IsProxy)
+				{
+					// SceneUser killed network user
+					player.Kills++;
+				}
+			}
+		}
+		if ( !IsProxy ) return;
+			RespawnAsync( 3f );
+			Deaths++;
+	}
+	public async void RespawnAsync( float seconds )
+	{
+		if ( IsProxy ) return;
+		await Task.DelaySeconds( seconds );
+		Respawn();
+	}
+	public void Respawn()
+	{
+		if ( IsProxy ) return;
+
+		Weapons.Clear();
+		Weapons.GiveDefault();
+		MoveToSpawnPoint();
+		LifeState = LifeState.Alive;
+		Health = MaxHealth;
+	
+	}
+	private void MoveToSpawnPoint()
+	{
+		if ( IsProxy ) return;
+		var spawnpoints = Scene.GetAllComponents<SpawnPoint>();
+		var randomSpawnpoint = Game.Random.FromList( spawnpoints.ToList() );
+		Transform.Position = randomSpawnpoint.Transform.Position;
+		Transform.Rotation = Rotation.FromYaw( randomSpawnpoint.Transform.Rotation.Yaw() );
+		EyeAngles = Transform.Rotation;
+	}
+	[Broadcast] private void SendKilledMessage( Guid attackerId )
+	{
+		var attacker = Scene.Directory.FindByGuid( attackerId );
+		OnKilled( attacker );
+	}
+	[Broadcast] private void SendAttackMessage()
+	{
+		foreach ( var animator in Animators )
+		{
+		
+		var renderer = animator.Components.Get<SkinnedModelRenderer>( FindMode.EnabledInSelfAndDescendants );
+		renderer?.Set( "b_attack", true );
+		}
+	}
+	[Broadcast] public void TakeDamage( DamageType type, float damage, Vector3 position, Vector3 force, Guid attackerId )
+	{
+		if ( LifeState == LifeState.Dead )
+			return;
+		
+		 if ( type == DamageType.Beam && HurtSound is not null)
+		{	
+			Sound.Play( HurtSound, Transform.Position );
+		}
+		
+		if ( IsProxy )
+			return;
+			
+		Health = MathF.Max( Health - damage, 0f );
+		
+		if ( Health <= 0f )
+		{
+			LifeState = LifeState.Dead;
+			SendKilledMessage( attackerId );
+			Sound.Play( DeathSound );
+		}
+	}
+	public void DoHitMarker( bool isHeadshot )
+	{
+		Sound.Play( isHeadshot ? "hitmarker.headshot" : "hitmarker.hit" );
+		LastHitmarkerTime = 0f;
+	}	
+
+	// Trigger Methods
+	private void UpdateModelVis()
+	{
+		if ( !ModelRenderer.IsValid() )
+			return;
+		
+		var deployedWeapon = Weapons.Deployed;
+		var shadowRenderer = ShadowAnimator.Components.Get<SkinnedModelRenderer>( true );
+		var hasViewModel = deployedWeapon.IsValid() && deployedWeapon.HasViewModel;
+		var clothing = ModelRenderer.Components.GetAll<ClothingComponent>( FindMode.EverythingInSelfAndDescendants );
+		
+		if ( hasViewModel )
+		{
+			shadowRenderer.Enabled = false;
+			ModelRenderer.RenderType = Sandbox.ModelRenderer.ShadowRenderType.On;
+			foreach ( var c in clothing )
+			{
+				c.ModelRenderer.RenderType = Sandbox.ModelRenderer.ShadowRenderType.On;
+			}
+
+			return;
+		}
+			
+		ModelRenderer.SetBodyGroup( "head", IsProxy ? 0 : 1 );
+		ModelRenderer.Enabled = false;
+		if ( !IsProxy )
+			{
+				ModelRenderer.RenderType = Sandbox.ModelRenderer.ShadowRenderType.On;
+				ModelRenderer.Enabled = false;
+			}
+		ModelRenderer.RenderType = IsProxy
+			? Sandbox.ModelRenderer.ShadowRenderType.On
+			: Sandbox.ModelRenderer.ShadowRenderType.Off;
+
+		shadowRenderer.Enabled = true;
+
+		foreach ( var c in clothing )
+		{
+			c.ModelRenderer.Enabled = true;
+
+			if ( c.Category is Clothing.ClothingCategory.Hair or Clothing.ClothingCategory.Facial or Clothing.ClothingCategory.Hat )
+			{
+				c.ModelRenderer.RenderType = IsProxy ? Sandbox.ModelRenderer.ShadowRenderType.On : Sandbox.ModelRenderer.ShadowRenderType.ShadowsOnly;
+			}
+		}
+	}
+	public void ResetViewAngles()
+	{
+		var rotation = Rotation.Identity;
+		EyeAngles = rotation.Angles().WithRoll( 0f );
+	}
+
+	// Movement Methods
 	private void BuildWishVelocity()
 	{
 		var rotation = EyeAngles.ToRotation();
@@ -352,18 +324,32 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 			WishVelocity = WishVelocity.Normal;
 
 		if ( IsCrouching )
-			WishVelocity *= 64f;
+			WishVelocity *= 350f;
 		else
-			WishVelocity *= 110f;
+			WishVelocity *= 430;
 	}
-
+	public void DoubleJump()
+	{
+		
+		if ( dJumpUsed == true ) return;
+		
+		else
+		{
+			CharacterController.Punch( Vector3.Up * 600f );
+			dJumpUsed = true;
+		}
+	}
 	protected virtual void DoMovementInput()
 	{
 		BuildWishVelocity();
-
 		if ( CharacterController.IsOnGround && Input.Down( "Jump" ) )
 		{
-			CharacterController.Punch( Vector3.Up * 300f );
+			CharacterController.Punch( Vector3.Up * 350f  );
+			dJumpUsed = false;
+		}
+		if ( !CharacterController.IsOnGround && Input.Pressed( "Jump" ) && LastGroundedTime > 0.1f) 
+		{
+			DoubleJump();
 		}
 
 		if ( CharacterController.IsOnGround )
@@ -371,37 +357,25 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 			CharacterController.Velocity = CharacterController.Velocity.WithZ( 0f );
 			CharacterController.Accelerate( WishVelocity );
 			CharacterController.ApplyFriction( 4.0f );
-		}
-		else
-		{
-			CharacterController.Velocity -= Gravity * Time.Delta * 0.5f;
-			CharacterController.Accelerate( WishVelocity.ClampLength( 50f ) );
-			CharacterController.ApplyFriction( 0.1f );
-		}
-		
-		CharacterController.Move();
-
-		if ( !CharacterController.IsOnGround )
-		{
-			CharacterController.Velocity -= Gravity * Time.Delta * 0.5f;
-			LastUngroundedTime = 0f;
-		}
-		else
-		{
-			CharacterController.Velocity = CharacterController.Velocity.WithZ( 0 );
 			LastGroundedTime = 0f;
 		}
+		else
+		{
+			CharacterController.Velocity -= Gravity * Time.Delta * 0.6f;
+			CharacterController.Accelerate( WishVelocity.ClampLength( 50f ) );
+			CharacterController.ApplyFriction( 0.3f );
+			LastUngroundedTime = 0f;
+		}
 
+		CharacterController.Move();
 		Transform.Rotation = Rotation.FromYaw( EyeAngles.ToRotation().Yaw() );
 	}
+	protected void Jump()
+	{
+		if(!CharacterController.IsOnGround) return;
 
-
-     protected void Jump()
-    {
-        if(!CharacterController.IsOnGround) return;
-
-        CharacterController.Punch(Vector3.Up * JumpForce);
+		CharacterController.Punch(Vector3.Up * JumpForce);
 		if ( !IsProxy ) 
-        AnimationHelper?.TriggerJump();
+		AnimationHelper?.TriggerJump();
 	}
 }
