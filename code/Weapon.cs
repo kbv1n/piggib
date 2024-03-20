@@ -63,7 +63,6 @@ public abstract class WeaponComponent : Component
 		{
 			Sound.Play( FireSound, startPos );
 		}
-
 	}	
 	public virtual bool DoFire1()
 	{
@@ -98,7 +97,6 @@ public abstract class WeaponComponent : Component
 			{
 				player.DoHitMarker( false );
 			}
-		
 			damageable.TakeDamage( global::DamageType.Beam, damage, trace.EndPosition, trace.Direction * DamageForce, GameObject.Id );
 		}
 		else if ( trace.Hit )
@@ -107,8 +105,6 @@ public abstract class WeaponComponent : Component
 		}
 
 		NextFireTime = 1f / FireRate;
-
-
 		return true;
 	}
 
@@ -121,7 +117,6 @@ public abstract class WeaponComponent : Component
 			
 		base.OnStart();
 	}
-
 	protected virtual void OnDeployed()
 	{
 		var player = Components.GetInAncestors<PlayerMovement>();
@@ -145,58 +140,45 @@ public abstract class WeaponComponent : Component
 		{
 			CreateViewModel();
 		}
-
 		NextFireTime = DeployTime;
 	}
-
 	protected virtual void OnHolstered()
 	{
 		ModelRenderer.Enabled = false;
 		DestroyViewModel();
 	}
-
-
 	protected override void OnAwake()
 	{
 		ModelRenderer = Components.GetInDescendantsOrSelf<SkinnedModelRenderer>( true );
 		base.OnAwake(); 
 	}
-
 	protected override void OnDestroy()
 	{
 		if ( IsDeployed )
 		{	OnHolstered();	
 			IsDeployed = false;
 		}
-	
 		base.OnDestroy();
-
 	}
 	protected override void OnUpdate()
 	{
 		base.OnUpdate();
 	}
-
 	private void DestroyViewModel()
 	{
 		ViewModel?.GameObject.Destroy();
 		ViewModel = null;
 	}
-
 	private void CreateViewModel()
 	{
-		 if ( !ViewModelPrefab.IsValid() )
-		 	return;
-
+		 if ( !ViewModelPrefab.IsValid() ) return;
 			var player = Components.GetInAncestors<PlayerMovement>();
 			var viewModelGameObject = ViewModelPrefab.Clone();
 			viewModelGameObject.Flags |= GameObjectFlags.NotNetworked;
 			viewModelGameObject.SetParent( player.ViewModelRoot, false );
-
 			ViewModel = viewModelGameObject.Components.Get<ViewModel>();
 			ViewModel.SetWeaponComponent( this );
 			ViewModel.SetCamera( player.ViewModelCamera );
-
 			ModelRenderer.Enabled = false;
 	}
 	[Broadcast]

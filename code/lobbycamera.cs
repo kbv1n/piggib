@@ -11,8 +11,14 @@ public sealed class CameraRotation : Component
 
     protected override void OnUpdate()
     {
-		camera.Transform.Position.LerpTo(rotatePoint.Transform.Position, 1f);
-		camera.Transform.Rotation = rotatePoint.Transform.Rotation;
-
+		if (rotatePoint.IsValid())
+		{
+			rotationPoint = rotatePoint.Transform.Position;
+		}
+		if (camera.IsValid())
+		{
+			camera.Transform.Position = rotationPoint + new Vector3(100, 0, 100);
+			camera.Transform.Rotation = Quaternion.CreateFromYawPitchRoll(0, Time.Now * rotationSpeed, 0);
+		}
     }
 }

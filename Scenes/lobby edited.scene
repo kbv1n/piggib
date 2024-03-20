@@ -1,12 +1,12 @@
 {
-  "__guid": "48a04856-06f0-48ec-95c0-6671b81a6b0f",
+  "__guid": "02ae0508-f706-4424-86c1-642ffe68c83c",
   "GameObjects": [
     {
       "__guid": "087cc65d-9421-48d6-b051-6adb3cad2e58",
       "Name": "Camera",
-      "Position": "-4000.7,700,2500",
-      "Rotation": "-0.00000000006640072,0.1702096,0.0000000003844189,0.9854079",
-      "Tags": "maincamera",
+      "Position": "932,1024,772",
+      "Rotation": "0.2843025,0,0,0.9587346",
+      "Tags": "maincamera,light_point,light",
       "Enabled": true,
       "NetworkMode": 2,
       "Components": [
@@ -15,7 +15,7 @@
           "__guid": "2cdd342a-1e91-4b97-bc4f-ca1ba5ad4169",
           "BackgroundColor": "0.33333,0.46275,0.52157,1",
           "ClearFlags": "All",
-          "FieldOfView": 135.86,
+          "FieldOfView": 136.64,
           "IsMainCamera": true,
           "Orthographic": false,
           "OrthographicHeight": 1204,
@@ -31,14 +31,13 @@
           "__type": "ScreenPanel",
           "__guid": "83a5fcf0-1b77-4927-a3cd-52899c3caa45",
           "AutoScreenScale": true,
-          "Opacity": 1,
+          "Opacity": 0.39,
           "Scale": 1,
           "ZIndex": 100
         },
         {
           "__type": "Lobby",
-          "__guid": "cc5d50b3-348e-40ce-b44c-3d1cce540c95",
-          "__enabled": false
+          "__guid": "cc5d50b3-348e-40ce-b44c-3d1cce540c95"
         },
         {
           "__type": "CameraRotation",
@@ -51,6 +50,40 @@
             "_type": "gameobject",
             "go": "381def0e-f241-4360-a343-8fa3c473d869"
           }
+        },
+        {
+          "__type": "ChromaticAberration",
+          "__guid": "f99a3606-9b66-4dda-afd7-3d9e333d3950",
+          "Offset": "6.099999,8.5,5",
+          "Scale": 1
+        },
+        {
+          "__type": "Blur",
+          "__guid": "4911d93c-3a65-4efa-b03d-e282ce709c7d",
+          "Size": 0.33
+        },
+        {
+          "__type": "FilmGrain",
+          "__guid": "68589f90-80e8-4d2f-a240-e21fe985601f",
+          "Intensity": 0.100004844,
+          "Response": 1521.6003
+        },
+        {
+          "__type": "Tonemapping",
+          "__guid": "14cca7c7-3561-4204-b078-d141f7f86ae1",
+          "ExposureCompensation": 1.23,
+          "MaximumExposure": 2,
+          "MinimumExposure": 0.9,
+          "Rate": 8.14
+        },
+        {
+          "__type": "Vignette",
+          "__guid": "070bc669-0239-4481-beee-e8d5c8e8e818",
+          "Center": "0.5,0.5",
+          "Color": "0.04186,0,0,0.77",
+          "Intensity": 0.81,
+          "Roundness": 0.22,
+          "Smoothness": 1
         }
       ]
     },
@@ -149,7 +182,7 @@
   },
   "Title": "lobby",
   "Description": "",
-  "LastSaved": "2024-03-20T00:49:53.2088797-04:00",
+  "LastSaved": "2024-03-20T01:18:47.5805016-04:00",
   "ResourceVersion": 1,
   "__version": 1,
   "__references": [

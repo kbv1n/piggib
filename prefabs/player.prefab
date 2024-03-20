@@ -9,7 +9,7 @@
       {
         "__type": "PlayerMovement",
         "__guid": "f368233f-7fe7-4cb8-b837-e5ce6ddfc4aa",
-        "AirControl": 10,
+        "AirControl": 0,
         "AnimationHelper": {
           "_type": "component",
           "component_id": "a1f6c5ef-4f31-4df1-8178-6127be036748",
@@ -20,14 +20,14 @@
           "_type": "gameobject",
           "go": "714741d6-1d7a-4f64-b7a3-84481f75232f"
         },
-        "Friction": 10,
+        "Friction": 0,
         "Gravity": "0,0,800",
         "Head": {
           "_type": "gameobject",
           "go": "dda3cce9-5891-44ac-942a-e2ba46b0ad7b"
         },
-        "JumpForce": 10,
-        "MaxForce": 10,
+        "JumpForce": 0,
+        "MaxForce": 0,
         "MaxHealth": 100,
         "ShadowAnimator": {
           "_type": "component",
@@ -35,7 +35,7 @@
           "go": "7ca66408-b80b-4220-83c1-b4633e2ab760",
           "component_type": "CitizenAnimationHelper"
         },
-        "Speed": 10,
+        "Speed": 0,
         "ViewModelCamera": {
           "_type": "component",
           "component_id": "364b6c8b-b05f-40a2-ad37-1e914e22fadc",
