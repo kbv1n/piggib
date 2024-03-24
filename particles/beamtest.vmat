@@ -1,0 +1,28 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "shaders/cables.shader"
+
+	//---- Rendering ----
+	F_DO_NOT_CAST_SHADOWS 1
+
+	//---- Ambient Occlusion ----
+	TextureAmbientOcclusion "materials/default/default_ao.tga"
+
+	//---- Color ----
+	TextureColor "[0.196078 0.803922 0.196078 1.000000]"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Metalness ----
+	TextureMetalness "[0.496000 0.496000 0.496000 0.000000]"
+
+	//---- Normal ----
+	TextureNormal "materials/decals/concrete/max/bullethole_concrete_3_normal.tiff"
+
+	//---- Roughness ----
+	g_flRoughnessScaleFactor "0.702"
+	TextureRoughness "materials/default/default_rough.tga"
+}

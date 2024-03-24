@@ -31,14 +31,13 @@
           "__type": "ScreenPanel",
           "__guid": "83a5fcf0-1b77-4927-a3cd-52899c3caa45",
           "AutoScreenScale": true,
-          "Opacity": 1,
+          "Opacity": 0.5,
           "Scale": 1,
           "ZIndex": 100
         },
         {
           "__type": "Lobby",
-          "__guid": "cc5d50b3-348e-40ce-b44c-3d1cce540c95",
-          "__enabled": false
+          "__guid": "cc5d50b3-348e-40ce-b44c-3d1cce540c95"
         },
         {
           "__type": "CameraRotation",
@@ -149,7 +148,7 @@
   },
   "Title": "lobby",
   "Description": "",
-  "LastSaved": "2024-03-20T00:49:53.2088797-04:00",
+  "LastSaved": "2024-03-24T05:01:55.1867597-04:00",
   "ResourceVersion": 1,
   "__version": 1,
   "__references": [

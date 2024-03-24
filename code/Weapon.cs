@@ -1,32 +1,35 @@
-
+using Facepunch.Arena;
 using Sandbox;
 using Sandbox.Citizen;
 
 public abstract class WeaponComponent : Component
 {
+	// Stat Properties
 	[Property] public string DisplayName { get; set; }
 	[Property] public float DeployTime { get; set; } = 1f;
 	[Property] public float FireRate { get; set; } = 0.1f;
 	[Property] public float Damage { get; set; } = 100f;
 	[Property] public float DamageForce { get; set; } = 5f;
-	[Property] public GameObject ViewModelPrefab { get; set; }
-	[Property] public CitizenAnimationHelper.HoldTypes HoldTypes { get; set; } = CitizenAnimationHelper.HoldTypes.Rifle;
-	[Property] public SoundEvent FireSound { get; set; }
-	[Property] public ParticleSystem MuzzleFlash { get; set; }
-	[Property] public ParticleSystem ImpactEffect { get; set; }
-	[Property] public SoundEvent DeploySound { get; set; }
 	[Property] public bool IsDeployed { get; set; }
+	private TimeUntil NextFire { get; set; }
+	private TimeUntil NextFireTime { get; set; }
+	
+	// Display Properties
+	[Property] public GameObject ViewModelPrefab { get; set; }
+	[Property] public ParticleSystem MuzzleFlash { get; set; }
+	[Property] public ParticleSystem MuzzleSmoke { get; set; }
+	[Property] public ParticleSystem ImpactEffect { get; set; }
 	private ViewModel ViewModel { get; set; }
 	public bool HasViewModel => ViewModel.IsValid();
 	private SkinnedModelRenderer ModelRenderer { get; set; }
-	private TimeUntil NextFire { get; set; }
-	private TimeUntil NextFireTime { get; set; }
-
-
-	
-	// ADD REFERENCE TO VIEWMODEL
 	private SkinnedModelRenderer EffectRenderer => ViewModel.IsValid() ? ViewModel.ModelRenderer : ModelRenderer;
 
+	// Sound Properties
+	[Property] public SoundEvent DeploySound { get; set; }
+	[Property] public SoundEvent FireSound { get; set; }
+
+    // Animation Properties
+		[Property] public CitizenAnimationHelper.HoldTypes HoldTypes { get; set; } = CitizenAnimationHelper.HoldTypes.Shotgun;
 
 	[Broadcast]
 	public void Deploy()
@@ -50,20 +53,47 @@ public abstract class WeaponComponent : Component
 	public enum DamageType
 	{
 		Beam,
-		Explosion,
+		Blast,
 	}
 	[Broadcast]
 	private void SendAttackMessage( Vector3 startPos, Vector3 endPos, float distance )
 	{
 		// Missing weapons reaction to firing
-		// var tracerStartPosition = startPos;
-		// var muzzle = EffectRenderer.SceneModel.GetAttachment( "muzzle" );
+		 var tracerStartPosition = startPos;
+		var p = new SceneParticles( Scene.SceneWorld, "particles/entity/rope2.vpcf" );
+		var muzzle = EffectRenderer.SceneModel.GetAttachment( "muzzle" );
 
+		if ( IsProxy && muzzle.HasValue )
+		{
+			tracerStartPosition = muzzle.Value.Position;
+		}
+		
+		p.SetControlPoint( 0, tracerStartPosition );
+		p.SetControlPoint( 1, endPos );
+		p.SetControlPoint( 2, distance );
+		p.PlayUntilFinished( Task );
+
+		if ( MuzzleFlash is not null && muzzle.HasValue )
+		{
+			p = new( Scene.SceneWorld, MuzzleFlash );
+			p.SetControlPoint( 0, muzzle.Value );
+			p.PlayUntilFinished( Task );
+		}
+				
+		if ( MuzzleSmoke is not null && muzzle.HasValue )
+		{
+			p = new( Scene.SceneWorld, MuzzleSmoke );
+			p.SetControlPoint( 0, muzzle.Value );
+			p.PlayUntilFinished( Task );
+		}
+		
 		if ( FireSound is not null )
 		{
 			Sound.Play( FireSound, startPos );
+			
 		}
 	}	
+
 	public virtual bool DoFire1()
 	{
 		if ( !NextFireTime ) return false;
@@ -188,7 +218,7 @@ public abstract class WeaponComponent : Component
 		var p = new SceneParticles( Scene.SceneWorld, ImpactEffect );
 		p.SetControlPoint( 0, position );
 		p.SetControlPoint( 0, Rotation.LookAt( normal ) );
-		// p.PlayUntilFinished( Task );
+		p.PlayUntilFinished( Task );
 	}
 
 

@@ -27,6 +27,7 @@ public abstract class WeaponComponent : Component
 	[Property] public ParticleSystem MuzzleSmoke { get; set; }
 	[Property] public bool IsDeployed { get; set; }
 	
+	
 	[Sync] public bool IsReloading { get; set; }
 	[Sync] public int AmmoInClip { get; set; }
 
@@ -58,6 +59,23 @@ public abstract class WeaponComponent : Component
 			IsDeployed = false;
 		}
 	}
+	public static async void PlayUntilFinished( this SceneParticles particles, TaskSource source )
+    {
+        try
+        {
+            while ( !particles.Finished )
+            {
+                await source.Frame();
+                particles.Simulate( Time.Delta );
+            }
+        }
+        catch ( TaskCanceledException )
+        {
+            // Do nothing.
+        }
+
+        particles.Delete();
+    }
 	
 	public virtual bool DoPrimaryAttack()
 	{

@@ -37,7 +37,8 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 	[Sync] public LifeState LifeState { get; private set; } = LifeState.Alive;
 	[Sync] public float Health { get; private set; } = 100f;
 	public RealTimeSince LastHitmarkerTime { get; private set; }
- // [Sync] public RealTimeSince MatchStart { get; set; } // add a method for ending the match at 15 minutes or max captures
+	[Sync] public int Team { get; set; }
+ 	[Sync] public RealTimeSince MatchStart { get; set; } // add a method for ending the match at 15 minutes or max captures
  
 	// Sound Properties
 	[Property] public SoundEvent HurtSound { get; set; }
@@ -197,8 +198,8 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 				}
 			}
 		}
-		if ( !IsProxy ) return;
-			RespawnAsync( 3f );
+		if ( IsProxy ) return;
+			RespawnAsync( 1f );
 			Deaths++;
 	}
 	public async void RespawnAsync( float seconds ) // respawning doesnt work
@@ -210,7 +211,6 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 	public void Respawn()
 	{
 		if ( IsProxy ) return;
-
 		Weapons.Clear();
 		Weapons.GiveDefault();
 		MoveToSpawnPoint();
@@ -286,42 +286,50 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 		var deployedWeapon = Weapons.Deployed;
 		var shadowRenderer = ShadowAnimator.Components.Get<SkinnedModelRenderer>( true );
 		var hasViewModel = deployedWeapon.IsValid() && deployedWeapon.HasViewModel;
-		var clothing = ModelRenderer.Components.GetAll<ClothingComponent>( FindMode.EverythingInSelfAndDescendants );
+		// var clothing = ModelRenderer.Components.GetAll<ClothingComponent>( FindMode.EverythingInSelfAndDescendants );
 		
 		if ( hasViewModel )
 		{
 			shadowRenderer.Enabled = false;
+			ModelRenderer.Enabled = false;
 			ModelRenderer.RenderType = Sandbox.ModelRenderer.ShadowRenderType.On;
-			foreach ( var c in clothing )
-			{
-				c.ModelRenderer.RenderType = Sandbox.ModelRenderer.ShadowRenderType.On;
-			}
+			
+			// foreach ( var c in clothing )
+			// {
+			// 	c.ModelRenderer.RenderType = Sandbox.ModelRenderer.ShadowRenderType.On;
+			// }
 
 			return;
 		}
 			
 		ModelRenderer.SetBodyGroup( "head", IsProxy ? 0 : 1 );
-		ModelRenderer.Enabled = false;
+		ModelRenderer.Enabled = true;
 		if ( !IsProxy )
-			{
-				ModelRenderer.RenderType = Sandbox.ModelRenderer.ShadowRenderType.On;
-				ModelRenderer.Enabled = false; //try shadowRenderer.Enabled = false;
-			}
-		ModelRenderer.RenderType = IsProxy
-			? Sandbox.ModelRenderer.ShadowRenderType.On
-			: Sandbox.ModelRenderer.ShadowRenderType.Off;
+		{
+			ModelRenderer.RenderType = Sandbox.ModelRenderer.ShadowRenderType.On;
+			shadowRenderer.Enabled = false;
+		}
+		else
+		{
+			ModelRenderer.RenderType = IsProxy
+				? Sandbox.ModelRenderer.ShadowRenderType.On
+				: Sandbox.ModelRenderer.ShadowRenderType.Off;
+
+			shadowRenderer.Enabled = true;
+		}
+
 
 		shadowRenderer.Enabled = true;
 
-		foreach ( var c in clothing )
-		{
-			c.ModelRenderer.Enabled = true;
+		// foreach ( var c in clothing )
+		// {
+		// 	c.ModelRenderer.Enabled = true;
 
-			if ( c.Category is Clothing.ClothingCategory.Hair or Clothing.ClothingCategory.Facial or Clothing.ClothingCategory.Hat )
-			{
-				c.ModelRenderer.RenderType = IsProxy ? Sandbox.ModelRenderer.ShadowRenderType.On : Sandbox.ModelRenderer.ShadowRenderType.ShadowsOnly;
-			}
-		}
+		// 	if ( c.Category is Clothing.ClothingCategory.Hair or Clothing.ClothingCategory.Facial or Clothing.ClothingCategory.Hat )
+		// 	{
+		// 		c.ModelRenderer.RenderType = IsProxy ? Sandbox.ModelRenderer.ShadowRenderType.On : Sandbox.ModelRenderer.ShadowRenderType.ShadowsOnly;
+		// 	}
+		// }
 	}
 	public void ResetViewAngles()
 	{

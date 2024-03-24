@@ -80,12 +80,6 @@
             "_type": "gameobject",
             "prefab": "prefabs/player.prefab"
           },
-          "SpawnPoints": [
-            {
-              "_type": "gameobject",
-              "go": "97253530-7f32-4e73-8496-ef194f38cc05"
-            }
-          ],
           "StartServer": true
         },
         {
@@ -99,55 +93,43 @@
       ]
     },
     {
-      "__guid": "97253530-7f32-4e73-8496-ef194f38cc05",
-      "Name": "spawn",
-      "Position": "-1184,-224.0002,576.0001",
-      "Rotation": "0,0,-0.7071067,0.7071068",
-      "Enabled": true,
-      "NetworkMode": 2,
-      "Components": [
-        {
-          "__type": "SpawnPoint",
-          "__guid": "d52210c1-07d6-4cba-b845-058c07e1c4fc",
-          "Color": "0.8902,0.31765,0.05098,1"
-        }
-      ]
-    },
-    {
       "__guid": "f9203ac1-e2c3-46c2-9e1c-74b72d2030e3",
       "Name": "spawn (1)",
-      "Position": "-1248,-224.0002,576.0001",
-      "Rotation": "0,0,-0.7071067,0.7071068",
+      "Position": "-1247.999,-733.2041,506.3103",
+      "Rotation": "0,0,-0.7071069,-0.7071066",
+      "Tags": "bluspawn",
       "Enabled": true,
       "NetworkMode": 2,
       "Components": [
         {
           "__type": "SpawnPoint",
           "__guid": "feed8cb6-1c3a-45a1-815d-ce32a5e3367c",
-          "Color": "0.8902,0.31765,0.05098,1"
+          "Color": "0.05098,0.4566,0.8902,1"
         }
       ]
     },
     {
-      "__guid": "6fd3d3a4-72a5-46ab-9795-5539bf5912fa",
-      "Name": "spawn (2)",
-      "Position": "-1312,-224.0002,576.0001",
+      "__guid": "c7054e4d-75ae-481d-a7ff-6151486e3b7d",
+      "Name": "spawn (3)",
+      "Position": "-1247.999,-85.63901,506.3103",
       "Rotation": "0,0,-0.7071067,0.7071068",
+      "Tags": "redspawn",
       "Enabled": true,
       "NetworkMode": 2,
       "Components": [
         {
           "__type": "SpawnPoint",
-          "__guid": "af7751cc-dd3a-4592-ac39-f629ac599a98",
-          "Color": "0.8902,0.31765,0.05098,1"
+          "__guid": "ee584462-31d3-4b68-890a-0bb374eebd00",
+          "Color": "0.8902,0.05098,0.05098,1"
         }
       ]
     },
     {
       "__guid": "5cd03d53-39f2-4214-ae85-991f34e9b691",
       "Name": "Camera ",
-      "Position": "-20.34279,807.7991,55.51758",
+      "Position": "1481.687,1054.36,999.6555",
       "Rotation": "0.02498195,0.003467371,-0.9901899,0.1374334",
+      "Tags": "particles",
       "Enabled": true,
       "NetworkMode": 2,
       "Components": [
@@ -187,8 +169,9 @@
         {
           "__type": "ChromaticAberration",
           "__guid": "ef3d2352-ded7-4861-a706-1a98347ccdd5",
+          "__enabled": false,
           "Offset": "2,4,0",
-          "Scale": 0.2
+          "Scale": 0.11
         },
         {
           "__type": "Bloom",
@@ -222,7 +205,7 @@
         {
           "__type": "Sharpen",
           "__guid": "47f03986-befb-4ad6-8c4a-6f37b8785bb8",
-          "Scale": 0.2
+          "Scale": 0.73
         },
         {
           "__type": "CubemapFog",
@@ -295,52 +278,159 @@
       ]
     },
     {
-      "__guid": "aea53818-7eff-49c9-951a-fa332cd33245",
+      "__guid": "15c338ce-e3b6-4cbd-b146-bc649a182c71",
       "Name": "GameObject",
       "Enabled": true,
       "NetworkMode": 2
     },
     {
-      "__guid": "84b1f45a-115f-4538-8cef-2ca320ac8026",
+      "__guid": "49e09621-075b-47df-8b2b-e84aa7d18a68",
       "Name": "Box",
-      "Position": "-1392,-400,493.8477",
+      "Position": "-1246.981,-35.22307,557.3168",
       "Enabled": true,
       "NetworkMode": 2,
       "Components": [
         {
           "__type": "MeshComponent",
-          "__guid": "abe1174c-0f9e-4013-aae6-60a26c463458",
+          "__guid": "cfd3f2a2-6ee3-44d3-8474-115f3901cd47",
           "Collision": "Mesh",
-          "Color": "1,1,1,1",
+          "Color": "1,0.02791,0.02791,1",
           "IsTrigger": false,
           "Mesh": {
-            "Topology": "H4sIAAAAAAAACk2MiwoAIAjErOzx/z9cNzihwVBWmBFxZJPbc8gpi\u002B5\u002BRf2B9Budxg7LN\u002BhM/KHX/QdwDFPNgAAAAA==",
-            "TextureOrigin": "-1392,-400,493.8477",
+            "Topology": "H4sIAAAAAAAACk3QCQ7CMBBD0bAUylp2uP9J8ZMmUkb6ysTjOGnn1tov7MI9rMI3TOEZDuEdLqHXunzTcEZta7YJr\u002BqVbJq5bP1YfI\u002BayzpWtr036OnnIetTPf0a9uXzVj19Ht50K11vVfy\u002BSx59KT/6nWanuqtrVno/x\u002B8/KXfKMaPx/wEMd\u002BZ5ZAEAAA==",
+            "TextureOrigin": "8.742981,-8.406252,-0.6109161",
             "Positions": [
-              "-432,-720,0",
-              "432,-720,0",
-              "432,720,0",
-              "-432,720,0"
+              "-139.7257,-6.353273,63.26385",
+              "139.7257,-6.353273,63.26385",
+              "139.7257,6.353273,63.26385",
+              "-139.7257,6.353273,63.26385",
+              "-139.7257,6.353273,-63.26385",
+              "139.7257,6.353273,-63.26385",
+              "139.7257,-6.353273,-63.26385",
+              "-139.7257,-6.353273,-63.26385"
             ],
             "TextureUAxis": [
-              "1,0,0"
+              "0,0,0",
+              "0,0,0",
+              "0,0,0",
+              "0,0,0",
+              "0,0,0",
+              "0,0,0"
             ],
             "TextureVAxis": [
-              "0,-1,0"
+              "0,0,0",
+              "0,0,0",
+              "0,0,0",
+              "0,0,0",
+              "0,0,0",
+              "0,0,0"
             ],
             "TextureScale": [
+              "0.25,0.25",
+              "0.25,0.25",
+              "0.25,0.25",
+              "0.25,0.25",
+              "0.25,0.25",
               "0.25,0.25"
             ],
             "TextureAngle": [
+              0,
+              0,
+              0,
+              0,
+              0,
               0
             ],
             "MaterialIndex": [
+              -1,
+              -1,
+              -1,
+              -1,
+              -1,
               -1
             ]
           },
-          "Static": false
+          "Static": true
         }
       ]
+    },
+    {
+      "__guid": "10681c71-170a-4566-b929-01c8c4ca5eb2",
+      "Name": "Box (1)",
+      "Position": "-1246.981,-786.1987,557.3168",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "MeshComponent",
+          "__guid": "dfea11ec-91ff-46c7-97c9-5be4d2c27c74",
+          "Collision": "Mesh",
+          "Color": "0.02791,1,0.88659,1",
+          "IsTrigger": false,
+          "Mesh": {
+            "Topology": "H4sIAAAAAAAACk3QCQ7CMBBD0bAUylp2uP9J8ZMmUkb6ysTjOGnn1tov7MI9rMI3TOEZDuEdLqHXunzTcEZta7YJr\u002BqVbJq5bP1YfI\u002BayzpWtr036OnnIetTPf0a9uXzVj19Ht50K11vVfy\u002BSx59KT/6nWanuqtrVno/x\u002B8/KXfKMaPx/wEMd\u002BZ5ZAEAAA==",
+            "TextureOrigin": "8.742981,-8.406252,-0.6109161",
+            "Positions": [
+              "-139.7257,-6.353273,63.26385",
+              "139.7257,-6.353273,63.26385",
+              "139.7257,6.353273,63.26385",
+              "-139.7257,6.353273,63.26385",
+              "-139.7257,6.353273,-63.26385",
+              "139.7257,6.353273,-63.26385",
+              "139.7257,-6.353273,-63.26385",
+              "-139.7257,-6.353273,-63.26385"
+            ],
+            "TextureUAxis": [
+              "0,0,0",
+              "0,0,0",
+              "0,0,0",
+              "0,0,0",
+              "0,0,0",
+              "0,0,0"
+            ],
+            "TextureVAxis": [
+              "0,0,0",
+              "0,0,0",
+              "0,0,0",
+              "0,0,0",
+              "0,0,0",
+              "0,0,0"
+            ],
+            "TextureScale": [
+              "0.25,0.25",
+              "0.25,0.25",
+              "0.25,0.25",
+              "0.25,0.25",
+              "0.25,0.25",
+              "0.25,0.25"
+            ],
+            "TextureAngle": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "MaterialIndex": [
+              -1,
+              -1,
+              -1,
+              -1,
+              -1,
+              -1
+            ]
+          },
+          "Static": true
+        }
+      ]
+    },
+    {
+      "__guid": "0c38f4f6-686e-4e44-b0f0-1eb231e8a1c8",
+      "Name": "Object",
+      "Position": "-1401.595,-316.676,599.1149",
+      "Enabled": true,
+      "NetworkMode": 2
     }
   ],
   "SceneProperties": {
@@ -366,7 +456,7 @@
   },
   "Title": "level_1",
   "Description": "",
-  "LastSaved": "2024-03-19T23:39:17.7804691-04:00",
+  "LastSaved": "2024-03-24T06:21:50.9555233-04:00",
   "ResourceVersion": 1,
   "__version": 1,
   "__references": [

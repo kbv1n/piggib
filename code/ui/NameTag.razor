@@ -5,6 +5,7 @@
 @if ( Player.IsValid() && Player.LifeState == LifeState.Alive
 	&& Network.OwnerConnection is Connection owner
 	&& owner != Connection.Local )
+	
 {
 	<root>
 		<div class="card">
@@ -18,7 +19,7 @@
 		</div>
 	</root>
 }
-
+<div class="crosshair"></div> <!-- Add this line -->
 @code
 {
 	private PlayerMovement Player { get; set; }

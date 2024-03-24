@@ -29,12 +29,14 @@
 	
 	.crosshair {
 		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 5px;
+		height: 5px;
+		background: #ffffff;
 		border-radius: 50%;
-		background-color: white;
-		opacity: 0.3;
-		transition: transform 0.05s ease-in-out;
-		width: 4px;
-		height: 4px;
+		transform: translate(-50%, -50%);
+		pointer-events: none;
 	}
 	
 	&.hitmarker {
