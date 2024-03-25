@@ -3,29 +3,39 @@
 @using Sandbox;
 @inherits PanelComponent
 
+
 <root>
-    <div class="table">
-        <div class="table-row heading">
-            <div class="row-item">Name</div>
-            <div class="row-item">Kills</div>
-            <div class="row-item">Deaths</div>
-            <div class="row-item">⏲️</div>
-        </div>
+	<div class="table">
+		<div class="table-row heading">
+			<div class="row-item">Name</div>
+			<div class="row-item">Kills</div>
+			<div class="row-item">Deaths</div>
+			<div class="row-item">⏲️</div>
+		</div>
 
-        <div class="team red">
-            @foreach (var entry in Scene.GetAllComponents<PlayerMovement>().FirstOrDefault(c => c.Team == 1))
-            {
-                RenderPlayerRow(entry);
-            }
-        </div>
+		@foreach ( var entry in Networking.Connections )
+		{
+			var rowClass = string.Empty;
+			var player = Scene.GetAllComponents<PlayerMovement>().FirstOrDefault( p => p.Network.OwnerConnection == entry );
+			
+			if ( entry == Connection.Local )
+				rowClass = "me";
 
-        <div class="team blue">
-            @foreach (var entry in Scene.GetAllComponents<PlayerMovement>().FirstOrDefault(c => c.Team == 2))
-            {
-                RenderPlayerRow(entry);
-            }
-        </div>
-    </div>
+			<div class="table-row @rowClass">
+				<div class="row-item">
+					@if ( entry.IsHost )
+					{
+						<div>👑</div>
+					}
+
+					@entry.DisplayName
+				</div>
+				<div class="row-item">@( player.IsValid() ? player.Kills : 0)</div>
+				<div class="row-item">@( player.IsValid() ? player.Deaths : 0)</div>
+				<div class="row-item">@GetTime( entry )</div>
+			</div>
+		}
+	</div>
 </root>
 
 @code
@@ -37,20 +47,6 @@
 
         if (entry == Connection.Local)
             rowClass = "me";
-
-        <div class="table-row @rowClass">
-            <div class="row-item">
-                @if (entry.IsHost)
-                {
-                    <div>👑</div>
-                }
-
-                @entry.DisplayName
-            </div>
-            <div class="row-item">@(player.IsValid() ? player.Kills : 0)</div>
-            <div class="row-item">@(player.IsValid() ? player.Deaths : 0)</div>
-            <div class="row-item">@GetTime(entry)</div>
-        </div>
     }
 
     private string GetTime(Connection c)

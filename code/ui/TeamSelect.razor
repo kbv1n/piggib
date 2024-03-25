@@ -1,0 +1,22 @@
+@page "/teamselect"
+
+<h3>Team Selection</h3>
+
+<div>
+	<label for="team">Select Team:</label>
+	<select id="team" @bind="SelectedTeam">
+		<option value="red">Red</option>
+		<option value="blue">Blue</option>
+	</select>
+</div>
+
+<button @onclick="JoinTeam">Join Team</button>
+
+@code {
+	private string SelectedTeam { get; set; }
+
+	private void JoinTeam()
+	{
+		
+	}
+}

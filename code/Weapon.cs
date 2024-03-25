@@ -13,6 +13,7 @@ public abstract class WeaponComponent : Component
 	[Property] public bool IsDeployed { get; set; }
 	private TimeUntil NextFire { get; set; }
 	private TimeUntil NextFireTime { get; set; }
+	private SpringJoint joint { get; set; }
 	
 	// Display Properties
 	[Property] public GameObject ViewModelPrefab { get; set; }
@@ -29,7 +30,7 @@ public abstract class WeaponComponent : Component
 	[Property] public SoundEvent FireSound { get; set; }
 
     // Animation Properties
-		[Property] public CitizenAnimationHelper.HoldTypes HoldTypes { get; set; } = CitizenAnimationHelper.HoldTypes.Shotgun;
+	[Property] public CitizenAnimationHelper.HoldTypes HoldTypes { get; set; } = CitizenAnimationHelper.HoldTypes.Shotgun;
 
 	[Broadcast]
 	public void Deploy()
@@ -192,6 +193,7 @@ public abstract class WeaponComponent : Component
 	}
 	protected override void OnUpdate()
 	{
+		
 		base.OnUpdate();
 	}
 	private void DestroyViewModel()

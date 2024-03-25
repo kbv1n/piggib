@@ -37,7 +37,8 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 	[Sync] public LifeState LifeState { get; private set; } = LifeState.Alive;
 	[Sync] public float Health { get; private set; } = 100f;
 	public RealTimeSince LastHitmarkerTime { get; private set; }
-	[Sync] public int Team { get; set; }
+	[Sync] public string currentTeam { get; set; }
+	public enum playerTeam { Red, Blue, None }
  	[Sync] public RealTimeSince MatchStart { get; set; } // add a method for ending the match at 15 minutes or max captures
  
 	// Sound Properties
@@ -56,6 +57,7 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
     [Property] public float MaxForce { get; set; } = 50f;
     [Property] public float Speed { get; set; } = 160f;
     [Property] public float JumpForce { get; set; } = 400f;
+	public bool IsSwinging { get; set; }
 	public Vector3 WishVelocity { get; private set; }
 	public bool dJumpUsed { get; set; }
     public bool IsCrouching = false;
@@ -127,6 +129,7 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 		{
         	IsCrouching = Input.Down("Duck");
         	if(Input.Pressed("Jump")) Jump();
+			if(Input.Down("Use")) Rope();
 			var angles = EyeAngles.Normal;
 			angles += Input.AnalogLook * 0.5f;
 			angles.pitch = angles.pitch.Clamp( -60f, 80f );
@@ -158,6 +161,11 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 
 		var weapon = Weapons.Deployed;
 		if ( !weapon.IsValid() ) return;
+
+		if ( Input.Down( "Use") )
+		{
+			// shoot rope
+		}
 
 		if ( Input.Down( "Attack1" ))
 		{
@@ -403,4 +411,20 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 		if ( !IsProxy ) 
 		AnimationHelper?.TriggerJump();
 	}
+	protected void Rope()
+	{
+		// Rope logic
+
+
+	}
+	protected void StartSwing()
+	{ 
+		
+	}
+	protected void EndSwing()
+	{
+		IsSwinging = false;
+	}
+
 }
+

@@ -13,8 +13,8 @@
         {
           "__type": "DirectionalLight",
           "__guid": "3abfc522-aa35-48e3-9d23-45bb24dcf4d4",
-          "FogMode": "Enabled",
-          "FogStrength": 0.66,
+          "FogMode": "Disabled",
+          "FogStrength": 0,
           "LightColor": "0.74884,0.74884,0.74884,1",
           "Shadows": true,
           "SkyColor": "0.09346,0.10574,0.13953,1"
@@ -80,21 +80,28 @@
             "_type": "gameobject",
             "prefab": "prefabs/player.prefab"
           },
+          "SpawnPoints": [
+            null
+          ],
           "StartServer": true
         },
         {
           "__type": "NetworkManager",
-          "__guid": "651cfe3e-eef3-479a-b146-ec4d4953e224",
-          "PlayerPrefab": {
+          "__guid": "d6d0ad36-435a-49a0-a1ef-8fc7e268112b",
+          "BluePlayer": {
             "_type": "gameobject",
-            "prefab": "prefabs/player.prefab"
+            "prefab": "prefabs/bluplayer.prefab"
+          },
+          "RedPlayer": {
+            "_type": "gameobject",
+            "prefab": "prefabs/redplayer.prefab"
           }
         }
       ]
     },
     {
       "__guid": "f9203ac1-e2c3-46c2-9e1c-74b72d2030e3",
-      "Name": "spawn (1)",
+      "Name": "bluespawn",
       "Position": "-1247.999,-733.2041,506.3103",
       "Rotation": "0,0,-0.7071069,-0.7071066",
       "Tags": "bluspawn",
@@ -110,7 +117,7 @@
     },
     {
       "__guid": "c7054e4d-75ae-481d-a7ff-6151486e3b7d",
-      "Name": "spawn (3)",
+      "Name": "redspawn",
       "Position": "-1247.999,-85.63901,506.3103",
       "Rotation": "0,0,-0.7071067,0.7071068",
       "Tags": "redspawn",
@@ -278,7 +285,7 @@
       ]
     },
     {
-      "__guid": "15c338ce-e3b6-4cbd-b146-bc649a182c71",
+      "__guid": "7cd67c77-4597-41ff-923d-01c1e2970aa1",
       "Name": "GameObject",
       "Enabled": true,
       "NetworkMode": 2
@@ -426,11 +433,21 @@
       ]
     },
     {
-      "__guid": "0c38f4f6-686e-4e44-b0f0-1eb231e8a1c8",
-      "Name": "Object",
-      "Position": "-1401.595,-316.676,599.1149",
+      "__guid": "44cad237-da9c-4eeb-a5f2-a64755ffecc6",
+      "Name": "TeamSelect",
+      "Position": "-204.1172,-58.93851,-15.02444",
       "Enabled": true,
-      "NetworkMode": 2
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "ScreenPanel",
+          "__guid": "bfbdd5ad-95cd-4832-a6da-57e348f9a95b",
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ZIndex": 100
+        }
+      ]
     }
   ],
   "SceneProperties": {
@@ -456,7 +473,7 @@
   },
   "Title": "level_1",
   "Description": "",
-  "LastSaved": "2024-03-24T06:21:50.9555233-04:00",
+  "LastSaved": "2024-03-24T23:37:57.1112671-04:00",
   "ResourceVersion": 1,
   "__version": 1,
   "__references": [

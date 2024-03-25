@@ -136,6 +136,7 @@
             "__guid": "c0d93b3b-76b5-456c-9e64-c872a5cd2fce",
             "BodyGroups": 341,
             "CreateBoneObjects": true,
+            "MaterialOverride": "materials/dev/bright_100.vmat",
             "Model": "models/citizen/citizen.vmdl",
             "RenderType": "On",
             "Tint": "1,1,1,1"
@@ -143,6 +144,7 @@
           {
             "__type": "ModelHitboxes",
             "__guid": "1fbba57c-ad63-47ae-b154-6331e5765950",
+            "__enabled": false,
             "Renderer": {
               "_type": "component",
               "component_id": "c0d93b3b-76b5-456c-9e64-c872a5cd2fce",
@@ -178,6 +180,19 @@
               "component_type": "SkinnedModelRenderer"
             },
             "RigidbodyFlags": 0
+          },
+          {
+            "__type": "ManualHitbox",
+            "__guid": "9a7666c5-4647-449f-9060-51339c02af50",
+            "CenterA": "0,0,58.99982",
+            "CenterB": "0.6,0,16.79996",
+            "HitboxTags": "",
+            "Radius": 14.700008,
+            "Shape": "Capsule",
+            "Target": {
+              "_type": "gameobject",
+              "go": "05e5c1e3-df43-452e-87bf-1c838cb1aa01"
+            }
           }
         ],
         "Children": [

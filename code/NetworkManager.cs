@@ -5,7 +5,11 @@ using Sandbox.Network;
 
 public class NetworkManager : Component, Component.INetworkListener
 {
-	[Property] public PrefabScene PlayerPrefab { get; set; }
+	[Property] public PrefabScene RedPlayer { get; set; }
+	[Property] public PrefabScene BluePlayer { get; set; }
+	public int redTeam { get; set; }
+	public int blueTeam { get; set; }
+	private PlayerMovement player { get; set; } 
 
 	protected override void OnStart()
 	{
@@ -16,10 +20,28 @@ public class NetworkManager : Component, Component.INetworkListener
 		
 		base.OnStart();
 	}
-
+	
 	void INetworkListener.OnActive( Connection connection )
 	{
-		var player = PlayerPrefab.Clone();
-		player.NetworkSpawn( connection );
+		{		
+			 if ( blueTeam <= redTeam )
+			 {
+				var blue = BluePlayer.Clone();
+			 	blueTeam++;
+				blue.NetworkSpawn( connection );
+				player.currentTeam = "Blue";
+				Log.Info( player.currentTeam );
+			}
+			else
+			{
+				
+				var red = RedPlayer.Clone();
+				redTeam++;
+				red.NetworkSpawn( connection );
+				player.currentTeam = "Red";
+			}
+		}
 	}
+
+	
 }

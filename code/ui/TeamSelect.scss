@@ -1,0 +1,36 @@
+.team-select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+    .team {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 20px;
+        
+        &.red {
+            color: red;
+        }
+        
+        &.blue {
+            color: blue;
+        }
+        
+        .team-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .team-members {
+            display: flex;
+            flex-direction: column;
+            
+            .member {
+                margin-bottom: 5px;
+            }
+        }
+    }
+}
