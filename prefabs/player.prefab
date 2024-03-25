@@ -22,6 +22,10 @@
           "go": "c7ab1557-e03b-47a1-b97f-9bdfa9af8501"
         },
         "Friction": 0,
+        "Gib": {
+          "_type": "gameobject",
+          "prefab": "prefabs/gib.prefab"
+        },
         "Gravity": "0,0,1300",
         "Head": {
           "_type": "gameobject",

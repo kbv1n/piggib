@@ -1,0 +1,175 @@
+{
+  "RootObject": {
+    "__guid": "5a860f86-17c5-4422-9e35-88c985078751",
+    "Name": "gib",
+    "Position": "0,0,90.89303",
+    "Tags": "particles",
+    "Enabled": true,
+    "NetworkMode": 2,
+    "Components": [
+      {
+        "__type": "ParticleEffect",
+        "__guid": "9cbcf5f5-2e8e-45c7-9c6d-e8d5b9320fd5",
+        "Alpha": {
+          "Type": "Curve",
+          "CurveA": [
+            {
+              "y": 1
+            },
+            {
+              "x": 1
+            }
+          ],
+          "Constants": "1,0,0,0"
+        },
+        "ApplyColor": false,
+        "ApplyRotation": true,
+        "ApplyShape": true,
+        "Bounce": {},
+        "Brightness": {
+          "Constants": "1,0,0,0"
+        },
+        "Bumpiness": {},
+        "Collision": true,
+        "CollisionRadius": 0.9999999,
+        "Damping": {},
+        "DieOnCollisionChance": {},
+        "Force": true,
+        "ForceDirection": "0,0,-800",
+        "ForceScale": {
+          "Constants": "1,0,0,0"
+        },
+        "Friction": {
+          "Constants": "5,0,0,0"
+        },
+        "Gradient": {
+          "Evaluation": "Particle",
+          "GradientA": {
+            "color": [
+              {
+                "t": 0.5,
+                "c": "1,1,1,1"
+              }
+            ],
+            "alpha": []
+          },
+          "GradientB": {
+            "color": [
+              {
+                "t": 0.5,
+                "c": "1,1,1,1"
+              }
+            ],
+            "alpha": []
+          },
+          "ConstantA": "1,1,1,1",
+          "ConstantB": "1,1,1,1"
+        },
+        "Lifetime": {
+          "Type": "Range",
+          "Evaluation": "Particle",
+          "Constants": "7,8,0,0"
+        },
+        "MaxParticles": 1000,
+        "PerParticleTimeScale": {
+          "Constants": "1,0.4,0,0"
+        },
+        "PreWarm": 0,
+        "PushStrength": {},
+        "Roll": {
+          "Type": "Range",
+          "Evaluation": "Particle",
+          "Constants": "0,360,0,0"
+        },
+        "Scale": {
+          "Type": "Curve",
+          "CurveA": [
+            {
+              "y": 1
+            },
+            {
+              "x": 0.8735119,
+              "y": 0.53339064
+            },
+            {
+              "x": 1
+            }
+          ],
+          "Constants": "1,0,0,0"
+        },
+        "SequenceId": {},
+        "SequenceSpeed": {
+          "Constants": "1,0,0,0"
+        },
+        "SequenceTime": {
+          "Constants": "1,0,0,0"
+        },
+        "SheetSequence": false,
+        "Space": "World",
+        "StartVelocity": {
+          "Constants": "80,69.4,0,0"
+        },
+        "Stretch": {
+          "Type": "Range",
+          "Evaluation": "Frame",
+          "Constants": "0.2,1,0,0"
+        },
+        "TimeScale": 1,
+        "Tint": "1,1,1,1"
+      },
+      {
+        "__type": "ParticleSpriteRenderer",
+        "__guid": "cda2fd71-bea8-4165-9dec-465dd2f3a231",
+        "Additive": false,
+        "BlurAmount": 0.5,
+        "BlurOpacity": 0.91,
+        "BlurSpacing": 0.73,
+        "DepthFeather": 0,
+        "FaceVelocity": false,
+        "FogStrength": 0,
+        "LeadingTrail": true,
+        "MotionBlur": true,
+        "Opaque": false,
+        "RotationOffset": 0,
+        "Scale": 2,
+        "Shadows": true,
+        "SortMode": "Unsorted",
+        "Texture": "materials/decals/decal_blood_splatter/decal_blood_splatter_02_albedo_tiff_f428ad43.generated.vtex"
+      },
+      {
+        "__type": "ParticleSphereEmitter",
+        "__guid": "70a90280-2d25-47ad-8453-91dc6602b0a4",
+        "Burst": 1000,
+        "Delay": 0,
+        "DestroyOnEnd": true,
+        "Duration": 2.0000029,
+        "Loop": false,
+        "OnEdge": true,
+        "Radius": 9.56,
+        "Rate": 0,
+        "Velocity": 266.67
+      },
+      {
+        "__type": "DecalRenderer",
+        "__guid": "58192b3c-f0d6-4faa-94df-7c67c1b4eb9a",
+        "__enabled": false,
+        "CutoffAngle": 49.2,
+        "CutoffAngleSoftness": 5,
+        "Material": "materials/decals/blood1.vmat",
+        "Mod2XBlending": false,
+        "Size": "93.29991,85.89981,39.40011",
+        "TintColor": "1,1,1,1",
+        "TriPlanar": false
+      }
+    ],
+    "Children": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__version": 1,
+  "__references": [
+    "rustextended.decal_blood_splatter_b"
+  ]
+}

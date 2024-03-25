@@ -59,23 +59,6 @@ public abstract class WeaponComponent : Component
 			IsDeployed = false;
 		}
 	}
-	public static async void PlayUntilFinished( this SceneParticles particles, TaskSource source )
-    {
-        try
-        {
-            while ( !particles.Finished )
-            {
-                await source.Frame();
-                particles.Simulate( Time.Delta );
-            }
-        }
-        catch ( TaskCanceledException )
-        {
-            // Do nothing.
-        }
-
-        particles.Delete();
-    }
 	
 	public virtual bool DoPrimaryAttack()
 	{

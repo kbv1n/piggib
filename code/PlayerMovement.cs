@@ -24,6 +24,7 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
     // Object references
 	[Property] public GameObject Head { get; set; }
 	[Property] public GameObject Eye { get; set; }
+	[Property] public PrefabScene Gib { get; set; }
 
 	// Camera properties
 	[Property] public CameraComponent ViewModelCamera { get; set; }
@@ -207,6 +208,7 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 			}
 		}
 		if ( IsProxy ) return;
+			ModelRenderer.Enabled = false;
 			RespawnAsync( 1f );
 			Deaths++;
 	}
@@ -256,6 +258,9 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 		
 		 if ( type == DamageType.Beam && HurtSound is not null) // Create a prefab for a gib effect and call it here this is an insta kill
 		{	
+			
+			var newPosition = Transform.Position + new Vector3(0, 0, 50);
+			Gib.Clone(newPosition, Transform.Rotation);
 			Sound.Play( HurtSound, Transform.Position );
 		}
   	// if ( type == DamageType.Blast )
@@ -274,6 +279,7 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 		
 		if ( Health <= 0f )
 		{
+			ModelRenderer.Enabled = false;
 			LifeState = LifeState.Dead;
 			SendKilledMessage( attackerId );
 			Sound.Play( DeathSound );
@@ -294,18 +300,12 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 		var deployedWeapon = Weapons.Deployed;
 		var shadowRenderer = ShadowAnimator.Components.Get<SkinnedModelRenderer>( true );
 		var hasViewModel = deployedWeapon.IsValid() && deployedWeapon.HasViewModel;
-		// var clothing = ModelRenderer.Components.GetAll<ClothingComponent>( FindMode.EverythingInSelfAndDescendants );
 		
 		if ( hasViewModel )
 		{
 			shadowRenderer.Enabled = false;
 			ModelRenderer.Enabled = false;
 			ModelRenderer.RenderType = Sandbox.ModelRenderer.ShadowRenderType.On;
-			
-			// foreach ( var c in clothing )
-			// {
-			// 	c.ModelRenderer.RenderType = Sandbox.ModelRenderer.ShadowRenderType.On;
-			// }
 
 			return;
 		}
@@ -328,16 +328,6 @@ public class PlayerMovement : Component, Component.ITriggerListener, IHealthComp
 
 
 		shadowRenderer.Enabled = true;
-
-		// foreach ( var c in clothing )
-		// {
-		// 	c.ModelRenderer.Enabled = true;
-
-		// 	if ( c.Category is Clothing.ClothingCategory.Hair or Clothing.ClothingCategory.Facial or Clothing.ClothingCategory.Hat )
-		// 	{
-		// 		c.ModelRenderer.RenderType = IsProxy ? Sandbox.ModelRenderer.ShadowRenderType.On : Sandbox.ModelRenderer.ShadowRenderType.ShadowsOnly;
-		// 	}
-		// }
 	}
 	public void ResetViewAngles()
 	{

@@ -11,7 +11,7 @@ Chat
 	flex-direction: column;
 	align-items: stretch;
 	font-size: 17px;
-	font-family: Poppins;
+	font-family: 'Roboto', sans-serif;
 	gap: 10px;
 
 	.output
@@ -40,7 +40,7 @@ Chat
 
 			.author
 			{
-				color: #2d95ce;
+				color: #3a7e6e;
 				white-space: nowrap;
 				flex-shrink: 0;
 			}

@@ -448,6 +448,128 @@
           "ZIndex": 100
         }
       ]
+    },
+    {
+      "__guid": "b67a8382-ba9e-4e81-82c7-d7170eb6a6db",
+      "Name": "Object",
+      "Position": "-1521.758,-419.8273,598.9729",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "Components": [
+        {
+          "__type": "ParticleEffect",
+          "__guid": "8221450a-2752-46f4-bbaa-c10dac9ee12e",
+          "Alpha": {
+            "Constants": "1,0,0,0"
+          },
+          "ApplyColor": true,
+          "ApplyRotation": false,
+          "ApplyShape": true,
+          "Bounce": {
+            "Constants": "1,0,0,0"
+          },
+          "Brightness": {
+            "Constants": "1,0,0,0"
+          },
+          "Bumpiness": {},
+          "Collision": false,
+          "CollisionRadius": 1,
+          "Damping": {},
+          "DieOnCollisionChance": {},
+          "Force": false,
+          "ForceDirection": "0,0,0",
+          "ForceScale": {
+            "Constants": "1,0,0,0"
+          },
+          "Friction": {
+            "Constants": "1,0,0,0"
+          },
+          "Gradient": {
+            "GradientA": {
+              "color": [
+                {
+                  "t": 0.5,
+                  "c": "1,1,1,1"
+                }
+              ],
+              "alpha": []
+            },
+            "GradientB": {
+              "color": [
+                {
+                  "t": 0.5,
+                  "c": "1,1,1,1"
+                }
+              ],
+              "alpha": []
+            },
+            "ConstantA": "1,1,1,1",
+            "ConstantB": "1,1,1,1"
+          },
+          "Lifetime": {
+            "Constants": "1,0,0,0"
+          },
+          "MaxParticles": 1030,
+          "PerParticleTimeScale": {
+            "Constants": "1,0,0,0"
+          },
+          "PreWarm": 0,
+          "PushStrength": {},
+          "Roll": {},
+          "Scale": {
+            "Constants": "1,0,0,0"
+          },
+          "SequenceId": {},
+          "SequenceSpeed": {
+            "Constants": "1,0,0,0"
+          },
+          "SequenceTime": {
+            "Constants": "1,0,0,0"
+          },
+          "SheetSequence": false,
+          "Space": "World",
+          "StartVelocity": {
+            "Constants": "1,0,0,0"
+          },
+          "Stretch": {},
+          "TimeScale": 1,
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "ParticleRingEmitter",
+          "__guid": "ec5f4231-339e-4aa5-a17d-ef1f50e79b99",
+          "Angle": {
+            "Constants": "360,0,0,0"
+          },
+          "AngleStart": {
+            "Constants": "1.8,0,0,0"
+          },
+          "Burst": 100,
+          "Delay": 0,
+          "DestroyOnEnd": false,
+          "Duration": 10,
+          "Flatness": {},
+          "Loop": true,
+          "Radius": {
+            "Constants": "-36.9,0,0,0"
+          },
+          "Rate": 197.78,
+          "Thickness": {
+            "Constants": "41.5,0,0,0"
+          },
+          "VelocityFromCenter": {},
+          "VelocityFromRing": {}
+        }
+      ]
+    },
+    {
+      "__guid": "b5c9feb8-1fb7-41b8-adf3-8ece7628d5ed",
+      "Name": "Gib",
+      "Position": "-1785.407,-527.2152,561.3798",
+      "Tags": "particles",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "__Prefab": "prefabs/gib.prefab"
     }
   ],
   "SceneProperties": {
@@ -473,7 +595,7 @@
   },
   "Title": "level_1",
   "Description": "",
-  "LastSaved": "2024-03-24T23:37:57.1112671-04:00",
+  "LastSaved": "2024-03-25T01:05:59.3564957-04:00",
   "ResourceVersion": 1,
   "__version": 1,
   "__references": [
